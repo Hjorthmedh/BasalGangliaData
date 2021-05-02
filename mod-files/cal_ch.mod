@@ -12,7 +12,7 @@ NEURON {
 	GLOBAL vhm, vcm
 	GLOBAL Ctm, atm, btm, tm0, vhtm
         GLOBAL minf,tau
-        RANGE modB, maxModB, levelB
+        RANGE modACh, maxModACh, levelACh
 
 }
 
@@ -39,9 +39,9 @@ PARAMETER {
 	btm = 11
 	tm0 = 0
 	vhtm = -2
-        modB = 0
-        maxModB = 1
-        levelB = 0
+        modACh = 0
+        maxModACh = 1
+        levelACh = 0
 
 }
 
@@ -56,7 +56,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	gcal = gbar*m*m*h2(cai)*modulationB()
+	gcal = gbar*m*m*h2(cai)*modulationACh()
 	ica  = gcal*ghk(v,cai,cao)
 }
 
@@ -114,10 +114,10 @@ PROCEDURE rate(v (mV)) { :callable from hoc
 	minf = 1/(1+exp(-(v-vhm)/vcm))
 }
  
-FUNCTION modulationB() {
+FUNCTION modulationACh() {
     : returns modulation factor
     
-    modulationB = 1 + modB*(maxModB-1)*levelB 
+    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
 }
 
 

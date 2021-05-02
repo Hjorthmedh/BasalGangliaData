@@ -22,19 +22,19 @@ COMMENT
 
 Neuromodulation is added as functions:
     
-    modulationA = 1 + modA*(maxModA-1)*levelA
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
 
 where:
     
-    modA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModA [1]: is the maximum modulation for this specific channel (read from the param file)
+    modDA  [0]: is a switch for turning modulation on or off {1/0}
+    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
                     e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelA  [0]: is an additional parameter for scaling modulation. 
+    levelDA  [0]: is an additional parameter for scaling modulation. 
                 Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
 									
 	  Further neuromodulators can be added by for example:
-          modulationA = 1 + modA*(maxModA-1)
-	  modulationB = 1 + modB*(maxModB-1)
+          modulationDA = 1 + modDA*(maxModDA-1)
+	  modulationACh = 1 + modACh*(maxModACh-1)
 	  ....
 
 	  etc. for other neuromodulators
@@ -53,7 +53,7 @@ NEURON {
 	USEION k READ ek WRITE ik
         RANGE gkbar, m_inf, tau_m, ik
 	GLOBAL taumax
-        RANGE modA, maxModA, levelA, modB, maxModB, levelB
+        RANGE modDA, maxModDA, levelDA, modACh, maxModACh, levelACh
 	
 
 }
@@ -70,12 +70,12 @@ PARAMETER {
 	ek		(mV)
 	gkbar	= 1e-6	(mho/cm2)
 	taumax	= 1000	(ms)		: peak value of tau
-        modA = 0
-        maxModA = 1
-        levelA = 0
-        modB = 0
-        maxModB = 1 
-        levelB = 0
+        modDA = 0
+        maxModDA = 1
+        levelDA = 0
+        modACh = 0
+        maxModACh = 1 
+        levelACh = 0
 }
 
 
@@ -94,7 +94,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ik = gkbar * m * (v - ek)*modulationA()*modulationB()
+	ik = gkbar * m * (v - ek)*modulationDA()*modulationACh()
 }
 
 DERIVATIVE states { 
@@ -132,14 +132,14 @@ FUNCTION exptable(x) {
 	}
 }
 
-FUNCTION modulationA() {
+FUNCTION modulationDA() {
     : returns modulation factor
     
-    modulationA = 1 + modA*(maxModA-1)*levelA 
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
 }
 
-FUNCTION modulationB() {
+FUNCTION modulationACh() {
     : returns modulation factor
     
-    modulationB = 1 + modB*(maxModB-1)*levelB 
+    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
 }

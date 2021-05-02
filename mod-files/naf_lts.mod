@@ -4,19 +4,19 @@ COMMENT
 
 Neuromodulation is added as functions:
     
-    modulationA = 1 + modA*(maxModA-1)*levelA
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
 
 where:
     
-    modA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModA [1]: is the maximum modulation for this specific channel (read from the param file)
+    modDA  [0]: is a switch for turning modulation on or off {1/0}
+    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
                     e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelA  [0]: is an additional parameter for scaling modulation. 
+    levelDA  [0]: is an additional parameter for scaling modulation. 
                 Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
 									
 	  Further neuromodulators can be added by for example:
-          modulationA = 1 + modA*(maxModA-1)
-	  modulationB = 1 + modB*(maxModB-1)
+          modulationDA = 1 + modDA*(maxModDA-1)
+	  modulationACh = 1 + modACh*(maxModACh-1)
 	  ....
 
 	  etc. for other neuromodulators
@@ -32,7 +32,7 @@ NEURON {
     SUFFIX naf_lts
     USEION na READ ena WRITE ina
     RANGE gbar, gna, ina, q
-    RANGE modA, maxModA, levelA
+    RANGE modDA, maxModDA, levelDA
 
 }
 
@@ -46,9 +46,9 @@ PARAMETER {
     gbar = 0.0 (S/cm2) 
     :q = 1	: room temperature 22 C
     q = 1.8	: body temperature 35 C
-    modA = 0
-    maxModA = 1
-    levelA = 0
+    modDA = 0
+    maxModDA = 1
+    levelDA = 0
 }
 
 ASSIGNED {
@@ -66,7 +66,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    gna = gbar*m*m*m*h*modulationA()
+    gna = gbar*m*m*m*h*modulationDA()
     ina = gna*(v-ena)
 }
 
@@ -95,10 +95,10 @@ PROCEDURE rates() {
     UNITSON
 	       }
 	       
-FUNCTION modulationA() {
+FUNCTION modulationDA() {
     : returns modulation factor
     
-    modulationA = 1 + modA*(maxModA-1)*levelA 
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
 }
 
 COMMENT

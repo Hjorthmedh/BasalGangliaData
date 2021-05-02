@@ -4,19 +4,19 @@ COMMENT
 
 Neuromodulation is added as functions:
     
-    modulationA = 1 + modA*(maxModA-1)*levelA
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
 
 where:
     
-    modA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModA [1]: is the maximum modulation for this specific channel (read from the param file)
+    modDA  [0]: is a switch for turning modulation on or off {1/0}
+    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
                     e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelA  [0]: is an additional parameter for scaling modulation. 
+    levelDA  [0]: is an additional parameter for scaling modulation. 
                 Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
 									
 	  Further neuromodulators can be added by for example:
-          modulationA = 1 + modA*(maxModA-1)
-	  modulationB = 1 + modB*(maxModB-1)
+          modulationDA = 1 + modDA*(maxModDA-1)
+	  modulationACh = 1 + modACh*(maxModACh-1)
 	  ....
 
 	  etc. for other neuromodulators
@@ -32,7 +32,7 @@ NEURON {
     POINT_PROCESS tmGabaA
     RANGE tau1, tau2, e, i, q
     RANGE tau, tauR, tauF, U, u0
-    RANGE modA, maxModA, levelA, modB, maxModB, levelB
+    RANGE modDA, maxModDA, levelDA, modACh, maxModACh, levelACh
     RANGE failRateA, failRateB, failRate
     NONSPECIFIC_CURRENT i
 }
@@ -53,12 +53,12 @@ PARAMETER {
     tauF = 0 (ms)    : tauF >= 0
     U = 0.1 (1) <0, 1>
     u0 = 0 (1) <0, 1>
-    modA = 0
-    maxModA = 1
-    levelA = 0
-    modB = 0
-    maxModB = 1 
-    levelB = 0
+    modDA = 0
+    maxModDA = 1
+    levelDA = 0
+    modACh = 0
+    maxModACh = 1 
+    levelACh = 0
     failRateA = 0
     failRateB = 0
     failRate = 0
@@ -88,7 +88,7 @@ INITIAL {
 
 BREAKPOINT {
     SOLVE state METHOD cnexp
-    g = (B - A)*modulationA()*modulationB()
+    g = (B - A)*modulationDA()*modulationACh()
     i = g*(v - e)
 }
 
@@ -110,7 +110,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }
-    if( urand() > (failRate*failRateB*modB*levelB)) { 
+    if( urand() > (failRate*failRateB*modACh*levelACh)) { 
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
       y = y*exp(-(t-tsyn)/tau)
@@ -133,16 +133,16 @@ FUNCTION urand() {
 }
 
 
-FUNCTION modulationA() {
+FUNCTION modulationDA() {
     : returns modulation factor
     
-    modulationA = 1 + modA*(maxModA-1)*levelA 
+    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
 }
 
-FUNCTION modulationB() {
+FUNCTION modulationACh() {
     : returns modulation factor
     
-    modulationB = 1 + modB*(maxModB-1)*levelB 
+    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
 }
 COMMENT
 
