@@ -6,7 +6,9 @@ ENDCOMMENT
 NEURON {
 	POINT_PROCESS concDA
 	RANGE tau1, tau2, e
-	RANGE concentration, amplitude
+	RANGE amplitude
+	RANGE modulation_input
+	NONSPECIFIC_CURRENT i
 }
 
 UNITS {
@@ -18,12 +20,13 @@ UNITS {
 PARAMETER {
 	tau1 = 400 (ms) <1e-9,1e9>
 	tau2 = 300 (ms) <1e-9,1e9>
-	concentration = 4.5e-5 (nM)
-	amplitude = 0.25e-4			      
+	amplitude = 0.25e-4
+	modulation_input = 0
 }
 
 ASSIGNED {
      factor
+     i (nM)
 }
 
 STATE {
@@ -48,8 +51,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	concentration = B - A
-	concentration = amplitude*concentration		   
+	i = amplitude*(B-A)*modulator()		   
 	
 }
 
@@ -62,3 +64,8 @@ NET_RECEIVE(weight (uS)) {
 	A = A + weight*factor
 	B = B + weight*factor
 }
+
+FUNCTION modulator() {
+
+     modulator = modulation_input
+     }
