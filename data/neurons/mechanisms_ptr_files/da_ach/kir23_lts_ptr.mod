@@ -1,4 +1,4 @@
-TITLE Non-inactivating inwardly rectifying potassium current (Kir2.3)
+TITLE Noninactivating inwardly rectifying potassium current (Kir2.3)
 
 COMMENT
 
@@ -27,14 +27,14 @@ where:
 {} == ranges
     
 ENDCOMMENT
-
-
+      
 NEURON {
-    SUFFIX kir_ms
+
+    SUFFIX kir23_lts_ptr
     USEION k READ ek WRITE ik
-    RANGE gbar, gk, ik, shift
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE gbar, gk, ik
+    POINTER levelACh
+    RANGE modACh,maxModACh
 }
 
 UNITS {
@@ -44,14 +44,10 @@ UNITS {
 }
 
 PARAMETER {
-    gbar = 0.0 	(S/cm2) 
-    shift = 0.0 (mV)
-    q = 1 	: body temperature 35 C
-    modDA = 0
-    maxModDA = 1
-    levelDA = 0
+    gbar = 0.0 (S/cm2) 
+    q = 1	: body temperature 35 C
     modACh = 0
-    maxModACh = 1
+    maxModACh = 1 
     levelACh = 0
 }
 
@@ -68,7 +64,7 @@ STATE { m }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    gk = gbar*m*modulationDA()*modulationACh()
+    gk = gbar*m*modulationACh()
     ik = gk*(v-ek)
 }
 
@@ -84,15 +80,10 @@ INITIAL {
 
 PROCEDURE rates() {
     UNITSOFF
-    minf = 1/(1+exp((v-(-82)-shift)/13))
-    mtau = 1/(exp((v-(-103))/(-14.5))+0.125/(1+exp((v-(-35))/(-19))))
+    minf = 1/(1+exp((v-(-82))/13))
+    :mtau = 1/(2*exp((v-(-106))/(-12.6))+0.086*exp((v-(-19))/47))  : Steephen (2009)
+    mtau = 1/(exp((v-(-97.3))/(-12.6))+exp((v-96.3)/47))  : Steephen (2009)
     UNITSON
-}
-
-FUNCTION modulationDA() {
-    : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
 }
 
 FUNCTION modulationACh() {
@@ -106,15 +97,13 @@ COMMENT
 Original model by Wolf et al (2005) [1] for the rat MSN cells from the
 nucleus accumbens.  The activation curve was fitted to a mouse Kir2.1
 channel expressed in HEK cells [2] and shifted to match extracellular
-concentration of K in rat. Measured half-activation values are -109.3
-mV (striatonigral MSN) and -113.2 mV (striatopallidal MSN) [6, Supp
-Tab.1]. Time constants were derived from Aplysia data [3] and adjusted
-to match the rat experiments [1]. Time constant was further tuned [4]
-to fit the rat data below -80 mV [5].  Kinetics is corrected to the body
-temperature 35 C [4].
+concentration of K in rat.  Time constants were derived from Aplysia
+data [3] and adjusted to match the rat experiments [1]. Time constant
+was further tuned [4] to fit the rat data below -80 mV [5].
 
-Non-inactivating Kir current was observed in cells expressing Kir2.2
-and/or Kir2.3 [5]. Activation variable with m^1 kinetics is used [1,4].
+Non-inactivating component of the Kir channel with m1 kinetics is used
+[1,4].  Kinetics is corrected to the body temperature 35 C.
+
 Smooth fit of the time constants by Alexander Kozlov <akozlov@kth.se>.
 
 [1] Wolf JA, Moyer JT, Lazarewicz MT, Contreras D, Benoit-Marand M,
@@ -138,10 +127,5 @@ inward rectifying potassium currents. J Comput Neurosci 27(3):453-70
 Inwardly rectifying potassium (IRK) currents are correlated with IRK
 subunit expression in rat nucleus accumbens medium spiny neurons. J
 Neurosci 18(17):6650-61.
-
-[6] Shen W, Tian X, Day M, Ulrich S, Tkatch T, Nathanson NM, Surmeier DJ
-(2007) Cholinergic modulation of Kir2 channels selectively elevates
-dendritic excitability in striatopallidal neurons. Nat Neurosci
-10(11):1458-66.
 
 ENDCOMMENT

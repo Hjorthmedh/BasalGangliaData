@@ -30,11 +30,13 @@ ENDCOMMENT
 
 
 NEURON {
-    SUFFIX kir_ms
+    SUFFIX kir_ms_ptr
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, shift
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE levelDA
+    POINTER levelACh
+    RANGE modDA,maxModDA
+    RANGE modACh,maxModACh
 }
 
 UNITS {

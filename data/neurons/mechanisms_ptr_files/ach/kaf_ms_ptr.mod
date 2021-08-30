@@ -30,11 +30,13 @@ ENDCOMMENT
 
 
 NEURON {
-    SUFFIX kaf_ms
+    SUFFIX kaf_ms_ptr
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, q
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE levelDA
+    POINTER levelACh
+    RANGE modDA,maxModDA
+    RANGE modACh,maxModACh
     RANGE modShift
 }
 

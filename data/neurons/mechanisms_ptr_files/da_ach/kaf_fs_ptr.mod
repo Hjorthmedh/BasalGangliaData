@@ -28,14 +28,12 @@ where:
     
 ENDCOMMENT
 
-
 NEURON {
-    SUFFIX kaf_ms
+    SUFFIX kaf_fs_ptr
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, q
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
-    RANGE modShift
+    POINTER levelDA
+    RANGE modDA,maxModDA
 }
 
 UNITS {
@@ -45,20 +43,12 @@ UNITS {
 }
 
 PARAMETER {
-    gbar = 0.0 (S/cm2) 
-    q = 1	: room temperature (unspecified)
-    :q = 2	: body temperature 35 C (Du 2017)
-    :q = 3	: body temperature 35 C
+    gbar = 0.0 	(S/cm2) 
+    :q = 1	: room temperature (unspecified)
+    q = 3	: body temperature 35 C
     modDA = 0
     maxModDA = 1
     levelDA = 0
-    modShift = 0
-    modACh = 0
-    maxModACh = 1
-    levelACh = 0
-
-
-
 }
 
 ASSIGNED {
@@ -77,7 +67,6 @@ STATE { m h }
 BREAKPOINT {
     SOLVE states METHOD cnexp
     gk = gbar*m*m*h*modulationDA()
-    modShift = modulationACh()				     
     ik = gk*(v-ek)
 }
 
@@ -95,40 +84,17 @@ INITIAL {
 
 PROCEDURE rates() {
     UNITSOFF
-    minf = 1/(1+exp((v-(-10+modShift))/(-17.7)))
-    mtau = 0.9+1.1/(1+exp((v-(-30))/10))
+    minf = 1/(1+exp((v-(-10))/(-17.7)))
+    mtau = (0.9+1.1/(1+exp((v-(-30))/10)))*2
     hinf = 1/(1+exp((v-(-75.6))/11.8))
     htau = 14
     UNITSON
-
-    :Du 2017
-    :LOCAL alpha, beta, sum
-    :UNITSOFF
-    :alpha = 1.5/(1+exp((v-4)/(-17)))
-    :beta = 0.6/(1+exp((v-10)/9))
-    :sum = alpha+beta
-    :minf = alpha/sum
-    :mtau = 1/sum
-    :
-    :alpha = 0.105/(1+exp((v-(-121))/22))
-    :beta = 0.065/(1+exp((v-(-55))/(-11)))
-    :sum = alpha+beta
-    :hinf = alpha/sum
-    :htau = 1/sum
-    :UNITSON
 }
-
 
 FUNCTION modulationDA() {
     : returns modulation factor
     
     modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
-}
-
-FUNCTION modulationACh() {
-    : returns modulation factor
-    
-    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
 }
 
 COMMENT
@@ -139,12 +105,12 @@ recordings were done at unspecified temperature (room temperature 20-22 C
 assumed). Potentials were not corrected for the liquid junction potential
 (estimated 1-2 mV).
 
-Activation m^1 matches experimental data [1, Fig.2C]. Activation time
-constants fit tabulated data [1, Fig.2B].  Slope of inactivation function
-fitted to the data [1, Fig.3B] with half inactivation potential -75.6
-mV. Temperature factor q between 1.5 [3] and 3 [2] was used for body
-temperature.  Conductance kinetics of m2h type is used [2], no corrections
-for m^2 applied. Later modification by Du [4] is close to this model.
+Conductance kinetics of m2h type is used [2].  Activation m^1 matches
+experimental data [1, Fig.2C]. Activation time constants were fitted to
+tabulated data [1, Fig.2B] by Alexander Kozlov <akozlov@kth.se> and scaled
+up x2 for m2 kinetics.  Slope of inactivation function fitted to the data
+[1, Fig.3B] with half inactivation potential -75.6 mV. Temperature factor
+q between 3 [2] and 1.5 [3] was used for body temperature.
 
 [1] Tkatch T, Baranauskas G, Surmeier DJ (2000) Kv4.2 mRNA abundance and
 A-type K(+) current amplitude are linearly related in basal ganglia and
@@ -159,10 +125,5 @@ accumbens medium spiny projection neuron. J Neurosci 25(40):9080-95.
 Venance L, Blackwell KT (2012) The effects of NMDA subunit composition on
 calcium influx and spike timing-dependent plasticity in striatal medium
 spiny neurons. PLoS Comput Biol 8(4):e1002493.
-
-[4] Du K, Wu YW, Lindroos R, Liu Y, Rózsa B, Katona G, Ding JB,
-Kotaleski JH (2017) Cell-type-specific inhibition of the dendritic
-plateau potential in striatal spiny projection neurons. Proc Natl Acad
-Sci USA 114:E7612-E7621.
 
 ENDCOMMENT

@@ -52,11 +52,12 @@ ENDCOMMENT
 
 
 NEURON {
-	SUFFIX it_lts
+	SUFFIX it_lts_ptr
 	USEION ca READ cai,cao WRITE ica
 	GLOBAL q10
 	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift
-        RANGE modDA, maxModDA, levelDA
+        POINTER levelDA
+        RANGE modDA,maxModDA
 }
 
 UNITS {

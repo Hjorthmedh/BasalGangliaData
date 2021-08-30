@@ -1,4 +1,4 @@
-TITLE HVA L-type calcium current (Cav1.2)
+TITLE N-type calcium current (Cav2.2)
 
 COMMENT
 
@@ -40,34 +40,35 @@ UNITS {
 }
 
 NEURON {
-    SUFFIX cal12_ms
-    USEION cal READ cali, calo WRITE ical VALENCE 2
-    RANGE pbar, ical
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    SUFFIX can_ms_ptr
+    USEION ca READ cai, cao WRITE ica VALENCE 2
+    RANGE pbar, ica
+    POINTER levelDA
+    POINTER levelACh
+    RANGE modDA,maxModDA
+    RANGE modACh,maxModACh
 }
 
 PARAMETER {
-    pbar = 0.0 (cm/s)
-    a = 0.17
-    :q = 1	          : room temperature 22-25 C
-    q = 2	          : body temperature 35 C
+    pbar = 0.0 	(cm/s)
+    a = 0.21
+    :q = 1	: room temperature 22-25 C
+    q = 3	: body temperature 35 C
     modDA = 0
     maxModDA = 1
     levelDA = 0
     modACh = 0
-    maxModACh = 1 
+    maxModACh = 1
     levelACh = 0
-		   
 } 
 
 ASSIGNED { 
     v (mV)
-    ical (mA/cm2)
-    ecal (mV)
+    ica (mA/cm2)
+    eca (mV)
     celsius (degC)
-    cali (mM)
-    calo (mM)
+    cai (mM)
+    cao (mM)
     minf
     mtau (ms)
     hinf
@@ -78,7 +79,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    ical = pbar*m*(h*a+1-a)*ghk(v, cali, calo)*modulationDA()*modulationACh()
+    ica = pbar*m*m*(h*a+1-a)*ghk(v, cai, cao)*modulationDA()*modulationACh()
 }
 
 INITIAL {
@@ -95,10 +96,10 @@ DERIVATIVE states {
 
 PROCEDURE rates() {
     UNITSOFF
-    minf = 1/(1+exp((v-(-8.9))/(-6.7)))
-    mtau = 0.06+1/(exp((v-10)/20)+exp((v-(-17))/-48))
-    hinf = 1/(1+exp((v-(-13.4))/11.9))
-    htau = 44.3
+    minf = 1/(1+exp((v-(-3))/(-8)))
+    mtau = 0.06+1/(exp((v-25)/18)+exp((v-(-31))/(-44)))
+    hinf = 1/(1+exp((v-(-74.8))/6.5))
+    htau = 70
     UNITSON
 }
 
@@ -118,7 +119,6 @@ FUNCTION efun(z) {
     }
 }
 
-
 FUNCTION modulationDA() {
     : returns modulation factor
     
@@ -134,43 +134,40 @@ FUNCTION modulationACh() {
 
 COMMENT
 
-Activation curve was reconstructed for cultured NAc neurons from P5-P32
-Charles River rat pups [1].   Activation time constant is from the
-rodent neuron culture (both rat and mouse cells), room temperature 22-25
-C [2, Fig.15A]. Inactivation curve of CaL v1.3 current was taken from HEK
-cells [3, Fig.2 and p.819] at room temperature.
+Model is based on mixed data. Activation curve is from neostriatal
+medium spiny neurons of adult P28+ rats [1, Fig.12F], unspecified
+recording temperature. Potentials were not corrected for the liquid
+junction potential, which was estimated to be 7 mV.  Activation time
+constant is from the rodent neuron culture (both rat and mouse cells),
+room temperature 22-25 C [2, Fig.15B].  Inactivation data is from human
+(HEK) cells [3, Tab.1, Tab.2], supposedly at room temperature.
 
-Original NEURON model by Wolf (2005) [4] was modified by Alexander Kozlov
-<akozlov@csc.kth.se>. Kinetics of m1h type was used [5,6]. Activation
-time constant was refitted to avoid singularity.
+Kinetics of m2h type is used [2, Fig.5]. Activation of m^2 is fitted
+to the experimental data [1,4], activation time constant corresponds
+to m^2 already [2].  Original model [5,4] was modified by Alexander
+Kozlov <akozlov@kth.se>. Activation time constant was refitted to avoid
+singularity in the expression. Temperature correction factor 3 is used
+for body temperature [4,5].
 
-[1] Churchill D, Macvicar BA (1998) Biophysical and pharmacological
-characterization of voltage-dependent Ca2+ channels in neurons isolated
-from rat nucleus accumbens. J Neurophysiol 79(2):635-47.
+[1] Bargas J, Howe A, Eberwine J, Cao Y, Surmeier DJ (1994) Cellular
+and molecular characterization of Ca2+ currents in acutely isolated,
+adult rat neostriatal neurons. J Neurosci 14(11 Pt 1):6667-86.
 
 [2] Kasai H, Neher E (1992) Dihydropyridine-sensitive and
 omega-conotoxin-sensitive calcium channels in a mammalian
 neuroblastoma-glioma cell line. J Physiol 448:161-88.
 
-[3] Bell DC, Butcher AJ, Berrow NS, Page KM, Brust PF, Nesterova A,
-Stauderman KA, Seabrook GR, Nurnberg B, Dolphin AC (2001) Biophysical
-properties, pharmacology, and modulation of human, neuronal L-type
-(alpha(1D), Ca(V)1.3) voltage-dependent calcium currents. J Neurophysiol
-85:816-827.
+[3] McNaughton NC, Randall AD (1997) Electrophysiological properties of
+the human N-type Ca2+ channel: I. Channel gating in Ca2+, Ba2+ and Sr2+
+containing solutions. Neuropharmacology 36(7):895-915.
 
-[4] Wolf JA, Moyer JT, Lazarewicz MT, Contreras D, Benoit-Marand M,
+[4] Evans RC, Maniar YM, Blackwell KT (2013) Dynamic modulation of
+spike timing-dependent calcium influx during corticostriatal upstates. J
+Neurophysiol 110(7):1631-45.
+
+[5] Wolf JA, Moyer JT, Lazarewicz MT, Contreras D, Benoit-Marand M,
 O'Donnell P, Finkel LH (2005) NMDA/AMPA ratio impacts state transitions
 and entrainment to oscillations in a computational model of the nucleus
 accumbens medium spiny projection neuron. J Neurosci 25(40):9080-95.
-
-[5] Evans RC, Morera-Herreras T, Cui Y, Du K, Sheehan T, Kotaleski JH,
-Venance L, Blackwell KT (2012) The effects of NMDA subunit composition on
-calcium influx and spike timing-dependent plasticity in striatal medium
-spiny neurons. PLoS Comput Biol 8(4):e1002493.
-
-[6] Tuckwell HC (2012) Quantitative aspects of L-type Ca2+ currents. Prog
-Neurobiol 96(1):1-31.
-
-add justification for modulation
 
 ENDCOMMENT

@@ -25,15 +25,15 @@ where:
 								     
 [] == default values
 {} == ranges
-
+    
 ENDCOMMENT
 
 NEURON {
-    SUFFIX naf_ms
+    SUFFIX naf_fs_ptr
     USEION na READ ena WRITE ina
-    RANGE gbar, gna, ina
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE gbar, gna, ina, q
+    POINTER levelDA
+    RANGE modDA,maxModDA
 }
 
 UNITS {
@@ -43,15 +43,12 @@ UNITS {
 }
 
 PARAMETER {
-    gbar = 0.0 (S/cm2) 
+    gbar = 0.0 	(S/cm2) 
     :q = 1	: room temperature 22 C
     q = 1.8	: body temperature 35 C
     modDA = 0
     maxModDA = 1
     levelDA = 0
-    modACh = 0
-    maxModACh = 1 
-    levelACh = 0
 }
 
 ASSIGNED {
@@ -69,7 +66,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    gna = gbar*m*m*m*h*modulationDA()*modulationACh()
+    gna = gbar*m*m*m*h*modulationDA()
     ina = gna*(v-ena)
 }
 
@@ -87,10 +84,6 @@ INITIAL {
 
 PROCEDURE rates() {
     UNITSOFF
-    :minf = 1/(1+exp((v-(-25.5))/(-9.2)))
-    :mtau = 0.33+1/(exp((v-(-62))/14)+exp((v-(-60))/(-17)))
-    :hinf = 1/(1+exp((v-(-63.2))/6))
-    :htau = 0.6+1/(exp((v-(-44))/8)+exp((v-(-99))/(-44)))
     minf = 1/(1+exp((v-(-25))/(-10)))
     mtau = 0.33+1/(exp((v-(-62))/14)+exp((v-(-60))/(-17)))
     hinf = 1/(1+exp((v-(-62))/6))
@@ -104,12 +97,6 @@ FUNCTION modulationDA() {
     modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
 }
 
-FUNCTION modulationACh() {
-    : returns modulation factor
-    
-    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
-}
-
 COMMENT
 
 Original data by Ogata and Tatebayashi (1990) [1]. Neostriatal neurons
@@ -120,8 +107,8 @@ temperature (22 C). Conductance fitted by m3h kinetics.
 
 Smooth fit of mtau and htau data [1] by Alexander Kozlov <akozlov@kth.se>
 assuming natural logarithm of tau values [1, Figs. 5 and 9] and
-temperature correction factor of 1.8 [2] as suggested by Robert Lindroos
-<robert.lindroos@ki.se>.
+temperature correction factor of 1.8-2.1 [2] as suggested by Robert
+Lindroos <robert.lindroos@ki.se>.
 
 [1] Ogata N, Tatebayashi H (1990) Sodium current kinetics in freshly
 isolated neostriatal neurones of the adult guinea pig. Pflugers Arch

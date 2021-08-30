@@ -29,11 +29,13 @@ where:
 ENDCOMMENT
 
 NEURON {
-    SUFFIX naf_ms
+    SUFFIX naf_ms_ptr
     USEION na READ ena WRITE ina
     RANGE gbar, gna, ina
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    POINTER levelDA
+    RANGE levelACh
+    RANGE modDA,maxModDA
+    RANGE modACh,maxModACh
 }
 
 UNITS {

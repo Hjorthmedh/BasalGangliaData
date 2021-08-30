@@ -25,15 +25,16 @@ where:
 								     
 [] == default values
 {} == ranges
-
+    
 ENDCOMMENT
 
 NEURON {
-    SUFFIX naf_ms
+    SUFFIX naf_lts_ptr
     USEION na READ ena WRITE ina
-    RANGE gbar, gna, ina
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE gbar, gna, ina, q
+    POINTER levelDA
+    RANGE modDA,maxModDA
+
 }
 
 UNITS {
@@ -49,9 +50,6 @@ PARAMETER {
     modDA = 0
     maxModDA = 1
     levelDA = 0
-    modACh = 0
-    maxModACh = 1 
-    levelACh = 0
 }
 
 ASSIGNED {
@@ -69,7 +67,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    gna = gbar*m*m*m*h*modulationDA()*modulationACh()
+    gna = gbar*m*m*m*h*modulationDA()
     ina = gna*(v-ena)
 }
 
@@ -96,18 +94,12 @@ PROCEDURE rates() {
     hinf = 1/(1+exp((v-(-62))/6))
     htau = 0.6+1/(exp((v-(-44))/8)+exp((v-(-99))/(-44)))
     UNITSON
-}
-
+	       }
+	       
 FUNCTION modulationDA() {
     : returns modulation factor
     
     modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
-}
-
-FUNCTION modulationACh() {
-    : returns modulation factor
-    
-    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
 }
 
 COMMENT

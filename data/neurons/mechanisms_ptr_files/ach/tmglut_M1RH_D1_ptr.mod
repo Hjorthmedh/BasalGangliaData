@@ -33,16 +33,18 @@ ENDCOMMENT
 
 NEURON {
     THREADSAFE
-    POINT_PROCESS tmGlut
+    POINT_PROCESS tmGlut_M1RH_D1_ptr
     RANGE tau1_ampa, tau2_ampa, tau1_nmda, tau2_nmda
     RANGE g_ampa, g_nmda, i_ampa, i_nmda, nmda_ratio
     RANGE e, g, i, q, mg
     RANGE tau, tauR, tauF, U, u0
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
-    RANGE failRateDA, failRateACh, failRate
-    RANGE modDA, maxModDA_AMPA, levelDA, maxModACh_AMPA, levelACh
-    RANGE maxModDA_NMDA, modACh, maxModACh_NMDA 
+    RANGE levelDA
+    POINTER levelACh
+    RANGE modDA,maxModDA_AMPA,maxModACh_AMPA
+    RANGE maxModDA_NMDA, modACh, maxModACh_NMDA
     NONSPECIFIC_CURRENT i
+    RANGE failRateDA, failRateACh, failRate
     USEION cal WRITE ical VALENCE 2
 }
 
@@ -54,11 +56,13 @@ UNITS {
 }
 
 PARAMETER {
-    : q = 2 --- We have manually corrected these
-    tau1_ampa= 1.1 (ms)     : ORIG 2.2, ampa same as in Wolf? not same as in Du et al 2017 (and glutamate.mod)
-    tau2_ampa = 5.75 (ms)  : ORIG 11.5 ms,  tau2 > tau1
-    tau1_nmda= 2.76  (ms)    : ORIG 5.52 ms Chapman et al 2003; table 1, adult rat (rise time, rt = 12.13. rt ~= 2.197*tau (wiki;rise time) -> tau = 12.13 / 2.197 ~= 5.52
-    tau2_nmda = 115.5 (ms)   : ORIG 231 ms, Chapman et al 2003; table 1, adult rat
+    : input_region = M1RH-ipsi ; cell_type = D1-MSN
+    tau1_ampa= 0.819    (ms)     
+    tau2_ampa = 4.626   (ms)  
+    tau3_ampa = 64.295  (ms)  
+    tau1_nmda= 1.729    (ms)  
+    tau2_nmda = 34.413  (ms)  
+    tau3_nmda = 212.116 (ms) 
     nmda_ratio = 0.5 (1)
     e = 0 (mV)
     tau = 3 (ms)
@@ -69,22 +73,22 @@ PARAMETER {
     ca_ratio_ampa = 0.005
     ca_ratio_nmda = 0.1
     mg = 1 (mM)
-    
-    modDA = 0
-    maxModDA_AMPA = 1
-    modACh = 0
-    maxModACh_AMPA = 1 
-    levelACh = 0
 
-    
-    maxModDA_NMDA = 1
+    failRate = 0
+    maxModDA_AMPA = 1
     levelDA = 0
     
-    maxModACh_NMDA = 1 
+    maxModACh_AMPA = 1 
+
+    modDA = 0
+    maxModDA_NMDA = 1
+    
+    modACh = 0
+    maxModACh_NMDA = 1
+    levelACh = 0
 
     failRateDA = 0
     failRateACh = 0
-    failRate = 0
     use_stp = 1     : to turn of use_stp -> use 0
 }
 
@@ -108,23 +112,27 @@ ASSIGNED {
 STATE {
     A_ampa (uS)
     B_ampa (uS)
+    C_ampa (uS)
     A_nmda (uS)
     B_nmda (uS)
+    C_nmda (uS)
 }
 
 INITIAL {
     LOCAL tp_ampa, tp_nmda
     A_ampa = 0
     B_ampa = 0
+    C_ampa = 0
 				
-    tp_ampa = (tau1_ampa*tau2_ampa)/(tau2_ampa-tau1_ampa) * log(tau2_ampa/tau1_ampa)
-    factor_ampa = -exp(-tp_ampa/tau1_ampa) + exp(-tp_ampa/tau2_ampa)
+    tp_ampa = 1.628
+    factor_ampa = -exp(-tp_ampa/tau1_ampa) + exp(-tp_ampa/tau2_ampa) + exp(-tp_ampa/tau3_ampa)
     factor_ampa = 1/factor_ampa
 								    
     A_nmda = 0
     B_nmda = 0
-    tp_nmda = (tau1_nmda*tau2_nmda)/(tau2_nmda-tau1_nmda) * log(tau2_nmda/tau1_nmda)
-    factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda)
+    C_nmda = 0
+    tp_nmda = 5.137
+    factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda) + exp(-tp_nmda/tau3_nmda)
     factor_nmda = 1/factor_nmda
 }
 
@@ -133,7 +141,7 @@ BREAKPOINT {
     SOLVE state METHOD cnexp
     
     : NMDA
-    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
+    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 2.62 (mM))) : 3.57 instead of 2.62 if LJP not corrected
     g_nmda    = (B_nmda - A_nmda) * modulationDA_NMDA()*modulationACh_NMDA()
     itot_nmda = g_nmda * (v - e) * mggate
     ical_nmda = ca_ratio_nmda*itot_nmda
@@ -157,8 +165,10 @@ BREAKPOINT {
 DERIVATIVE state {
     A_ampa' = -A_ampa/tau1_ampa
     B_ampa' = -B_ampa/tau2_ampa
+    C_ampa' = -C_ampa/tau3_ampa
     A_nmda' = -A_nmda/tau1_nmda
     B_nmda' = -B_nmda/tau2_nmda
+    C_nmda' = -C_nmda/tau3_nmda
 }
 
 NET_RECEIVE(weight (uS), y, z, u, tsyn (ms)) {

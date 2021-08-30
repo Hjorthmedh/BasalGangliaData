@@ -34,13 +34,14 @@ where:
 ENDCOMMENT
 
 NEURON {
-	SUFFIX cal_ch
+	SUFFIX cal_ch_ptr
 	USEION ca READ cai,cao WRITE ica
         RANGE  gbar,ica , gcal
 	GLOBAL vhm, vcm
 	GLOBAL Ctm, atm, btm, tm0, vhtm
         GLOBAL minf,tau
-        RANGE modACh, maxModACh, levelACh
+        POINTER levelACh
+        RANGE modACh, maxModACh
 
 }
 

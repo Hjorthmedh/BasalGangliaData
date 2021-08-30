@@ -29,11 +29,13 @@ where:
 ENDCOMMENT
 
 NEURON {
-    POINT_PROCESS tmGabaA
+    POINT_PROCESS tmGabaA_ptr
     RANGE tau1, tau2, e, i, q
     RANGE tau, tauR, tauF, U, u0
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    RANGE levelDA
+    POINTER levelACh
+    RANGE modDA,maxModDA
+    RANGE modACh,maxModACh
     RANGE failRateDA, failRateACh, failRate
     NONSPECIFIC_CURRENT i
 }

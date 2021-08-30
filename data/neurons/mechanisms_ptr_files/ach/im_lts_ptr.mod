@@ -49,12 +49,14 @@ ENDCOMMENT
 INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
-	SUFFIX im_lts
+	SUFFIX im_lts_ptr
 	USEION k READ ek WRITE ik
         RANGE gkbar, m_inf, tau_m, ik
 	GLOBAL taumax
-        RANGE modDA, maxModDA, levelDA
-	RANGE modACh, maxModACh, levelACh
+        RANGE levelDA
+        POINTER levelACh
+	RANGE modDA,maxModDA
+	RANGE modACh,maxModACh
 	
 
 }

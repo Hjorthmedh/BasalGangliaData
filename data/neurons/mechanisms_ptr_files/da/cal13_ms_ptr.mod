@@ -1,4 +1,4 @@
-TITLE HVA L-type calcium current (Cav1.2)
+TITLE LVA L-type calcium current (Cav1.3)
 
 COMMENT
 
@@ -40,25 +40,25 @@ UNITS {
 }
 
 NEURON {
-    SUFFIX cal12_ms
+    SUFFIX cal13_ms_ptr
     USEION cal READ cali, calo WRITE ical VALENCE 2
     RANGE pbar, ical
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    POINTER levelDA
+    RANGE levelACh
+    RANGE modDA, maxModDA
+    RANGE modACh, maxModACh
 }
 
 PARAMETER {
     pbar = 0.0 (cm/s)
-    a = 0.17
-    :q = 1	          : room temperature 22-25 C
-    q = 2	          : body temperature 35 C
+    :q = 1	: room temperature 22-25 C
+    q = 2	: body temperature 35 C
     modDA = 0
     maxModDA = 1
     levelDA = 0
     modACh = 0
-    maxModACh = 1 
+    maxModACh = 1
     levelACh = 0
-		   
 } 
 
 ASSIGNED { 
@@ -78,7 +78,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    ical = pbar*m*(h*a+1-a)*ghk(v, cali, calo)*modulationDA()*modulationACh()
+    ical = pbar*m*m*h*ghk(v, cali, calo)*modulationDA()*modulationACh()
 }
 
 INITIAL {
@@ -95,7 +95,7 @@ DERIVATIVE states {
 
 PROCEDURE rates() {
     UNITSOFF
-    minf = 1/(1+exp((v-(-8.9))/(-6.7)))
+    minf = 1/(1+exp((v-(-33))/(-6.7)))
     mtau = 0.06+1/(exp((v-10)/20)+exp((v-(-17))/-48))
     hinf = 1/(1+exp((v-(-13.4))/11.9))
     htau = 44.3
@@ -134,14 +134,15 @@ FUNCTION modulationACh() {
 
 COMMENT
 
-Activation curve was reconstructed for cultured NAc neurons from P5-P32
-Charles River rat pups [1].   Activation time constant is from the
-rodent neuron culture (both rat and mouse cells), room temperature 22-25
-C [2, Fig.15A]. Inactivation curve of CaL v1.3 current was taken from HEK
-cells [3, Fig.2 and p.819] at room temperature.
+Activation curve was reconstructed for cultured NAc neurons from
+P5-P32 Charles River rat pups [1] and shifted to match LVA data [7,
+Fig.1D]. Activation time constant is from the rodent neuron culture (both
+rat and mouse cells), room temperature 22-25 C [2, Fig.15A]. Inactivation
+curve of CaL v1.3 current was taken from HEK cells [3, Fig.2 and p.819]
+at room temperature.
 
 Original NEURON model by Wolf (2005) [4] was modified by Alexander Kozlov
-<akozlov@csc.kth.se>. Kinetics of m1h type was used [5,6]. Activation
+<akozlov@csc.kth.se>. Kinetics of m2h type was used [5,6]. Activation
 time constant was refitted to avoid singularity.
 
 [1] Churchill D, Macvicar BA (1998) Biophysical and pharmacological
@@ -171,6 +172,9 @@ spiny neurons. PLoS Comput Biol 8(4):e1002493.
 [6] Tuckwell HC (2012) Quantitative aspects of L-type Ca2+ currents. Prog
 Neurobiol 96(1):1-31.
 
-add justification for modulation
+[7] Xu W, Lipscombe D (2001) Neuronal cav1.3 L-type channels activate
+at relatively hyperpolarized membrane potentials and are incompletely
+inhibited by dihydropyridines. J Neurosci 21(16): 5944-5951.
+
 
 ENDCOMMENT

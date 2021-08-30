@@ -33,15 +33,19 @@ ENDCOMMENT
 
 NEURON {
     THREADSAFE
-    POINT_PROCESS tmGlut
-    RANGE tau1_ampa, tau2_ampa, tau1_nmda, tau2_nmda
-    RANGE g_ampa, g_nmda, i_ampa, i_nmda, nmda_ratio
+    POINT_PROCESS tmGlut_double_ptr
+    RANGE tau1_ampa, tau2_ampa, tau3_ampa, tau1_nmda, tau2_nmda, tau3_nmda
+    RANGE I2_ampa, I3_ampa, I2_nmda, I3_nmda
+    RANGE tpeak_ampa, factor_ampa, tpeak_nmda, factor_nmda
+    RANGE g_ampa, g_nmda, i_ampa, i_nmda, itot_ampa, itot_nmda, nmda_ratio
     RANGE e, g, i, q, mg
     RANGE tau, tauR, tauF, U, u0
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
     RANGE failRateDA, failRateACh, failRate
-    RANGE modDA, maxModDA_AMPA, levelDA, maxModACh_AMPA, levelACh
-    RANGE maxModDA_NMDA, modACh, maxModACh_NMDA 
+    POINTER levelDA
+    POINTER levelACh
+    RANGE modDA, maxModDA_AMPA, maxModACh_AMPA
+    RANGE maxModDA_NMDA, modACh, maxModACh_NMDA			 
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
 }
@@ -54,22 +58,16 @@ UNITS {
 }
 
 PARAMETER {
-    : q = 2 --- We have manually corrected these
-    tau1_ampa= 1.1 (ms)     : ORIG 2.2, ampa same as in Wolf? not same as in Du et al 2017 (and glutamate.mod)
-    tau2_ampa = 5.75 (ms)  : ORIG 11.5 ms,  tau2 > tau1
-    tau1_nmda= 2.76  (ms)    : ORIG 5.52 ms Chapman et al 2003; table 1, adult rat (rise time, rt = 12.13. rt ~= 2.197*tau (wiki;rise time) -> tau = 12.13 / 2.197 ~= 5.52
-    tau2_nmda = 115.5 (ms)   : ORIG 231 ms, Chapman et al 2003; table 1, adult rat
-    nmda_ratio = 0.5 (1)
+    : input_region ; cell_type 
     e = 0 (mV)
     tau = 3 (ms)
     tauR = 100 (ms)  : tauR > tau
-    tauF = 800 (ms)  : tauF >= 0
+    tauF = 100 (ms)  : tauF >= 0
     U = 0.3 (1) <0, 1>
-    u0 = 0 (1) <0, 1>
+    u0 = 0.1 (1) <0, 1>
     ca_ratio_ampa = 0.005
     ca_ratio_nmda = 0.1
     mg = 1 (mM)
-    
     modDA = 0
     maxModDA_AMPA = 1
     modACh = 0
@@ -85,7 +83,29 @@ PARAMETER {
     failRateDA = 0
     failRateACh = 0
     failRate = 0
-    use_stp = 1     : to turn of use_stp -> use 0
+
+    use_stp = 1     : to turn off use_stp -> use 0
+    failRate = 0
+
+    tau1_ampa      (ms)     
+    tau2_ampa      (ms)  
+    tau3_ampa      (ms)  
+    I2_ampa 
+    I3_ampa 
+    tpeak_ampa     (ms)
+    factor_ampa 
+    tau1_nmda      (ms)  
+    tau2_nmda      (ms)  
+    tau3_nmda      (ms) 
+    I2_nmda 
+    I3_nmda 
+    tpeak_nmda     (ms)
+    factor_nmda 
+    nmda_ratio  
+
+
+   
+
 }
 
 ASSIGNED {
@@ -99,33 +119,33 @@ ASSIGNED {
     g (uS)
     g_ampa (uS)
     g_nmda (uS)
-    factor_ampa
-    factor_nmda
-    x
-    
+
+    x 
+
+  
 }
 
 STATE {
     A_ampa (uS)
     B_ampa (uS)
+    C_ampa (uS)
     A_nmda (uS)
     B_nmda (uS)
+    C_nmda (uS)
 }
 
 INITIAL {
-    LOCAL tp_ampa, tp_nmda
+
     A_ampa = 0
     B_ampa = 0
+    C_ampa = 0
 				
-    tp_ampa = (tau1_ampa*tau2_ampa)/(tau2_ampa-tau1_ampa) * log(tau2_ampa/tau1_ampa)
-    factor_ampa = -exp(-tp_ampa/tau1_ampa) + exp(-tp_ampa/tau2_ampa)
-    factor_ampa = 1/factor_ampa
+
 								    
     A_nmda = 0
     B_nmda = 0
-    tp_nmda = (tau1_nmda*tau2_nmda)/(tau2_nmda-tau1_nmda) * log(tau2_nmda/tau1_nmda)
-    factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda)
-    factor_nmda = 1/factor_nmda
+    C_nmda = 0
+
 }
 
 BREAKPOINT {
@@ -133,14 +153,14 @@ BREAKPOINT {
     SOLVE state METHOD cnexp
     
     : NMDA
-    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
-    g_nmda    = (B_nmda - A_nmda) * modulationDA_NMDA()*modulationACh_NMDA()
+    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 2.62 (mM))) : 3.57 instead of 2.62 if LJP not corrected
+    g_nmda    = (I3_nmda*C_nmda + I2_nmda* B_nmda - (I3_nmda+I2_nmda)* A_nmda) * modulationDA_NMDA()*modulationACh_NMDA()
     itot_nmda = g_nmda * (v - e) * mggate
     ical_nmda = ca_ratio_nmda*itot_nmda
     i_nmda    = itot_nmda - ical_nmda
     
     : AMPA
-    g_ampa    = (B_ampa - A_ampa) * modulationDA_AMPA() * modulationACh_AMPA()
+    g_ampa    = (I3_ampa*C_ampa + I2_ampa* B_ampa - (I3_ampa+I2_ampa)* A_ampa)  * modulationDA_AMPA() * modulationACh_AMPA()
     itot_ampa = g_ampa*(v - e) 
     ical_ampa = ca_ratio_ampa*itot_ampa
     i_ampa    = itot_ampa - ical_ampa
@@ -152,13 +172,17 @@ BREAKPOINT {
 
     : printf("%g\t%g\t%g\t%g\t%g\n",tau1_ampa,B_ampa,A_ampa,B_nmda,A_nmda) 
     : printf("%g\t%g\t%g\t%g\t%g\n",v,g_nmda,g,i,ical)
+    : printf("%g\t%g\t%g\t%g\t%g\n",tau1_ampa,tau2_ampa,tau1_nmda,tau2_nmda,nmda_ratio)
+    : printf("%g\t\n",tau)
 }
 
 DERIVATIVE state {
     A_ampa' = -A_ampa/tau1_ampa
     B_ampa' = -B_ampa/tau2_ampa
+    C_ampa' = -C_ampa/tau3_ampa
     A_nmda' = -A_nmda/tau1_nmda
     B_nmda' = -B_nmda/tau2_nmda
+    C_nmda' = -C_nmda/tau3_nmda
 }
 
 NET_RECEIVE(weight (uS), y, z, u, tsyn (ms)) {
@@ -177,7 +201,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }    
-    if( urand() > failRate*(failRateDA*modDA*levelDA + failRateACh*modACh*levelACh)) { 
+    if( urand() > failRate*(failRateDA*modDA*levelDA + failRateACh*modACh*levelACh) ) { 
  
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
@@ -202,8 +226,10 @@ ENDVERBATIM
     
       A_ampa = A_ampa + weight_ampa*factor_ampa 
       B_ampa = B_ampa + weight_ampa*factor_ampa 
+      C_ampa = C_ampa + weight_ampa*factor_ampa 
       A_nmda = A_nmda + weight_nmda*factor_nmda 
       B_nmda = B_nmda + weight_nmda*factor_nmda 
+      C_nmda = C_nmda + weight_nmda*factor_nmda 
     
       y = y + x*u
       : printf("** %g\t%g\t%g\t%g\t%g\n", t, t-tsyn, y, z, u)
@@ -214,7 +240,6 @@ ENDVERBATIM
 FUNCTION urand() {
     urand = scop_random(1)
 }
-
 
 FUNCTION modulationDA_NMDA() {
     : returns modulation factor
@@ -240,7 +265,13 @@ FUNCTION modulationACh_AMPA() {
     modulationACh_AMPA = 1 + modACh*(maxModACh_AMPA-1)*levelACh 
 }
 
+
 COMMENT
+(2020-09) C_ampa and C_nmda added to take into account a second decay time constant.
+tpeak_ampa, tpeak_nmda, factor_ampa and factor_nmda are now calculated during the fitting procedure.
+g_nmda and g_ampa updated.
+mggate updated to take into account LJP correction. Ilaria Carannante, ilariac@kth.se
+
 (2019-11-29) Synaptic failure rate (fail) added. Random factor, no
 reproducibility guaranteed in parallel sim.
 

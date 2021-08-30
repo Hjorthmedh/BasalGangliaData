@@ -40,11 +40,13 @@ UNITS {
 }
 
 NEURON {
-    SUFFIX cal12_ms
+    SUFFIX cal12_ms_ptr
     USEION cal READ cali, calo WRITE ical VALENCE 2
     RANGE pbar, ical
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+    POINTER levelDA
+    RANGE levelACh
+    RANGE modDA, maxModDA
+    RANGE modACh, maxModACh
 }
 
 PARAMETER {
