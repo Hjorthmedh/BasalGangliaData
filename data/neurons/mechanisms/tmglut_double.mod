@@ -83,7 +83,6 @@ PARAMETER {
     failRate = 0
 
     use_stp = 1     : to turn off use_stp -> use 0
-    failRate = 0
 
     tau1_ampa      (ms)     
     tau2_ampa      (ms)  
