@@ -16,6 +16,6 @@ If you look at [runSnuddaSmall.sh](https://github.com/Hjorthmedh/Snudda/blob/mas
 export SNUDDA_DATA="../../BasalGangliaData/data"
 ```
 
-This is the key, it tells Snudda where BasalGangliaData is. If you run from a folder outer than Snudda/examples, or if you put BasalGangliaData somewhere else then this path might need to be different.
+This is the key, it tells Snudda where BasalGangliaData is. If you run from a folder outer than Snudda/examples, or if you put BasalGangliaData somewhere else then this path might need to be different. So you need to set ```SNUDDA_DATA``` in your shellscript.
 
 
