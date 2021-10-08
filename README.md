@@ -21,7 +21,7 @@ This is the key, it tells Snudda where BasalGangliaData is. If you run from a fo
 
 
 
-Before commiting new morphologies, please verify that they are centred at (0,0,0) using ```test_segmentid.py``` in ```Snudda/tests.
+Before commiting new morphologies, please verify that they are centred at (0,0,0) using ```test_segmentid.py``` in ```Snudda/tests```.
 
 ```
 export SNUDDA_DATA=/home/hjorth/HBP/BasalGangliaData/data/
