@@ -19,3 +19,11 @@ export SNUDDA_DATA="../../BasalGangliaData/data"
 This is the key, it tells Snudda where BasalGangliaData is. If you run from a folder outer than Snudda/examples, or if you put BasalGangliaData somewhere else then this path might need to be different. So you need to set ```SNUDDA_DATA``` in your shellscript.
 
 
+
+
+Before commiting new morphologies, please verify that they are centred at (0,0,0) using ```test_segmentid.py``` in ```Snudda/tests.
+
+```
+export SNUDDA_DATA=/home/hjorth/HBP/BasalGangliaData/data/
+python3 -m unittest test_segmentid.py
+```
