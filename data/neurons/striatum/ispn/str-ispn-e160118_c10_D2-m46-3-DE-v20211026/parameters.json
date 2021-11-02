@@ -211,7 +211,7 @@
             "value": 0.005450212596160853
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -221,7 +221,7 @@
             "value": 0.18957205141753378
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -240,7 +240,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -295,7 +295,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -305,7 +305,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -545,7 +545,7 @@
             "value": 0.004333541663771263
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -555,7 +555,7 @@
             "value": 0.07784841065795758
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -574,7 +574,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -629,7 +629,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -639,7 +639,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -879,7 +879,7 @@
             "value": 0.004765867057571308
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -889,7 +889,7 @@
             "value": 0.1507025617759082
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -908,7 +908,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -963,7 +963,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -973,7 +973,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -1213,7 +1213,7 @@
             "value": 0.004416673318763327
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -1223,7 +1223,7 @@
             "value": 0.09416955237678139
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -1242,7 +1242,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -1297,7 +1297,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -1307,7 +1307,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -1547,7 +1547,7 @@
             "value": 0.007109059936063067
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -1557,7 +1557,7 @@
             "value": 0.19953635524896088
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -1576,7 +1576,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -1631,7 +1631,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -1641,7 +1641,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -1881,7 +1881,7 @@
             "value": 0.004838094090532667
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -1891,7 +1891,7 @@
             "value": 0.09262161362857303
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -1910,7 +1910,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -1965,7 +1965,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -1975,7 +1975,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -2215,7 +2215,7 @@
             "value": 0.0070468616185590015
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -2225,7 +2225,7 @@
             "value": 0.19987631116157892
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -2244,7 +2244,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -2299,7 +2299,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -2309,7 +2309,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -2549,7 +2549,7 @@
             "value": 0.003907328877692391
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -2559,7 +2559,7 @@
             "value": 0.19153256624361129
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -2578,7 +2578,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -2633,7 +2633,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -2643,7 +2643,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
@@ -2883,7 +2883,7 @@
             "value": 0.004838094090532667
         },
         {
-            "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
+            "dist": "((0.1) + (0.9)/(1 + np.exp(({distance}-(40))/(10))))*{value}",
             "dist_type": "distance",
             "mech": "naf_ms",
             "mech_param": "gbar",
@@ -2893,7 +2893,7 @@
             "value": 0.09262161362857303
         },
         {
-            "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((1.0) + (0.5)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "kaf_ms",
             "mech_param": "gbar",
@@ -2912,7 +2912,7 @@
             "value": 1.2310764224556812
         },
         {
-            "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
+            "dist": "((1.0) + (9.0)*np.exp(({distance}-(0.0))/(-5.0)))*{value}",
             "dist_type": "distance",
             "mech": "kas_ms",
             "mech_param": "gbar",
@@ -2967,7 +2967,7 @@
             "value": 0.0001
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat32_ms",
             "mech_param": "pbar",
@@ -2977,7 +2977,7 @@
             "value": 2e-09
         },
         {
-            "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
+            "dist": "((0.0) + (1.0)/(1 + np.exp(({distance}-(120))/(-30))))*{value}",
             "dist_type": "distance",
             "mech": "cat33_ms",
             "mech_param": "pbar",
