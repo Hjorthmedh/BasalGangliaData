@@ -64,14 +64,20 @@ def write_meta(parameters_json, dir_path, morphology_json=None, internal_key_jso
     param = json.load(open(parameters_json))
 
     if val_models_json:
+
         internal_key = json.load(open(internal_key_json))
         inverted = dict((v, k) for k, v in internal_key.items())
-        temp = dict.fromkeys([*param.keys()], list())
+        temp = dict()
         val_models = json.load(open(val_models_json))
         for v in val_models:
             p_id = inverted[v["par"]]
-            temp[p_id].append(v["morph"])
+            
+            if p_id not in temp.keys():
+                temp.update({p_id : [v["morph"]]})
+            else:
+                temp[p_id].append(v["morph"])
 
+    
     else:
         morph = json.load(open(morphology_json))
         temp = dict.fromkeys([*param.keys()], morph)
