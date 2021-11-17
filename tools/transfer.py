@@ -1,6 +1,6 @@
 import shutil
 from distutils.dir_util import copy_tree
-from .post_optimisation import combine_optimised_models, write_meta, from_old_format
+from post_optimisation import combine_optimised_models, write_meta, from_old_format
 import os
 import json
 
