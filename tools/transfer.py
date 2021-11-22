@@ -18,7 +18,7 @@ def from_old_format(json_file, dir_path):
     file_path = pathlib.Path(dir_path) / file_name
 
     with open(file_path, "w") as model_f:
-        json.dump(parameter_hashed, model_f, indent=4, sort_keys=True,object_pairs_hook=collections.OrderedDict)
+        json.dump(parameter_hashed, model_f, indent=4, sort_keys=True)
 
         print(f"parameters.json saved in folder : {dir_path} \n")
 
@@ -28,7 +28,7 @@ def from_old_format(json_file, dir_path):
         file_path = pathlib.Path(dir_path) / file_name
 
         with open(file_path, "w") as f:
-            json.dump(internal_key, f, indent=4, sort_keys=True,object_pairs_hook=collections.OrderedDict )
+            json.dump(internal_key, f, indent=4, sort_keys=True)
 
 def add_feature_to_meta(meta_json, additional_feature_json, dir_path):
 
@@ -59,7 +59,7 @@ def add_feature_to_meta(meta_json, additional_feature_json, dir_path):
     file_path = pathlib.Path(dir_path) / file_name
 
     with open(file_path, "w") as f:
-        json.dump(meta, f, indent=4, sort_keys=True,object_pairs_hook=collections.OrderedDict)
+        json.dump(meta, f, indent=4, sort_keys=True)
 
 def write_meta(parameters_json, dir_path, morphology_json=None, internal_key_json=None, val_models_json=None):
     meta = dict()
@@ -108,7 +108,7 @@ def write_meta(parameters_json, dir_path, morphology_json=None, internal_key_jso
     file_path = pathlib.Path(dir_path) / file_name
 
     with open(file_path, "w") as f:
-        json.dump(new_param, f, indent=4, sort_keys=True, object_pairs_hook=collections.OrderedDict)
+        json.dump(new_param, f, indent=4, sort_keys=True)
         
     shutil.copy(pathlib.Path(dir_path) / "parameters.json", os.path.join(dir_path,"parameters_old.json"))
     
@@ -118,14 +118,14 @@ def write_meta(parameters_json, dir_path, morphology_json=None, internal_key_jso
     file_path = pathlib.Path(dir_path) / file_name
 
     with open(file_path, "w") as f:
-        json.dump(meta, f, indent=4, sort_keys=True, object_pairs_hook=collections.OrderedDict)
+        json.dump(meta, f, indent=4, sort_keys=True)
 
     file_name = "morphology_hash_name.json"
 
     file_path = pathlib.Path(dir_path) / file_name
 
     with open(file_path, "w") as f:
-        json.dump(morphology_hash_filename, f, indent=4, sort_keys=True, object_pairs_hook=collections.OrderedDict)
+        json.dump(morphology_hash_filename, f, indent=4, sort_keys=True)
 
 
 def combine_optimised_models(parameter_json, selected_parameters_json, dir_path, val_ids=None):
@@ -173,7 +173,7 @@ def combine_optimised_models(parameter_json, selected_parameters_json, dir_path,
 
     with open(file_path, "w") as model_f:
 
-        json.dump(parameter_hashed, model_f, indent=4, sort_keys=True, object_pairs_hook=collections.OrderedDict)
+        json.dump(parameter_hashed, model_f, indent=4, sort_keys=True)
 
         print(f"parameters.json saved in folder : {dir_path} \n")
 
@@ -183,7 +183,7 @@ def combine_optimised_models(parameter_json, selected_parameters_json, dir_path,
         file_path = pathlib.Path(dir_path) / file_name
 
         with open(file_path, "w") as f:
-            json.dump(internal_key, f, indent=4, sort_keys=True, object_pairs_hook=collections.OrderedDict)
+            json.dump(internal_key, f, indent=4, sort_keys=True)
 
 
 def hashable_keys(parameter_list, return_internal=False):
