@@ -41,7 +41,29 @@ class TestSum(unittest.TestCase):
 
             hash_id = hash_identifier(hash_name=hash_name, length=8, prefix="m")
 
-            print(hash_id)
+    def test_meta(self):
+        import glob
+        striatum_meta = os.path.join("..", "data", "neurons", "striatum")
+
+        for cell_type in glob.glob(os.path.join(striatum_meta, "**/*")):
+            cell_path = os.path.abspath(cell_type)
+
+            parameter = os.path.join(cell_path, "parameters.json")
+
+            with open(parameter, "r") as f:
+                parameter = json.load(f)
+
+            for p, data in parameter.items():
+                print(data)
+                hash_name = make_hash_name(data)
+
+                hash_id = hash_identifier(hash_name=hash_name, length=8, prefix="p")
+
+                self.assertEqual(p, hash_id)
+
+
+
+
 
 
     def test_sum_tuple(self):
