@@ -27,11 +27,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc",
             "neuromodulation": [
                 "nm040c5930",
                 "nma24bdad5"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+>>>>>>> main
         },
         "m0f5fbaeb": {
             "input": {
@@ -60,11 +64,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
             "neuromodulation": [
                 "nm50d49b60",
                 "nm23c0719c"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -93,11 +101,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm2cf35c07",
                 "nm1ae94440"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "m541041a7": {
             "input": {
@@ -126,6 +138,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nme3654a24",
@@ -133,6 +146,13 @@
             ]
         },
         "mccd6b0f8": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+        }
+    },
+    "p1d3b3c9f": {
+        "m2e0b7ff3": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -159,6 +179,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm24fda8c3",
@@ -168,6 +189,11 @@
     },
     "p3b6e817d": {
         "m0f5fbaeb": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc"
+        },
+        "m33e6bce5": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -194,11 +220,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
             "neuromodulation": [
                 "nm1e4632c7",
                 "nm5abb8616"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -227,10 +257,14 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm34628173"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m541041a7": {
             "input": {
@@ -259,11 +293,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nmeddf009f",
                 "nme198d9dd"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -292,11 +330,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nmc8611541",
                 "nmc658554f"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+>>>>>>> main
         }
     },
     "p3ba95513": {
@@ -308,7 +350,40 @@
                     "generator": "poisson",
                     "jitter": 0.0,
                     "modFile": "tmGlut",
+<<<<<<< HEAD
                     "nInputs": 56,
+=======
+                    "nInputs": 54,
+                    "parameterFile": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-MS.json",
+                    "populationUnitCorrelation": 0.0,
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "type": "AMPA_NMDA"
+                },
+                "thalamic": {
+                    "conductance": 5e-10,
+                    "frequency": 1.0,
+                    "generator": "poisson",
+                    "jitter": 0.0,
+                    "modFile": "tmGlut",
+                    "nInputs": 42,
+                    "parameterFile": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json",
+                    "populationUnitCorrelation": 0.0,
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "type": "AMPA_NMDA"
+                }
+            },
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+        },
+        "m4f9c27ef": {
+            "input": {
+                "cortical": {
+                    "conductance": 5e-10,
+                    "frequency": 1.0,
+                    "generator": "poisson",
+                    "jitter": 0.0,
+                    "modFile": "tmGlut",
+                    "nInputs": 50,
+>>>>>>> main
                     "parameterFile": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-MS.json",
                     "populationUnitCorrelation": 0.0,
                     "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
@@ -327,11 +402,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nmef1c41ba",
                 "nma692e9be"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m541041a7": {
             "input": {
@@ -360,11 +439,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nma24bdad5",
                 "nm690047ef"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -393,11 +476,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm502fcd61",
                 "nm7f3d68b0"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+>>>>>>> main
         }
     },
     "p55446481": {
@@ -428,11 +515,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
-            "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc",
-            "neuromodulation": [
-                "nm2ba6d4b5",
-                "nm690047ef"
-            ]
+            "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc"
         },
         "m0f5fbaeb": {
             "input": {
@@ -461,11 +544,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
-            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
-            "neuromodulation": [
-                "nme198d9dd",
-                "nm24fda8c3"
-            ]
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
         },
         "m1083058d": {
             "input": {
@@ -494,11 +573,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
-            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
-            "neuromodulation": [
-                "nm0582dc68",
-                "nm325734dc"
-            ]
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
         },
         "m541041a7": {
             "input": {
@@ -527,11 +602,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
-            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
-            "neuromodulation": [
-                "nma692e9be",
-                "nmef1c41ba"
-            ]
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
         },
         "mccd6b0f8": {
             "input": {
@@ -560,11 +631,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
-            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
-            "neuromodulation": [
-                "nmdc7f4941",
-                "nm47978396"
-            ]
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
         }
     },
     "p57956f10": {
@@ -595,11 +662,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
             "neuromodulation": [
                 "nmb567dbd1",
                 "nm2ba6d4b5"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -628,11 +699,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nmcd42bb07",
                 "nma6af0486"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "m37a29ec1": {
             "input": {
@@ -661,6 +736,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var8.swc",
             "neuromodulation": [
                 "nm50d49b60",
@@ -668,6 +744,13 @@
             ]
         },
         "m541041a7": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+        }
+    },
+    "pd668d6f6": {
+        "m33e6bce5": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -694,10 +777,14 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nm6b043155"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -726,6 +813,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nmbf467457",
@@ -765,6 +853,9 @@
             "neuromodulation": [
                 "nm22131bf9"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -793,10 +884,14 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm20d8d569"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "m541041a7": {
             "input": {
@@ -825,6 +920,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nma24bdad5",
@@ -832,6 +928,13 @@
             ]
         },
         "mccd6b0f8": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+        }
+    },
+    "pe6b0fc32": {
+        "m4f9c27ef": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -858,6 +961,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm47978396",
@@ -867,6 +971,11 @@
     },
     "p8bb158ba": {
         "m0f5fbaeb": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+        },
+        "mc55b25cb": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -893,11 +1002,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
             "neuromodulation": [
                 "nm2cf35c07",
                 "nmaf68d66f"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -926,6 +1039,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm1ae94440",
@@ -933,6 +1047,13 @@
             ]
         },
         "m541041a7": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+        }
+    },
+    "pe6e39f87": {
+        "m33e6bce5": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -959,10 +1080,14 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nmef1c41ba"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -991,6 +1116,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm3884363f",
@@ -1000,6 +1126,11 @@
     },
     "pad0f1c3e": {
         "m0d1bf3ff": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+        },
+        "ma5449dc8": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -1026,11 +1157,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc",
             "neuromodulation": [
                 "nm502fcd61",
                 "nmadb5ed4d"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var8.swc"
+>>>>>>> main
         },
         "m0f5fbaeb": {
             "input": {
@@ -1059,10 +1194,14 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc",
             "neuromodulation": [
                 "nm34628173"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "m1083058d": {
             "input": {
@@ -1091,6 +1230,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm19aa286c",
@@ -1098,6 +1238,13 @@
             ]
         },
         "m541041a7": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+        }
+    },
+    "pf68c073e": {
+        "m2e0b7ff3": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -1124,11 +1271,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nma6af0486",
                 "nm325734dc"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var6.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -1157,6 +1308,7 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm8326bb92",
@@ -1166,6 +1318,11 @@
     },
     "pf0e1c1d6": {
         "m1083058d": {
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var4.swc"
+        },
+        "m4f9c27ef": {
+>>>>>>> main
             "input": {
                 "cortical": {
                     "conductance": 5e-10,
@@ -1192,11 +1349,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc",
             "neuromodulation": [
                 "nm47978396",
                 "nm4c81a14d"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var1.swc"
+>>>>>>> main
         },
         "m541041a7": {
             "input": {
@@ -1225,11 +1386,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc",
             "neuromodulation": [
                 "nm47978396",
                 "nm4c81a14d"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var0.swc"
+>>>>>>> main
         },
         "mccd6b0f8": {
             "input": {
@@ -1258,11 +1423,15 @@
                     "type": "AMPA_NMDA"
                 }
             },
+<<<<<<< HEAD
             "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc",
             "neuromodulation": [
                 "nm5abb8616",
                 "nm130326b3"
             ]
+=======
+            "morphology": "46-3-DE-cor-rep-ax-res3-var2.swc"
+>>>>>>> main
         }
     }
 }
