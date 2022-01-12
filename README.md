@@ -27,3 +27,12 @@ Before commiting new morphologies, please verify that they are centred at (0,0,0
 export SNUDDA_DATA=/home/hjorth/HBP/BasalGangliaData/data/
 python3 -m unittest test_segmentid.py
 ```
+
+2021-01-12
+
+New hash to work with tests of models
+
+if you have created a network prior to january 8, either regenerate the network and rerun (the models are the same, only keys have changed) or revert back to the old keys, by
+
+git checkout 2768cd6
+
