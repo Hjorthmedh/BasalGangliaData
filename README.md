@@ -1,6 +1,21 @@
 # BasalGangliaData
 Basal Ganglia Data for Snudda
 
+### Description of models
+
+The multicompartmental models are described a parameter set, a morphology file (.swc) and the mechanisms.json (which describes how the ion channels are distributed on the reconstructed morphology). 
+
+In each model folder, there is an additional file, meta.json.
+
+Meta.json is a dictionary which contains - two levels of hash_keys, p* and m* and (nm* for neuromodulation). The * is calculated from the contents of the parameter set or morphology file (.swc) using hashlib.md5(contents_of_the_parameter_or_morphology).hexdigest(). This gives a hash specific for the contents of parameter/morphology. The hash is prefixed with either "p" or "m" for parameter and morphology, respectively.
+
+The advantage of hash keys:
+  - They are calculated from the contents of the file, hence is the model changes, the hash keys will change. Good for testing
+  - Each model become identifiable based on two keys, p* and m*, which can be used during the simulation
+  - We do not use lists for model files, which are dependent on the order of the models. Hence, sensitive for changes to files structure. 
+
+For further information and help with converting new models into the abovedescribed format, email Johanna Frost Nylen, johanna.frost.nylen@ki.se.
+
 ### Access
 First request access from Johannes, currently only internal use for our group. But if you see this text, you probably already have access.
 
