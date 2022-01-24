@@ -1,5 +1,6 @@
 # BasalGangliaData
-Basal Ganglia Data for Snudda
+
+## Basal Ganglia Data for Snudda
 
 ### Description of models
 
