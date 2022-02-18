@@ -6,7 +6,7 @@ import pathlib
 import copy
 import hashlib
 import collections
-from .make_hash import *
+from make_hash import *
 
 def make_parameter_dict_hash_name(parameter_dict):
     translation = dict()
@@ -79,8 +79,14 @@ def combine_hall_of_fame_with_optimisation_parameters(source, destination, selec
 
     with open(hall_of_fame, "r") as f:
         hall = json.load(f)
-
+        
     if os.path.exists(parameters):
+        with open(parameters, 'r+') as f:
+            content = f.read()
+            f.seek(0)
+            content=content.replace('math.exp', 'exp')#This way it can be run multiple time wihtout creating math.math.exp
+            content=content.replace('exp', 'math.exp')#In long term, change "from math import *" in Alex code to "import math"
+            f.write(content)
         with open(parameters, "r") as f:
             para = json.load(f)
     else:
@@ -103,7 +109,8 @@ def combine_hall_of_fame_with_optimisation_parameters(source, destination, selec
     combined_parameters = combine_hall_of_fame_parameters(para, hall)
 
     hashed_parameter_dict, translation = make_parameter_dict_hash_name(combined_parameters)
-
+    if not os.path.isdir(os.path.join(destination, "temp")):
+        os.mkdir(os.path.join(destination, "temp"))
     with open(os.path.join(destination, "temp", "parameters_temp.json"), "w") as f:
         json.dump(hashed_parameter_dict, f, sort_keys=True, indent=4)
 
