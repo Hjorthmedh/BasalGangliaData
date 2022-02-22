@@ -29,7 +29,7 @@ parser = ArgumentParser("Analyse data and add to meta.json", formatter_class=Raw
 parser.add_argument("networkPath", help="Network path") 
 parser.add_argument("--networkName", help="Network name")
 parser.add_argument("--neuronsPath", help="Neurons path")     
-parser.add_argument("--inputType", help="Type of external input",choices=["thalamic", "cortical"], default="thalamic")
+parser.add_argument("--input_type", help="Type of external input",choices=["thalamic", "cortical"], default="thalamic")
 parser.add_argument("--neuronType", type=str, help="E.g. dspn")
 parser.add_argument("--singleNeuronType", default=None, type=str,help="We want to simulate one neuron subtype, eg. FS_1")
 args = parser.parse_args()
@@ -47,7 +47,7 @@ with open(f"neuron_config_{args.networkName}.json","w") as f:
     json.dump(neuron_dict,f,cls=NumpyEncoder)
 
 input_path = os.path.join(args.networkPath,"input_config.json")
-define_input_config(input_path,args.inputType)
+define_input_config(input_path,args.input_type)
 
 #########################################################################
 #Analysis
@@ -67,20 +67,20 @@ with open(os.path.join(args.networkPath,"voltages_passed.json"),"w") as f:
 #Passing models
 #########################################################################
 #Create input_map_{model}json using neuron_config_{model}.json
-count_passing(args.networkName, args.networkPath, args.inputType)
+count_passing(args.networkName, args.networkPath, args.input_type)
 
 #########################################################################
 #Number inputs
 #########################################################################
-number_inputs(args.networkName, args.networkPath,args.inputType)
-voltage_values(args.networkName, args.networkPath,args.inputType)
+number_inputs(args.networkName, args.networkPath,args.input_type)
+voltage_values(args.networkName, args.networkPath,args.input_type)
 
 #########################################################################
 #Add feature
 #########################################################################
 neuron_path = os.path.join(BG_data,"neurons","striatum",args.neuronType,args.singleNeuronType)
 #Creates meta.json that is based on  input_map_{model}.json,  inputs_population_{model}.json, and input_definition.json
-add_feature(args.networkName,args.inputType,neuron_path, ratio=0.5)
+add_feature(args.networkName,args.input_type,neuron_path, ratio=0.5)
 
 
 

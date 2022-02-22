@@ -22,9 +22,10 @@ def post_analysis2(network_path):
     trace_id = [x["neuronID"] for x in network_info.data["neurons"]]
     
     print("Loading simulation data")
-    simulation_file = os.path.join(network_path,'simulation', "network-output.hdf5")
+    simulation_file = os.path.join(network_path,'simulation', "output.hdf5")
     snudda_simulation_load = SnuddaLoadNetworkSimulation(network_simulation_output_file=simulation_file)
-    traces, time = snudda_simulation_load.get_voltage()
+    traces = snudda_simulation_load.get_voltage()
+    time = snudda_simulation_load.get_time()
     print("Simulation data loaded")
     
     results = dict()
