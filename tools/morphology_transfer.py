@@ -1,6 +1,6 @@
 import os
 import glob
-from .make_hash import *
+from make_hash import *
 import shutil
 
 
