@@ -7,7 +7,7 @@ import os
 import json
 import numpy as np
 from snudda.utils import SnuddaLoad
-from input_tuning_analysis import post_analysis2
+from input_tuning_analysis import post_analysis
 from number_input import *
 from add_feature import *
 from count_passing import *
@@ -32,6 +32,8 @@ parser.add_argument("--neuronsPath", help="Neurons path")
 parser.add_argument("--input_type", help="Type of external input",choices=["thalamic", "cortical"], default="thalamic")
 parser.add_argument("--neuronType", type=str, help="E.g. dspn")
 parser.add_argument("--singleNeuronType", default=None, type=str,help="We want to simulate one neuron subtype, eg. FS_1")
+parser.add_argument("--snudda_data_tools", default=os.path.join('BasalGangliaData','tools'), type=str,help="")
+
 args = parser.parse_args()
 BG_data = os.environ["SNUDDA_DATA"]
 
@@ -55,7 +57,7 @@ define_input_config(input_path,args.input_type)
 #
 #get_ipython().run_cell_magic('time', '', 'result, voltages = post_analysis(args.networkPath)')
 
-result, voltages=post_analysis2(args.networkPath)
+result, voltages=post_analysis(args.networkPath,args.snudda_data_tools)
 
 with open(os.path.join(args.networkPath,"input_results.json"),"w") as f:
     json.dump(result, f, indent=4, sort_keys=True,cls=NumpyEncoder)
