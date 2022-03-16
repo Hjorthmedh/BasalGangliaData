@@ -123,7 +123,9 @@ class TestSum(unittest.TestCase):
 
                     hash_id = hash_identifier(hash_name=hash_name, length=8, prefix="m")
 
-                    self.assertTrue((hash_id in trial_hash.keys()))
+                    self.assertTrue((hash_id in trial_hash.keys()), msg=f"Model {neuron_type} , {model_name} \n"
+                                                                        f"Model directory {model_dir} \n"
+                                                                        f"Morphology {m_name} \n")
 
                     self.assertEqual(trial_hash[hash_id], m_name)
                 else:
