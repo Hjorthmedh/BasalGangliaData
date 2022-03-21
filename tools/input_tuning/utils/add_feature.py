@@ -1,10 +1,11 @@
 import os
+import shutil
+import numpy as np
 import json
 import copy
-import shutil
 
 
-def add_input_feature_to_meta(model, input_type, network_path, ratio):
+def add_feature(model, input_type, network_path, ratio):
     meta = os.path.join(network_path, "meta.json")
 
     input_map = f"input_map_{model}.json"

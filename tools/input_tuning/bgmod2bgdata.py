@@ -1,13 +1,12 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "tools")))
-
-import transfer.parameters as pt
-import transfer.morphology as mt
-import transfer.mechanisms as mecht
-import transfer.selected_models as sm
-from transfer.meta import create_meta as wm
+import parameter_transfer as pt
+import morphology_transfer as mt
+import mechanisms_transfer as mecht
+import selected_models as sm
+import creation_of_meta as wm
 from argparse import ArgumentParser, RawTextHelpFormatter
+import os
+from math import * 
+
 
 #########################################################################################
 parser = ArgumentParser("Create meta.json and parameters.json", formatter_class=RawTextHelpFormatter)   
