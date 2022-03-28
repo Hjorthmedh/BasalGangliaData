@@ -1,5 +1,13 @@
 # BasalGangliaData
 
+## Versions of Basal Ganglia Data
+
+To move between the different tags :
+
+```
+git checkout tags/tag_name
+```
+
 ## Basal Ganglia Data for Snudda
 
 ### Description of models
