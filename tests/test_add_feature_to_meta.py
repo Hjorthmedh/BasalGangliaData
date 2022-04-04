@@ -55,7 +55,7 @@ class TestCreate(unittest.TestCase):
 
         add_json = os.path.join(os.path.dirname(__file__), "test_data", "example_additional", "add.json")
         with open(add_json, "w") as f:
-            json.dump(add_dict, f)
+            json.dump(add_dict, f, sort_keys=True, indent=4)
 
         add_feature_to_meta(directory=destination, additional_feature_json=add_json)
 
