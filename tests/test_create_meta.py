@@ -21,9 +21,7 @@ from transfer.mechanisms import transfer_mechanisms
 
 class TestCreate(unittest.TestCase):
 
-
     def test_create_meta(self):
-
         test_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "test_data"))
 
         source = os.path.join(test_root, "example_variation_source")
@@ -49,6 +47,7 @@ class TestCreate(unittest.TestCase):
                               selected=True)
 
         write_meta(directory=destination, selected=True)
+
 
 if __name__ == '__main__':
     unittest.main()
