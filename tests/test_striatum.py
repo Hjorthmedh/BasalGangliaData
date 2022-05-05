@@ -48,7 +48,7 @@ class TestStriatum(unittest.TestCase):
             with open(hash_parameters, "r") as f:
                 parameters_hashed = json.load(f)
 
-            hash_morphology = os.path.join(neuron_dir, "morphology", "morph_key_hash_name.json")
+            hash_morphology = os.path.join(neuron_dir, "morphology", "morphology_hash_filename.json")
 
             with open(hash_morphology, "r") as f:
                 morphology_hashed = json.load(f)
@@ -196,7 +196,7 @@ class TestStriatum(unittest.TestCase):
 
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
-            hash_morphology = os.path.join(neuron_dir, "morphology", "morph_key_hash_name.json")
+            hash_morphology = os.path.join(neuron_dir, "morphology", "morphology_hash_filename.json")
 
             with open(hash_morphology, "r") as f:
                 trial_hash = json.load(f)
