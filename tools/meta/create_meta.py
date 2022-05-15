@@ -46,7 +46,8 @@ def write_meta(directory, selected=False):
         for m_key, m_name in morphologies_hash.items():
 
             if selected:
-                if m_name in selected[hash_id[p_key]]:
+
+                if hash_id[p_key] in selected and m_name in selected[hash_id[p_key]]:
                     meta[p_key].update({m_key: {"morphology": m_name}})
             else:
                 meta[p_key].update({m_key: {"morphology": m_name}})

@@ -33,7 +33,7 @@ ENDCOMMENT
 
 NEURON {
     THREADSAFE
-    POINT_PROCESS tmGlut_double_ptr
+    POINT_PROCESS tmGlut_double
     RANGE tau1_ampa, tau2_ampa, tau3_ampa, tau1_nmda, tau2_nmda, tau3_nmda
     RANGE I2_ampa, I3_ampa, I2_nmda, I3_nmda
     RANGE tpeak_ampa, factor_ampa, tpeak_nmda, factor_nmda
@@ -42,10 +42,8 @@ NEURON {
     RANGE tau, tauR, tauF, U, u0
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
     RANGE failRateDA, failRateACh, failRate
-    POINTER levelDA
-    RANGE levelACh
-    RANGE modDA, maxModDA_AMPA, maxModACh_AMPA
-    RANGE maxModDA_NMDA, modACh, maxModACh_NMDA			 
+    RANGE modDA, maxMod_AMPADA, levelDA, maxMod_AMPAACh, levelACh
+    RANGE maxMod_NMDADA, modACh, maxMod_NMDAACh			 
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
 }
@@ -69,23 +67,22 @@ PARAMETER {
     ca_ratio_nmda = 0.1
     mg = 1 (mM)
     modDA = 0
-    maxModDA_AMPA = 1
+    maxMod_AMPADA = 1
     modACh = 0
-    maxModACh_AMPA = 1 
+    maxMod_AMPAACh = 1 
     levelACh = 0
 
     
-    maxModDA_NMDA = 1
+    maxMod_NMDADA = 1
     levelDA = 0
     
-    maxModACh_NMDA = 1 
+    maxMod_NMDAACh = 1 
 
     failRateDA = 0
     failRateACh = 0
     failRate = 0
 
     use_stp = 1     : to turn off use_stp -> use 0
-    failRate = 0
 
     tau1_ampa      (ms)     
     tau2_ampa      (ms)  
@@ -201,7 +198,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }    
-    if( urand() > failRate*(failRateDA*modDA*levelDA + failRateACh*modACh*levelACh) ) { 
+    if( urand() > failRate*(1 + modDA*(failRateDA-1)*levelDA + modACh*(failRateACh-1)*levelACh)) { 
  
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
@@ -244,25 +241,25 @@ FUNCTION urand() {
 FUNCTION modulationDA_NMDA() {
     : returns modulation factor
     
-    modulationDA_NMDA = 1 + modDA*(maxModDA_NMDA-1)*levelDA 
+    modulationDA_NMDA = 1 + modDA*(maxMod_NMDADA-1)*levelDA 
 }
 
 FUNCTION modulationACh_NMDA() {
     : returns modulation factor
     
-    modulationACh_NMDA = 1 + modACh*(maxModACh_NMDA-1)*levelACh 
+    modulationACh_NMDA = 1 + modACh*(maxMod_NMDAACh-1)*levelACh 
 }
 
 FUNCTION modulationDA_AMPA() {
     : returns modulation factor
     
-    modulationDA_AMPA = 1 + modDA*(maxModDA_AMPA-1)*levelDA 
+    modulationDA_AMPA = 1 + modDA*(maxMod_AMPADA-1)*levelDA 
 }
 
 FUNCTION modulationACh_AMPA() {
     : returns modulation factor
     
-    modulationACh_AMPA = 1 + modACh*(maxModACh_AMPA-1)*levelACh 
+    modulationACh_AMPA = 1 + modACh*(maxMod_AMPAACh-1)*levelACh 
 }
 
 
