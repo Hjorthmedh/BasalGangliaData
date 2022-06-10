@@ -80,7 +80,7 @@ class GatherIFInfo:
                 data_out[par_key] = OrderedDict()
 
             data_out[par_key][morph_key] = OrderedDict()
-            data_out[par_key][morph_key]["current"] = [s*1e-9 for s in stim]
+            data_out[par_key][morph_key]["current"] = [s*1e-12 for s in stim]
             data_out[par_key][morph_key]["frequency"] = freq
 
         print(f"--> Writing current-frequency info to {self.if_file_out}\n")
