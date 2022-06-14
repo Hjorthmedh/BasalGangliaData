@@ -8,7 +8,7 @@ import glob
 #
 # python3 gather_if_info.py /home/hjorth/HBP/BasalGangliaData/data/neurons/striatum/ispn /home/hjorth/HBP/bgmod/models/optim/HBP-2021Q4
 #
-# python3 gather_if_info.py /home/hjorth/HBP/BasalGangliaData/data/neurons/striatum/fs /home/hjorth/HBP/bgmod/models/optim/HBP-2021Q1/
+# python3 gather_if_info.py /home/hjorth/HBP/BasalGangliaData/data/neurons/striatum/fs /home/hjorth/HBP/bgmod/models/optim/HBP-2022Q2/
 
 
 class GatherIFInfo:
@@ -50,7 +50,7 @@ class GatherIFInfo:
 
         stim = None
         freq = None
-        
+
         for models in self.val_model_info:
             if morphology == models["morph"] and \
                parameter_id == models["par"]:
@@ -60,6 +60,10 @@ class GatherIFInfo:
 
                 break
 
+        if stim is None or freq is None:
+            import pdb
+            pdb.set_trace()
+            
         return stim, freq
 
 
@@ -79,10 +83,18 @@ class GatherIFInfo:
             if par_key not in data_out:
                 data_out[par_key] = OrderedDict()
 
-            data_out[par_key][morph_key] = OrderedDict()
-            data_out[par_key][morph_key]["current"] = [s*1e-12 for s in stim]
-            data_out[par_key][morph_key]["frequency"] = freq
 
+            try:
+                data_out[par_key][morph_key] = OrderedDict()
+                data_out[par_key][morph_key]["current"] = [s*1e-12 for s in stim]
+                data_out[par_key][morph_key]["frequency"] = freq
+            except:
+                import traceback
+                print(traceback.format_exc())
+                import pdb
+                pdb.set_trace()
+                
+                
         print(f"--> Writing current-frequency info to {self.if_file_out}\n")
 
         # assert not os.path.exists(self.if_file_out), f"Abort: {self.if_file_out} already exists"
@@ -98,6 +110,7 @@ class GatherIFInfo:
             mapping_file = os.path.join(neuron_dir, "temp", "parameters_hash_id.json")
             
             neuron_dir_name = os.path.basename(neuron_dir)
+            neuron_dir_name = self.val_model_dir_remapping(neuron_dir_name)
             val_model_file = os.path.join(val_model_dir, neuron_dir_name, "val_models.json")
 
             yield meta_file, val_model_file, mapping_file
@@ -108,6 +121,18 @@ class GatherIFInfo:
             
             self.load_neuron(meta_file=meta_file, val_model_file=val_model_file, mapping_file=mapping_file)
             self.write_if_file()
+
+    def val_model_dir_remapping(self, dir_name):
+        
+        with open("val_model_name_remapping.json", "r") as f:
+            mapping_data = json.load(f)
+
+        if dir_name in mapping_data:
+            print(f"Remapping {dir_name} to {mapping_data[dir_name]}") 
+            return mapping_data[dir_name]
+        else:
+            return dir_name
+    
             
 if __name__ == "__main__":
 
