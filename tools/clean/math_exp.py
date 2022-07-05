@@ -1,5 +1,5 @@
 import json
-
+import os
 
 def rename_math_exp(parameters_json, output_dir):
 
