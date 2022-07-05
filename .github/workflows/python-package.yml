@@ -36,6 +36,7 @@ jobs:
         python -m pip install flake8 pytest
         python -m pip install snudda
         python -m pip install deepdiff
+        python -m pip install neuron
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
