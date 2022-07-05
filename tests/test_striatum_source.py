@@ -46,7 +46,7 @@ class TestSum(unittest.TestCase):
             with open(os.path.join(source_dir, m, "config", "parameters.json"), "r") as f:
                 parameters = json.load(f)
 
-            with open(os.path.join(model_dir, m, "morphology", "morph_key_hash_name.json"), "r") as f:
+            with open(os.path.join(model_dir, m, "morphology", "morphology_hash_filename.json"), "r") as f:
                 morphology = json.load(f)
 
             inv_morphology = {v: k for k, v in morphology.items()}
@@ -262,7 +262,7 @@ class TestSum(unittest.TestCase):
             with open(os.path.join(source_dir, m, "config", "parameters.json"), "r") as f:
                 parameters = json.load(f)
 
-            with open(os.path.join(model_dir, m, "morphology", "morph_key_hash_name.json"), "r") as f:
+            with open(os.path.join(model_dir, m, "morphology", "morphology_hash_filename.json"), "r") as f:
                 morphology = json.load(f)
 
             inv_morphology = {v: k for k, v in morphology.items()}
@@ -299,8 +299,6 @@ class TestSum(unittest.TestCase):
 
                 self.assertEqual(len(temp), 0)
 
-
-
                 created = created_parameters[inv_phash_to_id[data_set["par"]]]
                 h = hall_of_fame[data_set["par"]]
 
@@ -335,8 +333,6 @@ class TestSum(unittest.TestCase):
 
             for id_num, length in morphologies.items():
                 self.assertEqual(len([*meta[inv_phash_to_id[id_num]].keys()]), length)
-
-
 
 
 

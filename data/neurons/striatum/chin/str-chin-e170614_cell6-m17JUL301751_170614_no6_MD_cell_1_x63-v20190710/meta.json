@@ -11,7 +11,7 @@
                     "nInputs": 21,
                     "parameterFile": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-CHAT.json",
                     "populationUnitCorrelation": 0.0,
-                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-10e-6)/5e-6))",
                     "type": "AMPA_NMDA"
                 },
                 "thalamic": {
@@ -23,7 +23,7 @@
                     "nInputs": 32,
                     "parameterFile": "$SNUDDA_DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-CHAT.json",
                     "populationUnitCorrelation": 0.0,
-                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-10e-6)/5e-6))",
                     "type": "AMPA_NMDA"
                 }
             },

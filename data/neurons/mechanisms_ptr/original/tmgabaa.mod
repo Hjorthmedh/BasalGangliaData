@@ -111,7 +111,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }
-    if( urand() > failRate*(failRateDA*modDA*levelDA + failRateACh*modACh*levelACh)) { 
+    if( urand() > failRate*(1 + modDA*(failRateDA-1)*levelDA + modACh*(failRateACh-1)*levelACh)) { 
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
       y = y*exp(-(t-tsyn)/tau)
