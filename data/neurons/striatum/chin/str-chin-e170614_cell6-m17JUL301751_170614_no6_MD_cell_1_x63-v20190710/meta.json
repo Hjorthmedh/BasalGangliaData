@@ -2,7 +2,7 @@
     "p05cfd367": {
         "m92fb243d": {
             "input": {
-                "cortical": {
+                "cortical_background": {
                     "conductance": 5e-10,
                     "frequency": 1.0,
                     "generator": "poisson",
@@ -14,7 +14,7 @@
                     "synapseDensity": "1.15*0.05/(1+exp(-(d-10e-6)/5e-6))",
                     "type": "AMPA_NMDA"
                 },
-                "thalamic": {
+                "thalamic_background": {
                     "conductance": 5e-10,
                     "frequency": 1.0,
                     "generator": "poisson",
