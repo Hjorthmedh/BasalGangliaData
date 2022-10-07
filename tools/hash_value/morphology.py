@@ -1,6 +1,6 @@
 import os
 
-from tools.hash_value.make_hash import *
+from hash_value.make_hash import *
 
 """
     Hash keys for morphologies

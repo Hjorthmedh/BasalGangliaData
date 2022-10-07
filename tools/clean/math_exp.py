@@ -16,7 +16,8 @@ def rename_math_exp(parameters_json, output_dir):
                                   'exp')  # This way it can be run multiple time without creating math.math.exp
         content = content.replace('exp',
                                   'math.exp')  # In long term, change "from math import *" in Alex code to "import math"
-        f.write(content)
+        content_json = json.loads(content)
+        #f.write(content)
 
     with open(os.path.join(output_dir, "parameters.json"), "w") as f:
-        json.dump(content, f)
+        json.dump(content_json, f)

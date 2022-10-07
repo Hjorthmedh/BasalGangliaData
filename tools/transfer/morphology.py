@@ -2,7 +2,7 @@ import os
 import json
 import shutil
 import glob
-from tools.hash_value.morphology import make_morphology_hash_key_dict
+from hash_value.morphology import make_morphology_hash_key_dict
 
 '''
 

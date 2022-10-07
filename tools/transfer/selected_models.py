@@ -32,15 +32,12 @@ def transfer_selected_models(source, destination):
             selected_models[model["par"]].append(model["morph"])
 
     temp_dir = os.path.join(destination, "temp")
-    if os.path.exists(temp_dir):
-        with open(os.path.join(temp_dir, "selected_models.json"), "w") as f:
-            json.dump(selected_models, f)
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir)
+    with open(os.path.join(temp_dir, "selected_models.json"), "w") as f:
+        json.dump(selected_models, f)
 
         print(f"Transfer of the selected combinations of parameters and morphologies \n"
               f" \n"
               f"from : {source} \n"
               f"to : {temp_dir} \n")
-
-    else:
-        raise NotADirectoryError(f" The directory {temp_dir} does not exists \n "
-                                 f" Create it to continue with the transfer")

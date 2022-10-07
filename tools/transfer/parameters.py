@@ -6,8 +6,8 @@ import pathlib
 import copy
 import hashlib
 import collections
-from tools.hash_value.make_hash import *
-from tools.hash_value.parameters import *
+from hash_value.make_hash import *
+from hash_value.parameters import *
 
 
 def save_parameter_set(parameter_set, destination):
@@ -97,12 +97,8 @@ def combine_hall_of_fame_with_optimisation_parameters(source, destination, selec
     """
     temp_dir = os.path.join(destination, "temp")
 
-    if os.path.exists(temp_dir):
-        pass
-    else:
-        print(f"a temporary directory for intermediate files does not exist in {destination}, \n"
-              f"create a 'temp' directory i.e. \n"
-              f"{os.path.abspath(os.path.join(destination, 'temp'))}")
+    if not os.path.exists(temp_dir):
+        os.mkdir(temp_dir)
 
     if os.path.exists(os.path.join(source, "config")):
         hall_of_fame = os.path.join(source, "hall_of_fame.json")
