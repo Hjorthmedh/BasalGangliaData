@@ -88,11 +88,6 @@ class TestSum(unittest.TestCase):
 
         os.mkdir(destination)
 
-        self.assertRaises(NotADirectoryError,
-                          transfer_selected_models,
-                          source=source,
-                          destination=destination)
-
         os.mkdir(os.path.join(destination, "temp"))
 
         transfer_selected_models(source=source, destination=destination)
