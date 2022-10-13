@@ -23,7 +23,8 @@
                     "mu2": 2,
                     "a3": 1,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.4
                 }
             },
             "GapJunction": {
@@ -38,7 +39,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0
                 }
             }
         },
@@ -66,7 +68,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.25
                 }
             }
         },
@@ -94,7 +97,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.7
                 }
             }
         },
@@ -113,7 +117,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.5
                 }
             }
         },
@@ -143,7 +148,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.41
+		            "degenerationRecovery": 0.25
                 },
                 "pruningOther": {
                     "f1": 0.28500000000000003,
@@ -152,7 +157,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.41
+		            "degenerationRecovery": 0.25
                 }
             }
         },
@@ -182,7 +187,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.10
+		            "degenerationRecovery": 0.15
                 },
                 "pruningOther": {
                     "f1": 0.164,
@@ -191,7 +196,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.10
+		            "degenerationRecovery": 0.15
                 }
             }
         },
@@ -211,7 +216,8 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		    "degenerationRecovery": 0.02
                 }
             }
         },
@@ -241,7 +247,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.17
+		            "degenerationRecovery": 0.12
                 },
                 "pruningOther": {
                     "f1": 0.279,
@@ -250,7 +256,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.17
+		            "degenerationRecovery": 0.12
                 }
             }
         },
@@ -280,7 +286,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.14
+		            "degenerationRecovery": 0.12
                 },
                 "pruningOther": {
                     "f1": 0.55,
@@ -289,7 +295,7 @@
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false,
-		    "degenerationRecovery": 0.14
+		            "degenerationRecovery": 0.12
                 }
             }
         },
@@ -309,7 +315,8 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.01
                 }
             }
         },
@@ -330,7 +337,8 @@
                     "mu2": 15,
                     "a3": 0.1,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.7
                 }
             }
         },
@@ -351,7 +359,30 @@
                     "mu2": 10,
                     "a3": 0.1,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.1
+                }
+            }
+        },
+        "ChIN,LTS": {
+            "ACh": {
+                "conductance": [
+                    1e-09,
+                    0
+                ],
+                "channelParameters": {
+                    "modFile": ""
+                },
+                "clusterSize": 1,
+                "clusterSpread": null,
+                "pruning": {
+                    "f1": 0.5,
+                    "softMax": 10,
+                    "mu2": 3,
+                    "a3": 0.4,
+                    "distPruning": null,
+                    "cluster": false,
+        		    "degenerationRecovery": 0.01
                 }
             }
         },
@@ -378,7 +409,8 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.01
                 }
             }
         },
@@ -405,7 +437,8 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.01
                 }
             }
         },
@@ -424,7 +457,8 @@
                     "mu2": 3,
                     "a3": 0.4,
                     "distPruning": null,
-                    "cluster": false
+                    "cluster": false,
+		            "degenerationRecovery": 0.01
                 }
             }
         }
