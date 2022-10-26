@@ -23,8 +23,8 @@
                     "mu2": 2,
                     "a3": 1,
                     "distPruning": null,
-                    "cluster": false,
-		            "degenerationRecovery": 0.45
+                    "cluster": true,
+        		    "degenerationRecovery": 0.5
                 }
             },
             "GapJunction": {
@@ -40,7 +40,7 @@
                     "a3": 1.0,
                     "distPruning": null,
                     "cluster": false,
-		            "degenerationRecovery": 0
+        		    "degenerationRecovery": 0
                 }
             }
         },
@@ -68,8 +68,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false,
-		            "degenerationRecovery": 0.25
+                    "cluster": true,
+		            "degenerationRecovery": 0.2
                 }
             }
         },
@@ -97,8 +97,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false,
-		            "degenerationRecovery": 0.7
+                    "cluster": true,
+		            "degenerationRecovery": 0.75
                 }
             }
         },
@@ -117,8 +117,8 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.55
+                    "cluster": true,
+		            "degenerationRecovery": 0.6
                 }
             }
         },
@@ -147,8 +147,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 },
                 "pruningOther": {
                     "f1": 0.28500000000000003,
@@ -156,8 +156,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -186,8 +186,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.25
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 },
                 "pruningOther": {
                     "f1": 0.164,
@@ -195,8 +195,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.25
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -216,8 +216,8 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.02
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -246,8 +246,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 },
                 "pruningOther": {
                     "f1": 0.279,
@@ -255,8 +255,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -285,8 +285,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 },
                 "pruningOther": {
                     "f1": 0.55,
@@ -294,8 +294,8 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -315,74 +315,8 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.1
-                }
-            }
-        },
-        "ChIN,dSPN": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 15,
-                    "a3": 0.1,
-                    "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.85
-                }
-            }
-        },
-        "ChIN,iSPN": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 10,
-                    "a3": 0.1,
-                    "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
-                }
-            }
-        },
-        "ChIN,LTS": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 3,
-                    "a3": 0.4,
-                    "distPruning": null,
-                    "cluster": false,
-                    "degenerationRecovery": 0.1
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -409,8 +343,8 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -437,8 +371,8 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         },
@@ -457,8 +391,8 @@
                     "mu2": 3,
                     "a3": 0.4,
                     "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": true,
+		            "degenerationRecovery": 0.1
                 }
             }
         }
