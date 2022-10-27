@@ -23,8 +23,7 @@
                     "mu2": 2,
                     "a3": 1,
                     "distPruning": null,
-                    "cluster": false,
-		            "degenerationRecovery": 0.45
+                    "cluster": false
                 }
             },
             "GapJunction": {
@@ -39,8 +38,7 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": null,
-                    "cluster": false,
-		            "degenerationRecovery": 0
+                    "cluster": false
                 }
             }
         },
@@ -68,8 +66,7 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false,
-		            "degenerationRecovery": 0.25
+                    "cluster": false
                 }
             }
         },
@@ -92,13 +89,12 @@
                     "modFile": "tmGabaA"
                 },
                 "pruning": {
-                    "f1": 1.0,
+                    "f1": 0.5,
                     "softMax": 5,
                     "mu2": 2,
-                    "a3": 1.0,
+                    "a3": 0.9,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
-                    "cluster": false,
-		            "degenerationRecovery": 0.7
+                    "cluster": false
                 }
             }
         },
@@ -117,8 +113,7 @@
                     "mu2": 2,
                     "a3": 1.0,
                     "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.55
+                    "cluster": false
                 }
             }
         },
@@ -147,8 +142,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
+                    "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.28500000000000003,
@@ -156,8 +150,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
+                    "cluster": false
                 }
             }
         },
@@ -186,8 +179,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.25
+                    "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.164,
@@ -195,8 +187,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.25
+                    "cluster": false
                 }
             }
         },
@@ -216,8 +207,7 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.02
+                    "cluster": false
                 }
             }
         },
@@ -246,8 +236,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.279,
@@ -255,8 +244,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": false
                 }
             }
         },
@@ -285,8 +273,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.55,
@@ -294,8 +281,7 @@
                     "mu2": 2.4,
                     "a3": 1.0,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.2
+                    "cluster": false
                 }
             }
         },
@@ -315,74 +301,7 @@
                     "mu2": 2.4,
                     "a3": 0.1,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.1
-                }
-            }
-        },
-        "ChIN,dSPN": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 15,
-                    "a3": 0.1,
-                    "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.85
-                }
-            }
-        },
-        "ChIN,iSPN": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 10,
-                    "a3": 0.1,
-                    "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.3
-                }
-            }
-        },
-        "ChIN,LTS": {
-            "ACh": {
-                "conductance": [
-                    1e-09,
-                    0
-                ],
-                "channelParameters": {
-                    "modFile": ""
-                },
-                "clusterSize": 1,
-                "clusterSpread": null,
-                "pruning": {
-                    "f1": 0.5,
-                    "softMax": 10,
-                    "mu2": 3,
-                    "a3": 0.4,
-                    "distPruning": null,
-                    "cluster": false,
-                    "degenerationRecovery": 0.1
+                    "cluster": false
                 }
             }
         },
@@ -409,8 +328,7 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": false
                 }
             }
         },
@@ -437,8 +355,7 @@
                     "mu2": 3,
                     "a3": 0.3,
                     "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": false
                 }
             }
         },
@@ -457,8 +374,7 @@
                     "mu2": 3,
                     "a3": 0.4,
                     "distPruning": null,
-                    "cluster": false,
-		    "degenerationRecovery": 0.01
+                    "cluster": false
                 }
             }
         }
