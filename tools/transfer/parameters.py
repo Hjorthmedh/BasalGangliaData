@@ -83,7 +83,8 @@ def test_parameter_file(destination):
     return return_value
 
 
-def combine_hall_of_fame_with_optimisation_parameters(source, destination, selected=False):
+def combine_hall_of_fame_with_optimisation_parameters(source=None, destination=None, parameters_path=None,
+                                                      best_models_path=None, selected=False):
     """
 
     :param source: path to the model directory (BluePyOpt output), see examples for how
@@ -100,21 +101,31 @@ def combine_hall_of_fame_with_optimisation_parameters(source, destination, selec
     if not os.path.exists(temp_dir):
         os.mkdir(temp_dir)
 
-    if os.path.exists(os.path.join(source, "config")):
+    if source is not None and os.path.exists(os.path.join(source, "config")):
         hall_of_fame = os.path.join(source, "hall_of_fame.json")
         parameters = os.path.join(source, "config", "parameters.json")
 
-        with open(parameters, "r") as f:
-            parameter_set = json.load(f)
+    elif parameters_path and best_models_path:
 
-        with open(hall_of_fame, "r") as f:
-            hall_of_fame_sets = json.load(f)
+        hall_of_fame = os.path.join(best_models_path)
+        parameters = os.path.join(parameters_path)
 
     else:
         raise NotADirectoryError(f" Directory : \n"
                                  f" {os.path.join(source, 'config')} does not exist. \n"
                                  f" See examples for a description of the BluePyOpt folder structure \n"
-                                 f" we utilize. ")
+                                 f" we utilize. Utilize parameters_path and best_models_path instead")
+
+    """
+        Open files to create individual models from parameters.json and best_models.json/hall_of_fame.json - i.e.
+        output of the optimisation
+    """
+
+    with open(parameters, "r") as f:
+        parameter_set = json.load(f)
+
+    with open(hall_of_fame, "r") as f:
+        hall_of_fame_sets = json.load(f)
 
     if selected and os.path.exists(os.path.join(destination, "temp", "selected_models.json")):
         with open(os.path.join(destination, "temp", "selected_models.json"), "r") as f:
@@ -147,7 +158,8 @@ def combine_hall_of_fame_with_optimisation_parameters(source, destination, selec
         raise ValueError("parameters.json is wrong not passing")
 
 
-def transfer_parameters(source, destination, selected):
+def transfer_parameters(source=None, destination=None, direct_path_param=None,
+                        direct_path_best_models=None, selected=False):
 
     """
 
@@ -156,9 +168,20 @@ def transfer_parameters(source, destination, selected):
 
     :param source:
     :param destination:
+    :param direct_path_param: folder path to where parameters.json is
+    :param direct_path_best_models: folder path to where best_models.json pr hall_of_fame.json is
     :param selected:
     :return:
     """
+
+    if direct_path_param and direct_path_best_models:
+        parameters_path = os.path.join(direct_path_param)
+        best_models_path = os.path.join(direct_path_best_models)
+    else:
+        source = os.path.join(source)
+
     combine_hall_of_fame_with_optimisation_parameters(source=source,
                                                       destination=destination,
+                                                      parameters_path=parameters_path,
+                                                      best_models_path=best_models_path,
                                                       selected=selected)
