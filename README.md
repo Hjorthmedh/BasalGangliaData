@@ -1,11 +1,26 @@
 # BasalGangliaData
 
+<<<<<<< HEAD
 ## TODO in the next merge  
 
   * Update the morphologies for dSPN and iSPN without the in-soma dendrite point problem
   * Reoptimize the FS - morphology key and parameter key pairs in filters/fs/
   * Update the synapses from Cortex-Striatum
   * 
+=======
+
+* To clean both BasalGangliaData and Snudda from previous commits of large files (data, models etc..) and remove from git history use: https://rtyley.github.io/bfg-repo-cleaner/
+
+
+## Models within the Microcircuit group:
+
+	* The striatum - healthy:
+		found in: data/neurons/striatum; data/synapses/striatum; meshes/Striatum-d-*; density/ and nest/
+		description: The control/healthy mouse striatum model
+	* The striatum - Parkinsons:
+		found in: Parkinson/20221213/PD0 (the striatum - healthy); Parkinson/20221213/PD1; Parkinson/20221213/PD2; Parkinson/20221213/PD3; Parkinson/20221213/PD_lesion;   
+		description: Parkinsonian models - 3 stages and PD_lesion - which is equivalent to PD2 and contains completely models, the rest is morphological changes
+>>>>>>> ae51a8f (updates to READ about models)
 
 ## Versions of Basal Ganglia Data
 
