@@ -174,6 +174,9 @@ def transfer_parameters(source=None, destination=None, direct_path_param=None,
     :return:
     """
 
+    parameters_path = None
+    best_models_path = None
+    
     if direct_path_param and direct_path_best_models:
         parameters_path = os.path.join(direct_path_param)
         best_models_path = os.path.join(direct_path_best_models)
