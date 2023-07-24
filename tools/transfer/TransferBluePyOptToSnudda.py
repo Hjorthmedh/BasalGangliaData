@@ -36,7 +36,7 @@ class TransferBluePyOptToSnudda:
 
         transfer_morphologies(direct_path_morph=self.morphology_path_folder,
                               destination=self.destination, selected=self.selected)
-        write_meta(directory=destination, selected=self.selected)
+        write_meta(directory=self.destination, selected=self.selected)
 
         if self.selected:
             transfer_selected_models(source=self.source, destination=self.destination, direc_path_selected=self.selected_models)

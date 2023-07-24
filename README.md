@@ -5,9 +5,8 @@
   * Update the morphologies for dSPN and iSPN without the in-soma dendrite point problem
   * Reoptimize the FS - morphology key and parameter key pairs in filters/striatum/fs/
   * Update the synapses from Cortex-Striatum
-  * 
-
-* To clean both BasalGangliaData and Snudda from previous commits of large files (data, models etc..) and remove from git history use: https://rtyley.github.io/bfg-repo-cleaner/
+  * If there are other morphology-parameter key combinations to be filtered-away/reoptimized/modified - place them within filters, similar to fs (filters/striatum/fs/) to inform the next round of merges
+  * To clean both BasalGangliaData and Snudda from previous commits of large files (data, models etc..) and remove from git history use: https://rtyley.github.io/bfg-repo-cleaner/
 
 ## Models within the Microcircuit group:
 
