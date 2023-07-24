@@ -1,5 +1,12 @@
 # BasalGangliaData
 
+## TODO in the next merge  
+
+  * Update the morphologies for dSPN and iSPN without the in-soma dendrite point problem
+  * Reoptimize the FS - morphology key and parameter key pairs in filters/fs/
+  * Update the synapses from Cortex-Striatum
+  * 
+
 ## Versions of Basal Ganglia Data
 
 To move between the different tags :
@@ -12,18 +19,18 @@ git checkout tags/tag_name
 
 ### Description of models
 
-The multicompartmental models are described a parameter set, a morphology file (.swc) and the mechanisms.json (which describes how the ion channels are distributed on the reconstructed morphology). 
+The multicompartmental models are described by a parameter set, a morphology file (.swc), and the mechanisms.json (which describes how the ion channels are distributed on the reconstructed morphology). 
 
 In each model folder, there is an additional file, meta.json.
 
-Meta.json is a dictionary which contains - two levels of hash_keys, p* and m* and (nm* for neuromodulation). The * is calculated from the contents of the parameter set or morphology file (.swc) using hashlib.md5(contents_of_the_parameter_or_morphology).hexdigest(). This gives a hash specific for the contents of parameter/morphology. The hash is prefixed with either "p" or "m" for parameter and morphology, respectively.
+Meta.json is a dictionary that contains - two levels of hash_keys, p* and m* and (nm* for neuromodulation). The * is calculated from the contents of the parameter set or morphology file (.swc) using hashlib.md5(contents_of_the_parameter_or_morphology).hexdigest(). This gives a hash specific to the contents of the parameter/morphology. The hash is prefixed with either "p" or "m" for parameter and morphology, respectively.
 
 The advantage of hash keys:
-  - They are calculated from the contents of the file, hence is the model changes, the hash keys will change. Good for testing
-  - Each model become identifiable based on two keys, p* and m*, which can be used during the simulation
-  - We do not use lists for model files, which are dependent on the order of the models. Hence, sensitive for changes to files structure. 
+  - They are calculated from the contents of the file, hence if the model changes, the hash keys will change. Good for testing
+  - Each model becomes identifiable based on two keys, p* and m*, which can be used during the simulation
+  - We do not use lists for model files, which are dependent on the order of the models. Hence, sensitive to changes to file structure. 
 
-For further information and help with converting new models into the abovedescribed format, email Johanna Frost Nylen, johanna.frost.nylen@ki.se.
+For further information and help with converting new models into the above-described format, email Johanna Frost Nylen, johanna.frost.nylen@ki.se.
 
 ### Access
 First request access from Johannes, currently only internal use for our group. But if you see this text, you probably already have access.
@@ -41,12 +48,12 @@ If you look at [runSnuddaSmall.sh](https://github.com/Hjorthmedh/Snudda/blob/mas
 export SNUDDA_DATA="../../BasalGangliaData/data"
 ```
 
-This is the key, it tells Snudda where BasalGangliaData is. If you run from a folder outer than Snudda/examples, or if you put BasalGangliaData somewhere else then this path might need to be different. So you need to set ```SNUDDA_DATA``` in your shellscript.
+This is the key, it tells Snudda where BasalGangliaData is. If you run from a folder outer than Snudda/examples, or if you put BasalGangliaData somewhere else then this path might need to be different. So you need to set ```SNUDDA_DATA``` in your shell script.
 
 
 ### Morphologies - new morphologies have to be centered
 
-Before commiting new morphologies, please verify that they are centred at (0,0,0) using ```test_segmentid.py``` in ```Snudda/tests```.
+Before commiting new morphologies, please verify that they are centered at (0,0,0) using ```test_segmentid.py``` in ```Snudda/tests```.
 
 ```
 export SNUDDA_DATA=/home/hjorth/HBP/BasalGangliaData/data/
@@ -60,7 +67,7 @@ When changes are made to the models, their hash names will changes and this affe
 
 New hash to work with tests of models
 
-if you have created a network prior to january 8, either regenerate the network and rerun (the models are the same, only keys have changed) or revert back to the old keys, by
+if you have created a network prior to January 8, either regenerate the network and rerun (the models are the same, only keys have changed) or revert back to the old keys, by
 
 git checkout 2768cd6
 
