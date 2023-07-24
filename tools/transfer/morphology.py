@@ -11,7 +11,7 @@ from hash_value.morphology import make_morphology_hash_key_dict
 '''
 
 
-def transfer_morphologies(source, destination, selected=False):
+def transfer_morphologies(source=None, destination=None, selected=False, direct_path_morph=None):
 
     """
 
@@ -25,7 +25,10 @@ def transfer_morphologies(source, destination, selected=False):
     :return:
     """
 
-    morphology_directory = os.path.join(source, "morphology")
+    if direct_path_morph:
+        morphology_directory = os.path.join(direct_path_morph)
+    else:
+        morphology_directory = os.path.join(source, "morphology")
 
     morphology_destination = os.path.join(destination, "morphology")
 

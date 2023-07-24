@@ -8,16 +8,21 @@ import json
 """
 
 
-def transfer_selected_models(source, destination):
+def transfer_selected_models(source=None, destination=None, direc_path_selected=None):
 
     """
 
     :param source: path to the model directory (BluePyOpt output), see examples for how
                     this directory should be structured
     :param destination: path to BasalGanglia/data/your_brain_area/neuron_type/model_name
+    :param direc_path_selected: path to file with selected_models
     :return:
     """
-    validated_models = os.path.join(source, "val_models.json")
+
+    if source is None:
+        validated_models = os.path.join(direc_path_selected)
+    else:
+        validated_models = os.path.join(source, "val_models.json")
 
     with open(validated_models, "r") as f:
         validated = json.load(f)
