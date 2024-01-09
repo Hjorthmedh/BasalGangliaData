@@ -89,10 +89,10 @@
                     "modFile": "tmGabaA"
                 },
                 "pruning": {
-                    "f1": 1.0,
+                    "f1": 0.5,
                     "softMax": 5,
                     "mu2": 2,
-                    "a3": 1.0,
+                    "a3": 0.9,
                     "distPruning": "exp(-(0.5*d/60e-6)**2)",
                     "cluster": false
                 }
@@ -347,6 +347,27 @@
                 }
             }
         },
+        "ChIN,LTS": {
+            "ACh": {
+                "conductance": [
+                    1e-09,
+                    0
+                ],
+                "channelParameters": {
+                    "modFile": ""
+                },
+                "clusterSize": 1,
+                "clusterSpread": null,
+                "pruning": {
+                    "f1": 0.5,
+                    "softMax": 10,
+                    "mu2": 3,
+                    "a3": 0.4,
+                    "distPruning": null,
+                    "cluster": false
+                }
+            }
+        },	
         "LTS,dSPN": {
             "GABA": {
                 "conductance": [
