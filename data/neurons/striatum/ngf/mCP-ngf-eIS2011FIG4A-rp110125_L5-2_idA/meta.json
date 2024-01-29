@@ -1,13 +1,85 @@
 {
     "pe7b757ed": {
         "m5a1cbf19": {
-            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var2.swc"
+            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var2.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         },
         "md8300934": {
-            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var1.swc"
+            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var1.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         },
         "mfe316701": {
-            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var0.swc"
+            "morphology": "rp110125_L5-2_idA_-_Scale_x1.000_y0.950_z1.000-var0.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         }
     }
 }

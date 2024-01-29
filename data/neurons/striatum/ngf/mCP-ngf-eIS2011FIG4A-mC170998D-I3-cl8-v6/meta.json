@@ -1,16 +1,112 @@
 {
     "pa7f0c866": {
         "m38af0eee": {
-            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var4.swc"
+            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var4.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         },
         "ma747fca2": {
-            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var0.swc"
+            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var0.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         },
         "mc5c47660": {
-            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var1.swc"
+            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var1.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         },
         "mdf79a3b7": {
-            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var2.swc"
+            "morphology": "C170998D-I3_-_Scale_x1.000_y1.025_z1.000_-_Clone_8-var2.swc",
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapseDensity": "0.05*exp(-d/200e-6)",
+                    "nInputs": 21,
+                    "frequency": 2,
+                    "populationUnitCorrelation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "modFile": "tmGlut"
+                }
+            }
         }
     }
 }
