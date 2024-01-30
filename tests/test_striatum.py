@@ -116,8 +116,12 @@ class TestStriatum(unittest.TestCase):
             model_name = neuron_dir.split("/")[-1]
             hash_neuromodulation = os.path.join(neuron_dir, "modulation.json")
 
-            with open(hash_neuromodulation, "r") as f:
-                neuromodulation_hashed = json.load(f)
+            if os.path.isfile(hash_neuromodulation):
+                with open(hash_neuromodulation, "r") as f:
+                    neuromodulation_hashed = json.load(f)
+            else:
+                print(f"Warning -- Missing file: {hash_neuromodulation}")
+                continue
 
             for hash_key, neuromodulation_list in neuromodulation_hashed.items():
 
