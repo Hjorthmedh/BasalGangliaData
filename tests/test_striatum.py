@@ -55,9 +55,12 @@ class TestStriatum(unittest.TestCase):
 
             hash_neuromodulation = os.path.join(neuron_dir, "modulation.json")
 
-            with open(hash_neuromodulation, "r") as f:
-                neuromodulation_hashed = json.load(f)
-
+            if os.path.isfile(hash_neuromodulation):
+                with open(hash_neuromodulation, "r") as f:
+                    neuromodulation_hashed = json.load(f)
+            else:
+                neuromodulation_hashed = {}
+                    
             with open(hash_meta, "r") as f:
                 meta_hashed = json.load(f)
 
