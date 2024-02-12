@@ -1,12 +1,12 @@
 {
-    "Connectivity": {
+    "connectivity": {
         "FS,FS": {
             "GABA": {
                 "conductance": [
                     1.1e-09,
                     1.5e-09
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.00133,
                         1000.0
@@ -15,29 +15,29 @@
                         0.0057,
                         1000.0
                     ],
-                    "modFile": "tmGabaA"
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.15,
-                    "softMax": 5,
+                    "soft_max": 5,
                     "mu2": 2,
                     "a3": 1,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             },
-            "GapJunction": {
+            "gap_junction": {
                 "conductance": [
                     5e-10,
                     1e-10
                 ],
-                "channelParameters": null,
+                "channel_parameters": null,
                 "pruning": {
                     "f1": 0.7,
-                    "softMax": 8,
+                    "soft_max": 8,
                     "mu2": 2,
                     "a3": 1.0,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             }
@@ -48,7 +48,7 @@
                     1.1e-09,
                     1.5e-09
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0012,
                         1000.0
@@ -57,15 +57,15 @@
                         0.008,
                         1000.0
                     ],
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-FD-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-FD-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.5,
-                    "softMax": 4,
+                    "soft_max": 4,
                     "mu2": 2,
                     "a3": 1.0,
-                    "distPruning": "exp(-(0.5*d/60e-6)**2)",
+                    "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -76,7 +76,7 @@
                     1.1e-09,
                     1.5e-09
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0012,
                         1000.0
@@ -85,15 +85,15 @@
                         0.008,
                         1000.0
                     ],
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-FI-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-FI-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 1.0,
-                    "softMax": 4,
+                    "soft_max": 4,
                     "mu2": 2,
                     "a3": 1.0,
-                    "distPruning": "exp(-(0.5*d/60e-6)**2)",
+                    "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -104,15 +104,15 @@
                     1.1e-10,
                     1.5e-10
                 ],
-                "channelParameters": {
-                    "modFile": "tmGabaA"
+                "channel_parameters": {
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.15,
-                    "softMax": 3,
+                    "soft_max": 3,
                     "mu2": 2,
                     "a3": 1.0,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             }
@@ -123,7 +123,7 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0013,
                         1000.0
@@ -133,23 +133,23 @@
                         1000.0
                     ],
                     "failRate": 0.7,
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-DD-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-DD-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.28500000000000003,
-                    "softMax": 2.4,
+                    "soft_max": 2.4,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.28500000000000003,
-                    "softMax": 2.4,
+                    "soft_max": 2.4,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -160,7 +160,7 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0013,
                         1000.0
@@ -170,23 +170,23 @@
                         1000.0
                     ],
                     "failRate": 0.7,
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-DI-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-DI-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.164,
-                    "softMax": 2.4,
+                    "soft_max": 2.4,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.164,
-                    "softMax": 2.4,
+                    "soft_max": 2.4,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -197,16 +197,16 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "failRate": 0.7,
-                    "modFile": "tmGabaA"
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.1,
-                    "softMax": 3,
+                    "soft_max": 3,
                     "mu2": 2.4,
                     "a3": 0.1,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -217,7 +217,7 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0013,
                         1000.0
@@ -227,23 +227,23 @@
                         1000.0
                     ],
                     "failRate": 0.4,
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-ID-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-ID-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.279,
-                    "softMax": 3.2,
+                    "soft_max": 3.2,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.279,
-                    "softMax": 3.2,
+                    "soft_max": 3.2,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -254,7 +254,7 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.0013,
                         1000.0
@@ -264,23 +264,23 @@
                         1000.0
                     ],
                     "failRate": 0.4,
-                    "parameterFile": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-II-tmgaba-fit.json",
-                    "modFile": "tmGabaA"
+                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/PlanertFitting-II-tmgaba-fit.json",
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.55,
-                    "softMax": 3.2,
+                    "soft_max": 3.2,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 },
                 "pruningOther": {
                     "f1": 0.55,
-                    "softMax": 3.2,
+                    "soft_max": 3.2,
                     "mu2": 2.4,
                     "a3": 1.0,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -291,16 +291,16 @@
                     2.4e-10,
                     1e-10
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "failRate": 0.4,
-                    "modFile": "tmGabaA"
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.1,
-                    "softMax": 3,
+                    "soft_max": 3,
                     "mu2": 2.4,
                     "a3": 0.1,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -311,17 +311,17 @@
                     1e-09,
                     0
                 ],
-                "channelParameters": {
-                    "modFile": ""
+                "channel_parameters": {
+                    "mod_file": ""
                 },
-                "clusterSize": 1,
-                "clusterSpread": null,
+                "cluster_size": 1,
+                "cluster_spread": null,
                 "pruning": {
                     "f1": 0.5,
-                    "softMax": 8,
+                    "soft_max": 8,
                     "mu2": 15,
                     "a3": 0.1,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             }
@@ -332,17 +332,17 @@
                     1e-09,
                     0
                 ],
-                "channelParameters": {
-                    "modFile": ""
+                "channel_parameters": {
+                    "mod_file": ""
                 },
-                "clusterSize": 1,
-                "clusterSpread": null,
+                "cluster_size": 1,
+                "cluster_spread": null,
                 "pruning": {
                     "f1": 0.5,
-                    "softMax": 8,
+                    "soft_max": 8,
                     "mu2": 10,
                     "a3": 0.1,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             }
@@ -353,7 +353,7 @@
                     1e-09,
                     0
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.003,
                         1000.0
@@ -362,14 +362,14 @@
                         0.038,
                         1000.0
                     ],
-                    "modFile": "tmGabaA"
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.3,
-                    "softMax": 12,
+                    "soft_max": 12,
                     "mu2": 3,
                     "a3": 0.3,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -380,7 +380,7 @@
                     1e-09,
                     0
                 ],
-                "channelParameters": {
+                "channel_parameters": {
                     "tau1": [
                         0.003,
                         1000.0
@@ -389,14 +389,14 @@
                         0.038,
                         1000.0
                     ],
-                    "modFile": "tmGabaA"
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.3,
-                    "softMax": 12,
+                    "soft_max": 12,
                     "mu2": 3,
                     "a3": 0.3,
-                    "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                    "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
                     "cluster": false
                 }
             }
@@ -407,15 +407,15 @@
                     1e-09,
                     0
                 ],
-                "channelParameters": {
-                    "modFile": "tmGabaA"
+                "channel_parameters": {
+                    "mod_file": "tmGabaA"
                 },
                 "pruning": {
                     "f1": 0.5,
-                    "softMax": 10,
+                    "soft_max": 10,
                     "mu2": 3,
                     "a3": 0.4,
-                    "distPruning": null,
+                    "dist_pruning": null,
                     "cluster": false
                 }
             }
