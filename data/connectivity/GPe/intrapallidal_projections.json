@@ -1,67 +1,63 @@
 {
     "PV,PV" : {
      "projection" : {
-            "file" : "$SNUDDA_DATA/connectivity/projection/intrapallidal_map.json"
+            "file" : "$SNUDDA_DATA/connectivity/GPe/projection/intrapallidal_map.json"
         },
     "rotation" : {
-      "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+      "file" : "$SNUDDA_DATA/connectivity/GPe/rotation/GPe_rotation_map.json",
       "mapping" : "presynaptic"
     },
       "morphology" : [
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_4.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_3.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_2.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_1.swc"
+          "$SNUDDA_DATA/neurons/GPe/axons/PV_to_dSTR/PV_GPe_1.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/PV_to_dSTR/PV_GPe_2.swc",
+	  "$SNUDDA_DATA/neurons/GPe/axons/PV_to_dSTR/PV_GPe_3.swc",
+	  "$SNUDDA_DATA/neurons/GPe/axons/PV_to_dSTR/PV_GPe_4.swc"
       ]
   },
       "PV,FoxP2" : {
           "projection" : {
-              "file" : "$SNUDDA_DATA/connectivity/projection/intrapallidal_map.json"
+              "file" : "$SNUDDA_DATA/connectivity/GPe/projection/intrapallidal_map.json"
           },
           "rotation" : {
-              "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+              "file" : "$SNUDDA_DATA/connectivity/GPe/rotation/GPe_rotation_map.json",
               "mapping" : "presynaptic"
           },
       "morphology" : [
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_4.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_3.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_2.swc",
-          "$SNUDDA_DATA/connectivity/axons/PV_GPe_1.swc"
+          "$SNUDDA_DATA/neurons/GPe/axons/PV_to_GPe/PV_GPe_1.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/PV_to_GPe/PV_GPe_2.swc",
+	  "$SNUDDA_DATA/neurons/GPe/axons/PV_to_GPe/PV_GPe_3.swc",
+	  "$SNUDDA_DATA/neurons/GPe/axons/PV_to_GPe/PV_GPe_4.swc"
       ]
   },
 
   "FoxP2,FoxP2" : {
           "projection" : {
-              "file" : "$SNUDDA_DATA/connectivity/projection/intrapallidal_map.json"
+              "file" : "$SNUDDA_DATA/connectivity/GPe/projection/intrapallidal_map.json"
           },
           "rotation" : {
-              "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+              "file" : "$SNUDDA_DATA/connectivity/GPe/rotation/GPe_rotation_map.json",
               "mapping" : "presynaptic"
           },
       "morphology" : [
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_4.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_3.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_2.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_1.swc"
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_1.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_2.swc",
+	  "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_3.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_4.swc"
       ]
   },
   "FoxP2,PV" : {
           "projection" : {
-              "file" : "$SNUDDA_DATA/connectivity/projection/intrapallidal_map.json"
+              "file" : "$SNUDDA_DATA/connectivity/GPe/projection/intrapallidal_map.json"
           },
           "rotation" : {
-              "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+              "file" : "$SNUDDA_DATA/connectivity/GPe/rotation/GPe_rotation_map.json",
               "mapping" : "presynaptic"
           },
       "morphology" : [
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_4.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_3.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_2.swc",
-          "$SNUDDA_DATA/connectivity/axons/FoxP2_GPe_local_1.swc"
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_1.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_2.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_3.swc",
+          "$SNUDDA_DATA/neurons/GPe/axons/FoxP2_to_GPe/FoxP2_GPe_local_4.swc"
       ]
   }
-
-
-
-
 }
