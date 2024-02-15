@@ -1,0 +1,31 @@
+{
+    "dSPN,FoxP2" : {
+     "projection" : {
+            "file" : "$SNUDDA_DATA/connectivity/GPe/projection/striatopallidal_map.json"
+        },
+    "rotation" : {
+      "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+      "mapping" : "postsynaptic"
+    },
+      "morphology" : [
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_3.swc",
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_2.swc",
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_1.swc"
+      ]
+    },
+
+  "iSPN,PV" : {
+     "projection" : {
+            "file" : "$SNUDDA_DATA/connectivity/projection/striatopallidal_map.json"
+        },
+    "rotation" : {
+      "file" : "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json",
+      "mapping" : "postsynaptic"
+    },
+      "morphology" : [
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_3.swc",
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_2.swc",
+          "$SNUDDA_DATA/connectivity/axons/FoxP2_dSTR_1.swc"
+      ]
+    }
+}
