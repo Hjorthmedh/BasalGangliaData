@@ -1,0 +1,29 @@
+{
+    "GPe" : {
+
+	"total_neuron_count": 28000,	
+
+	"volume": {
+	    "mesh_file": "$SNUDDA_DATA/meshes/GPe.obj",
+	    "d_min": 10e-6,
+	    "num_putative_points": 80000,
+            "neuron_orientation": {
+		"PV": {
+                    "rotation_mode": "vector_field_and_z",
+                    "rotation_field_file": "$SNUDDA_DATA/connectivity/rotation/GPe_rotation_map.json"
+		},
+		"FoxP2": {
+                    "rotation_mode": "vector_field_and_z",
+                    "rotation_field_file": "$SNUDA_DATA/connectivity/rotation/GPe_rotation_map.json"
+		}
+            }
+	},
+	
+	"neurons": ["$SNUDDA_DATA/neurons/gpe/foxp2/foxp2.json",
+ 		    "$SNUDDA_DATA/neurons/gpe/pv/pv.json"],
+
+	"connectivity": ["$SNUDDA_DATA/connectivity/GPe/intrapallidal_projections.json",
+			 "$SNUDDA_DATA/connectivity/GPe/striatopallidal_projections.json",
+			 "$SNUDDA_DATA/connectivity/GPe/pallidostriatal_projections.json"]
+    }
+}
