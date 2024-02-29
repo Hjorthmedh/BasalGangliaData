@@ -1,0 +1,33 @@
+{
+    "Striatum": {
+	"total_neuron_count": 1600000,
+	
+	"volume": {
+	    "mesh_file": "$SNUDDA_DATA/meshes/Striatum-dorsal-left-hemisphere.obj",
+	    "d_min": 1.5e-5,
+	    "num_putative_points": 3000000,
+	    "random_seed": 123456,
+	    "density": {
+		"my_neuron": {
+		    "density_function": null
+		}
+	    },
+	    "neuron_orientation": {
+		"my_neuron": {
+		    "rotation_mode": "vector_field",
+		    "rotation_field_file": "my_rotation_file.json"
+		}
+	    }
+	},
+	
+	"neurons": ["$SNUDDA_DATA/neurons/striatum/dspn/dspn.json",
+		    "$SNUDDA_DATA/neurons/striatum/ispn/ispn.json",
+		    "$SNUDDA_DATA/neurons/striatum/fs/fs.json",
+		    "$SNUDDA_DATA/neurons/striatum/chin/chin.json",
+		    "$SNUDDA_DATA/neurons/striatum/lts/lts.json"],
+	
+	"connectivity": ["$SNUDDA_DATA/connectivity/striatum/striatum-connectivity.json"],
+
+	"populations": "pop1.json"
+    }
+}
