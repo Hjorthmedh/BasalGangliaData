@@ -36,6 +36,11 @@ class TestStriatum(unittest.TestCase):
         model_dir = os.path.join(root, "data", "neurons", "striatum")
 
         for neuron_dir in glob.glob(os.path.join(model_dir, "*/*")):
+
+            if not os.path.isdir(neuron_dir):
+                print(f"{neuron_dir} is not a directory, skipping")
+                continue
+            
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
             hash_meta = os.path.join(neuron_dir, "meta.json")
@@ -109,6 +114,9 @@ class TestStriatum(unittest.TestCase):
 
         for neuron_dir in glob.glob(os.path.join(model_dir, "*/*")):
 
+            if not os.path.isdir(neuron_dir):
+                continue
+            
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
             hash_neuromodulation = os.path.join(neuron_dir, "modulation.json")
@@ -152,6 +160,9 @@ class TestStriatum(unittest.TestCase):
 
         for neuron_dir in glob.glob(os.path.join(model_dir, "*/*")):
 
+            if not os.path.isdir(neuron_dir):
+                continue
+            
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
             hash_parameters = os.path.join(neuron_dir, "parameters.json")
@@ -194,6 +205,9 @@ class TestStriatum(unittest.TestCase):
 
         for neuron_dir in glob.glob(os.path.join(model_dir, "*/*")):
 
+            if not os.path.isdir(neuron_dir):
+                continue
+            
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
             hash_morphology = os.path.join(neuron_dir, "morphology", "morphology_hash_filename.json")
