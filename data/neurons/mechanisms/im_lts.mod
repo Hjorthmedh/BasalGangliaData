@@ -26,7 +26,7 @@ NEURON {
 	USEION k READ ek WRITE ik
         RANGE gkbar, m_inf, tau_m, ik
 	RANGE taumax
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
     RANGE modulation_factor	
 
@@ -63,13 +63,13 @@ ASSIGNED {
 	tau_m	(ms)
 	tau_peak	(ms)
 	tadj
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)
 }
 
 BREAKPOINT {
      SOLVE states METHOD cnexp
-    modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 	   
 	ik = gkbar * m * (v - ek)*modulation_factor
 }

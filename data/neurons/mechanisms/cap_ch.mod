@@ -11,7 +11,7 @@ NEURON {
 	RANGE minf,mtau
 	RANGE monovalConc, monovalPerm
 
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
     RANGE modulation_factor
 				
@@ -50,7 +50,7 @@ ASSIGNED {
 	T              (degC)
 	E              (volts)
 	g	(S/cm2)
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)
 	
 }
@@ -66,7 +66,7 @@ INITIAL {
 
 BREAKPOINT {
      SOLVE states METHOD cnexp
-        modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+        modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 	   
 	g = (1e3) * gbar * m *modulation_factor
 	ica = g * ghk(v, cai, cao, 2)

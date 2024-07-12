@@ -6,7 +6,7 @@ NEURON {
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, q
 
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope
     RANGE mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_slope
     RANGE modulation_factor_g, modulation_factor_shift
@@ -47,7 +47,7 @@ ASSIGNED {
     mtau (ms)
     hinf
     htau (ms)
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor_g (1)
     modulation_factor_shift (1)    
     modShift
@@ -57,8 +57,8 @@ STATE { m h }
 
 BREAKPOINT {
      SOLVE states METHOD cnexp
-	   modulation_factor_g=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)
-     modulation_factor_shift=modulation(PKAi, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_slope)	   					 
+	   modulation_factor_g=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)
+     modulation_factor_shift=modulation(PKAci, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_slope)	   					 
 
     : In Johanna's version gk depended on modDA, and modShift on modACh
     gk = gbar*m*m*h*modulation_factor_g

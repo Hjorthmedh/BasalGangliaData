@@ -16,7 +16,7 @@ NEURON {
     USEION cal READ cali, calo WRITE ical VALENCE 2
     RANGE pbar, ical
 
-    USEION PKA READ PKAi VALENCE 0		     
+    USEION PKAc READ PKAci VALENCE 0		     
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope
     RANGE modulation_factor		     
 }
@@ -45,7 +45,7 @@ ASSIGNED {
     mtau (ms)
     hinf
     htau (ms)
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)    
 }
 
@@ -53,7 +53,7 @@ STATE { m h }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 
     ical = pbar*m*(h*a+1-a)*ghk(v, cali, calo)*modulation_factor
 }

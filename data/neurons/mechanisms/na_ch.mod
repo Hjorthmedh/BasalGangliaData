@@ -23,7 +23,7 @@ NEURON {
 	RANGE g0
 	RANGE d0
 	RANGE aS1, aS2, bS
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
     RANGE modulation_factor
 
@@ -75,7 +75,7 @@ ASSIGNED {
 	gamma	(1/ms)
 	delta	(1/ms)
 	a
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)
 }
 
@@ -102,7 +102,7 @@ STATE {
 
 BREAKPOINT {
      SOLVE kin METHOD sparse
-    modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 	   
 	g = gbar*o*modulation_factor
 	ina = g*(v-ena)

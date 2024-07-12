@@ -15,7 +15,7 @@ NEURON {
 	GLOBAL i5is, isi5
 	GLOBAL q10i, q10v
 
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
     RANGE modulation_factor
 			  
@@ -60,7 +60,7 @@ ASSIGNED {
 	ik	(mA/cm2)
 	alpha	(/ms)
 	beta	(/ms)
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)
 }
 
@@ -80,7 +80,7 @@ STATE {
 
 BREAKPOINT {
 	SOLVE kin METHOD sparse
-    modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 	g = gbar*o*modulation_factor
 	ik = g*(v-ek)
 }

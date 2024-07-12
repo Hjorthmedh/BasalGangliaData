@@ -14,7 +14,7 @@ NEURON {
 	RANGE Ctm, atm, btm, tm0, vhtm
         RANGE minf,tau
 
-	USEION PKA READ PKAi VALENCE 0
+	USEION PKAc READ PKAci VALENCE 0
         RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
         RANGE modulation_factor			 
 
@@ -58,13 +58,13 @@ ASSIGNED {
         gcal (mho/cm2)
         minf
         tau   (ms)
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor (1)	
 }
 
 BREAKPOINT {
         SOLVE state METHOD cnexp
-        modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+        modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
 	gcal = gbar*m*m*h2(cai)*modulation_factor
 	ica  = gcal*ghk(v,cai,cao)
 }

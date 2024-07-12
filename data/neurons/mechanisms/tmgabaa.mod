@@ -8,7 +8,7 @@ NEURON {
     RANGE failRate
     NONSPECIFIC_CURRENT i
 
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope
     RANGE mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope 							     
     RANGE modulation_factor, modulation_factor_fail
@@ -48,7 +48,7 @@ ASSIGNED {
     g (uS)
     factor
     x
-    PKAi (mM)
+    PKAci (mM)
 
     modulation_factor (1)
     modulation_factor_fail (1)    
@@ -71,8 +71,8 @@ INITIAL {
 
 BREAKPOINT {
      SOLVE state METHOD cnexp
-     modulation_factor=modulation(PKAi, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
-     modulation_factor_fail=modulation(PKAi, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   	   
+     modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+     modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   	   
     g = (B - A)*modulation_factor
     i = g*(v - e)
 }

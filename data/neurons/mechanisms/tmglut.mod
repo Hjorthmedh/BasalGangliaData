@@ -11,7 +11,7 @@ NEURON {
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
     RANGE failRate
 
-    USEION PKA READ PKAi VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope
     RANGE mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope 
     RANGE modulation_factor_ampa, modulation_factor_nmda, modulation_factor_fail
@@ -78,7 +78,7 @@ ASSIGNED {
     factor_ampa
     factor_nmda
     x
-    PKAi (mM)
+    PKAci (mM)
     modulation_factor_ampa (1)    
     modulation_factor_nmda (1)
     modulation_factor_fail (1)
@@ -111,9 +111,9 @@ BREAKPOINT {
     LOCAL itot_nmda, itot_ampa, mggate
     SOLVE state METHOD cnexp
 
-    modulation_factor_ampa=modulation(PKAi, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope)	   
-    modulation_factor_nmda=modulation(PKAi, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope)	   
-    modulation_factor_fail=modulation(PKAi, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   
+    modulation_factor_ampa=modulation(PKAci, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope)	   
+    modulation_factor_nmda=modulation(PKAci, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope)	   
+    modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   
     : NMDA
     mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
     g_nmda    = (B_nmda - A_nmda) * modulation_factor_nmda
