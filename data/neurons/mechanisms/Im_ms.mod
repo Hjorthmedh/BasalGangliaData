@@ -14,7 +14,7 @@ NEURON	{
 	USEION k READ ek WRITE ik
 	RANGE gbar, gIm, ik
 
-    USEION PKA READ PKAci VALENCE 0
+    USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
     RANGE modulation_factor
 			      
