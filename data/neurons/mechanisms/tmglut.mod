@@ -194,7 +194,7 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = scop_random()
 }
 
 FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
