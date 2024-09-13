@@ -188,3 +188,4 @@ def transfer_parameters(source=None, destination=None, direct_path_param=None,
                                                       parameters_path=parameters_path,
                                                       best_models_path=best_models_path,
                                                       selected=selected)
+    print("Parameter file transfer complete")

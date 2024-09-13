@@ -10,11 +10,12 @@ class SimpleTransfer:
     """
     Class to Transfer all the files from Bluepyopt format to Snudda
     
-    By default assumes that the files listed below are all in the base of source
-        if not, one can specify each path directly by passing them as arguments
+    By default assumes that the files
         -mechanisms.json
         -parameters.json
+    are located in the config folder of the source, and that 
         -best_model.json 
+    are in the base of source
     
     if you are using hall_of_fame.json instead of best_models.json,
         please set the optimization_result_file directly
@@ -38,22 +39,22 @@ class SimpleTransfer:
         self.destination = destination
         
         if not optimisation_result_file:
-            self.optimisation_result_file = '{}/best_models.json'.format(source)
+            self.optimisation_result_file = f'{source}/best_models.json'
         else:
             self.optimisation_result_file = optimisation_result_file
         
         if not mechanisms_path_folder:
-            self.mechanisms_path_folder = source
+            self.mechanisms_path_folder = f'{source}/config'
         else:
             self.mechanisms_path_folder = mechanisms_path_folder
         
         if not parameters_path_folder:
-            self.parameters_path_folder = '{}/parameters.json'.format(source)
+            self.parameters_path_folder = f'{source}/config/parameters.json'
         else:
             self.parameters_path_folder = parameters_path_folder
         
         if not morphology_path_folder:
-            self.morphology_path_folder = '{}/morphology'.format(source)
+            self.morphology_path_folder = f'{source}/morphology'
         else:
             self.morphology_path_folder = morphology_path_folder
         
@@ -61,6 +62,8 @@ class SimpleTransfer:
         self.selected_models = selected_models
         
         self.transfer()
+        
+        print('\n---transfer complete---')
 
     def transfer(self):
 
