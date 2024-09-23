@@ -6,7 +6,7 @@ from transfer import SimpleTransfer as strans
 
 '''
 run this file with arguments or change the paths to source and destination
-below (source and new_celltype_path, respectively)
+below (source and new_celltype_path, respectively--look for "update here")
 
     $ python simple_transfer.py -s <source> -d <destination>
 
@@ -42,7 +42,7 @@ if args['sours']:
     source_path = args['sours'].strip('/')
 else:
     # update here
-    source_path = '../examples/example-option-2' # extra path added for illustration
+    source_path = '../examples/example-option-2' # extra "../examples/" added for testing/illustration
     
 if args['destination']:
     new_celltype_path = args['destination']
@@ -56,7 +56,8 @@ if args['all']:
     subdir = [ f.name for f in os.scandir(source_path) if f.is_dir() ]
     print(subdir)
     for d in subdir:
-        celltype = d.split('-')[1] # this is hardcoded and assumes that the type is in the first location of the filename
+        # celltype is hardcoded and assumes that the type is in the first location of the filename "str-dspn-..."
+        celltype = d.split('-')[1] 
         destination = os.path.join(new_celltype_path, celltype, d)
         sub_source_path = os.path.join(source_path, d)
         if int(args['delete']) and os.path.isdir(destination):

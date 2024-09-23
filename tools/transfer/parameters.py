@@ -35,12 +35,12 @@ def combine_hall_of_fame_parameters(parameters_list, hall_of_fame):
     """
     combined_parameters_dict = dict()
 
-    for i, models in enumerate(hall_of_fame):
+    for i, model in enumerate(hall_of_fame):
 
         temporary_dict = copy.deepcopy(parameters_list)
         combined_parameters_dict.update({i: temporary_dict})
 
-        for model_parameters in models.items():
+        for model_parameters in model.items():
 
             for params in combined_parameters_dict[i]:
 
