@@ -19,8 +19,10 @@ use the -rm/--delete argument to delete the destination folder before transfer (
     
     $ python simple_transfer.py -rm 1
 
-TODO: 
--verify transfer
+use -a or --all to batch transfer all models in one directory
+
+    $ python simple_transfer.py -rm 1
+
 '''
 
 parser = argparse.ArgumentParser(description='Simple program for transfer (conversion) of BPO models into snudda')
@@ -28,7 +30,7 @@ parser.add_argument('-s','--sours', help='source directory')
 parser.add_argument('-a','--all', help='transfer all models in directory (sub directories)', default=0)
 parser.add_argument('-d','--destination', help='destination argument')
 parser.add_argument('-hof','--hall_off_fame', help='list of best models (best_models/hall_off_fame)', default=None)
-parser.add_argument('-rm','--delete', help='delete destination', default=0)
+parser.add_argument('-rm','--delete', help='delete destination -- can not be used with the -a/--all option', default=0)
 args = vars(parser.parse_args())    
 
 def do_transfer(source_path, new_cell_path, hof):
@@ -60,11 +62,15 @@ if args['all']:
         celltype = d.split('-')[1] 
         destination = os.path.join(new_celltype_path, celltype, d)
         sub_source_path = os.path.join(source_path, d)
+        # remove this option for now, since can delete unintended files
+        '''
         if int(args['delete']) and os.path.isdir(destination):
-            shutil.rmtree(destination)
+           shutil.rmtree(destination)
+        '''
         os.makedirs(destination, exist_ok=True)
         do_transfer(sub_source_path, destination, args['hall_off_fame'])
 else:
+    # TODO: is this dangerous?
     if int(args['delete']):
         shutil.rmtree(new_celltype_path)
     
