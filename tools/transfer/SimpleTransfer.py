@@ -15,7 +15,7 @@ class SimpleTransfer:
         -parameters.json
     are located in the config folder of the source, and that 
         -best_model.json 
-    are in the base of source
+    are in the base of source (else file path can be added manually, see below)
     
     if you are using hall_of_fame.json instead of best_models.json,
         please set the optimization_result_file directly
