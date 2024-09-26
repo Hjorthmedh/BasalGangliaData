@@ -22,14 +22,10 @@ def do_transfer(source_path, new_cell_path):
     # create output dir (check for existance is done in prev stage)
     os.makedirs(new_cell_path)
     
-    if os.path.isfile(f'{source_path}/var_models-final.json'):
+    if os.path.isfile(f'{source_path}/val_models.json'):
         opt_res = f'{source_path}/hall_of_fame.json'
-        select  = f'{source_path}/var_models-final.json'
-        f = 'var_models-final.json'
-    if os.path.isfile(f'{source_path}/var_models.json'):
-        opt_res = f'{source_path}/hall_of_fame.json'
-        select  = f'{source_path}/var_models.json'
-        f = 'var_models.json'
+        select  = f'{source_path}/val_models.json'
+        f = 'val_models.json'
     elif os.path.isfile(f'{source_path}/hall_of_fame.json'):
         opt_res = f'{source_path}/hall_of_fame.json'
         select  = None
@@ -41,8 +37,8 @@ def do_transfer(source_path, new_cell_path):
     else:
         raise Exception(f'Neither of: val_models, hall_of_fame nor best_models exist in source: \n{source_path}')
     
-    print(f'tranfering source: \n\t{source_path} \nto destination \n\t{new_cell_path}')
-    print(f'using {f}\n')
+    print(f'\ntranfering source: \n\t{source_path} \nto destination \n\t{new_cell_path}')
+    print(f'\nusing opt_file: {f}\n')
     strans.SimpleTransfer(  source_path, 
                             new_cell_path, 
                             optimisation_result_file=opt_res,
@@ -54,12 +50,21 @@ def transfer_all(source_path, new_celltype_path):
     print(subdir)
     for d in subdir:
         # celltype is hardcoded and assumes that the type is in the first location of the filename "str-dspn-..."
-        celltype = d.split('-')[1] 
+        try:
+            celltype = d.split('-')[1] 
+        except:
+            print()
+            print(f'celltype can not be extracted from the model name of: {d}')
+            print('in order to work with batch transfer, model names have to be in the format:')
+            print('region-type-additional_info, e.g. str-dspn-...')
+            print('--> skipping')
+            continue
         destination = os.path.join(new_celltype_path, celltype, d)
         sub_source_path = os.path.join(source_path, d)
         if os.path.isdir(destination):
             print()
-            print(f'{destination} \nalready exists--skipping')
+            print(f'Destination: {destination} \nalready exists')
+            print('--> skipping')
             continue    
         
         do_transfer(sub_source_path, destination)

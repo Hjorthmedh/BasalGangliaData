@@ -111,14 +111,11 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     return np.array(time), np.array(vm)
 
 
-def upgrade_parameters_to_v2(model_path, kid=0):
+def upgrade_parameters_to_v2(model_path, hashkey, kid=0):
     # open transfered parameter file. This file contains many families of models
     with open(f'{model_path}parameters.json', 'r') as h:
         all_param_sets = json.load(h)
-    with open(f'{model_path}temp/parameters_hash_id.json', 'r') as h:
-        hash2id = json.load(h)
-    id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
-    hashkey = id2hash[kid]
+    
     import transform_parameters_to_v2 as trans
     parameters = trans.read_data(all_param_sets[hashkey])
     trans.write2file(parameters, kid, model_path, print_string=False)
@@ -132,10 +129,24 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     sys.path.append('Local_simulation_setup')
     #nrn.load_mechanisms(f'{ref_model_path}mechanisms')
     
+    # get hash key corresponding to model index (pid)
+    with open(f'{transfered_model_path}temp/parameters_hash_id.json', 'r') as h:
+        hash2id = json.load(h)
+    id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
+    hashkey = id2hash[pid]
+    
+    # get morphology
+    from glob import glob
+    morphologies = glob(f'{ref_model_path}/morphology/*.swc')
+    for morph in morphologies:
+        if 'var' not in morph:
+            print(morph)
+            break
+    
     # create param_v2
     if upgrade_params:
         print('2.0 upgrading parameters...')
-        upgrade_parameters_to_v2(transfered_model_path, kid=pid) # Cell0 from original setup
+        upgrade_parameters_to_v2(transfered_model_path, hashkey, kid=pid) # Cell0 from original setup
     
     # model setup ----------------------------------
     from neuron import h
@@ -152,7 +163,7 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     
     # TODO: how to handle morphologies, which one to chose -> make sure same morphology is used in both models
     cell = create.Bpo_cell(f'{transfered_model_path}{pid}_v2.json',
-                          f'{transfered_model_path}morphology/WT-0728MSN01-cor-rep-ax-res3.swc',
+                          morph,
                           cell_type='transFerdinand',
                           region_cadyn_dict=region_cadyn_dict,
                           allow_non_uniform=False)
