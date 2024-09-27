@@ -1,6 +1,6 @@
 
 import shutil, os, sys, argparse
-sys.path.append('../tools')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tools")))
 
 from transfer import SimpleTransfer as strans
 
@@ -46,6 +46,7 @@ def do_transfer(source_path, new_cell_path):
 
 
 def transfer_all(source_path, new_celltype_path):
+    print(f"Reading from source_path={source_path}")
     subdir = [ f.name for f in os.scandir(source_path) if f.is_dir() ]
     print(subdir)
     for d in subdir:
@@ -88,27 +89,28 @@ def transfer_single(source_path, new_celltype_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simple program for transfer (conversion) of BPO models into snudda')
-    parser.add_argument('-s','--sours', help='source directory')
-    parser.add_argument('-d','--destination', help='destination argument')
-    parser.add_argument('-a','--all', help='transfer all models in directory (sub directories)', default=0)
+    parser.add_argument('--source', '-s', help='source directory')
+    parser.add_argument('--destination', '-d', help='destination argument')
+    parser.add_argument('--all', '-a', help='transfer all models in directory (sub directories)', action="store_true", default=False)
     #parser.add_argument('-hof','--hall_off_fame', help='list of best models (best_models/hall_off_fame)', default=None)
     #parser.add_argument('-rm','--delete', help='delete destination -- can not be used with the -a/--all option', default=0)
-    args = vars(parser.parse_args()) 
+    args = parser.parse_args()
+
     
-    if args['sours']:
-        source_path = args['sours'].strip('/')
+    if args.source:
+        source_path = args.source.rstrip('/')
     else:
         # update here
         source_path = '../examples/example-option-2' # extra "../examples/" added for testing/illustration
         
-    if args['destination']:
-        new_celltype_path = args['destination']
+    if args.destination:
+        new_celltype_path = args.destination
     else:
         # update here
         new_celltype_path = '../data/neurons/striatum/test'
     
     # do the transfer
-    if args['all']:
+    if args.all:
         transfer_all(source_path, new_celltype_path)
     else:
         transfer_single(source_path, new_celltype_path)
