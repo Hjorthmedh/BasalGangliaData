@@ -14,28 +14,28 @@
         "sectionlist": "axonal",
         "type": "section",
         "dist_type": "uniform",
-        "bounds": [ 0.000015618712396472798 , 0.0015618712396472798 ]
+        "bounds": [ 0.00001072315818062772 , 0.001072315818062772 ]
     },
     {
         "param_name": "g_pas",
         "sectionlist": "basal",
         "type": "section",
         "dist_type": "uniform",
-        "bounds": [ 0.000015618712396472798 , 0.0015618712396472798 ]
+        "bounds": [ 0.00001072315818062772 , 0.001072315818062772 ]
     },
     {
         "param_name": "g_pas",
         "sectionlist": "somatic",
         "type": "section",
         "dist_type": "uniform",
-        "bounds": [ 0.000015618712396472798 , 0.0015618712396472798 ]
+        "bounds": [ 0.00001072315818062772 , 0.001072315818062772 ]
     },
     {
         "param_name": "e_pas",
         "sectionlist": "all",
         "type": "section",
         "dist_type": "uniform",
-        "value": -62.924465893600484
+        "value": -76.51568940881964
     },
     {
         "param_name": "cm",
@@ -49,7 +49,7 @@
         "sectionlist": "all",
         "type": "section",
         "dist_type": "uniform",
-        "value": 244.79131177304342
+        "value": 273.8181562662697
     },
     {
         "param_name": "ena",
@@ -185,7 +185,7 @@
     {
         "param_name": "gbar_bk_ms",
         "mech": "bk_ms",
-        "bounds": [0, 1e-3 ] ,
+        "bounds": [0, 1e-4 ] ,
         "dist_type": "uniform",
         "mech_param": "gbar",
         "type": "range",
@@ -212,9 +212,9 @@
     {
         "param_name": "gbar_naf_ms",
         "mech": "naf_ms",
-        "bounds": [0, 0.1] ,
+        "bounds": [0, 0.02] ,
         "dist": "((0.1) + (0.9)/(1 + exp(({distance}-(40))/(10))))*{value}",
-        "dist_type": "distance",
+        "dist_type": "uniform",
         "mech_param": "gbar",
         "type": "range",
         "sectionlist": "basal"
@@ -222,9 +222,9 @@
     {
         "param_name": "gbar_kaf_ms",
         "mech": "kaf_ms",
-        "bounds": [0.01, 0.5] ,
+        "bounds": [0.002, 0.5] ,
         "dist": "((1.0) + (0.5)/(1 + exp(({distance}-(120))/(-30))))*{value}",
-        "dist_type": "distance",
+        "dist_type": "uniform",
         "mech_param": "gbar",
         "type": "range",
         "sectionlist": "basal"
@@ -243,7 +243,7 @@
         "mech": "kas_ms",
         "bounds": [0, 0.01] ,
         "dist": "((1.0) + (9.0)*exp(({distance}-(0.0))/(-5.0)))*{value}",
-        "dist_type": "distance",
+        "dist_type": "uniform",
         "mech_param": "gbar",
         "type": "range",
         "sectionlist": "basal"
@@ -298,7 +298,7 @@
         "mech": "cat32_ms",
         "value": 0.2e-8 ,
         "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
-        "dist_type": "distance",
+        "dist_type": "uniform",
         "mech_param": "pbar",
         "type": "range",
         "sectionlist": "basal"
@@ -308,7 +308,7 @@
         "mech": "cat33_ms",
         "value": 0.2e-8 ,
         "dist": "((0.0) + (1.0)/(1 + exp(({distance}-(120))/(-30))))*{value}",
-        "dist_type": "distance",
+        "dist_type": "uniform",
         "mech_param": "pbar",
         "type": "range",
         "sectionlist": "basal"
@@ -316,7 +316,7 @@
     {
         "param_name": "gbar_bk_ms",
         "mech": "bk_ms",
-        "bounds": [0, 1e-4] ,
+        "bounds": [0, 1e-5] ,
         "dist_type": "uniform",
         "mech_param": "gbar",
         "type": "range",
