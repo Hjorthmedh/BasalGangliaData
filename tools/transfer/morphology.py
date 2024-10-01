@@ -27,6 +27,7 @@ def transfer_morphologies(source=None, destination=None, selected=False, direct_
 
     if direct_path_morph:
         morphology_directory = os.path.join(direct_path_morph)
+        source = os.path.split(direct_path_morph)[0]
     else:
         morphology_directory = os.path.join(source, "morphology")
 
@@ -64,9 +65,6 @@ def transfer_morphologies(source=None, destination=None, selected=False, direct_
         with open(os.path.join(morphology_destination, "morphology_hash_filename.json"), "w") as f:
             json.dump(hash_name_dict, f, indent=4, sort_keys=True)
 
-        print(f"Morphology file transfer complete \n"
-              f" \n"
-              f"from : {source} \n"
-              f"to : {destination} \n")
+        print("Morphology file transfer complete")
 
 

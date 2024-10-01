@@ -21,3 +21,5 @@ def transfer_mechanisms(source=None, destination=None, direct_path=None):
     if not os.path.exists(destination):
         os.mkdir(destination)
     shutil.copy(mechanisms_path, os.path.join(destination, "mechanisms.json"))
+    
+    print("mechanims file transfer complete")
