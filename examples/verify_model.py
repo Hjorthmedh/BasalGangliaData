@@ -110,6 +110,73 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     
     return np.array(time), np.array(vm)
 
+def simulate_snudda(ref_model_path, transfered_model_path, pid=0, ref_tv=[]):
+    print('2.1 simulating transfered model in snudda...\n')
+    # get hash key corresponding to model index (pid)
+    with open(f'{transfered_model_path}temp/parameters_hash_id.json', 'r') as h:
+        hash2id = json.load(h)
+    id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
+    hashkey = id2hash[pid]
+    morph_path = get_morphology_source_file(ref_model_path)
+    with open(f'{transfered_model_path}morphology/morphology_hash_filename.json', 'r') as h:
+        mhash2name = json.load(h)
+    name2mhash = {name:mkey for mkey,name in mhash2name.items()} # reverse key:item
+    morph = os.path.splitext(os.path.basename(morph_path))[0]
+    mkey = name2mhash[f'{morph}-var0.swc'] # var0 and the original morphology are identical
+    # model setup ----------------
+    from snudda import Snudda
+    network_path = "snudda"
+    ss = Snudda(network_path=network_path)
+    ss.init_tiny(   neuron_paths=[transfered_model_path], 
+                    neuron_names=["random"], 
+                    number_of_neurons=[1],
+                    morphology_key=[mkey],
+                    parameter_key=[hashkey])
+    ss.create_network()
+    # current mag and delay from file
+    with open(f'{ref_model_path}config/protocols.json') as fp:
+        protocols = json.load(fp, object_pairs_hook=OrderedDict)
+    proto = list(p for p in protocols if p.startswith('IDthresh_'))[0]
+    stim0 = protocols[proto]['stimuli'][0]['amp'] * 1e-9
+    stim1 = protocols[proto]['stimuli'][1]['amp'] * 1e-9
+    
+    print(stim0, stim1)
+    
+    simulation_config = {"current_injection_info" : {"0": {"time": [0, 0.7, 0.7, 1.5],
+                                                       "current": [stim1, stim1, stim1+stim0, stim1+stim0]}}}
+    # simulate
+    ss.simulate(simulation_config=simulation_config, verbose=False, time=1.5)
+    #
+    from snudda.utils import SnuddaLoadSimulation
+    sls = SnuddaLoadSimulation(network_path=network_path)
+    time = sls.get_time()
+    neuron_id = 0
+    voltage = sls.get_data(neuron_id=neuron_id, data_type="voltage")[0][neuron_id]
+    
+    print('3. Comparing models...')
+    vm = voltage.T[0]*1000
+    t = time*1000
+    if len(ref_tv):
+        if all(vm == ref_tv[1]):
+            print('\t-> models gives identical results')
+        else:
+            print('\t-> models differ')
+            print(vm)
+            print(ref_tv[1])
+    
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(12,8))
+    plt.title('comparing reference and transfer models', fontsize=20)
+    plt.plot(t, vm, label='transfered', lw=3)
+    if len(ref_tv):
+        plt.plot(ref_tv[0], ref_tv[1], ls='dotted', label='reference', lw=3)
+    plt.legend(fontsize=20)
+    plt.xticks(fontsize=20)
+    plt.yticks(fontsize=20)
+    plt.savefig('org_and_snudda.png')
+    plt.show()
+    
+
 
 def upgrade_parameters_to_v2(model_path, hashkey, kid=0):
     # open transfered parameter file. This file contains many families of models
@@ -119,6 +186,17 @@ def upgrade_parameters_to_v2(model_path, hashkey, kid=0):
     import transform_parameters_to_v2 as trans
     parameters = trans.read_data(all_param_sets[hashkey])
     trans.write2file(parameters, kid, model_path, print_string=False)
+
+
+def get_morphology_source_file(ref_model_path):
+    # get morphology
+    from glob import glob
+    morphologies = glob(f'{ref_model_path}morphology/*.swc')
+    for morph in morphologies:
+        if 'var' not in morph:
+            print(morph)
+            return morph
+    return None
     
 
 def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrade_params=True, ref_tv=[], print_psection=False):
@@ -135,13 +213,7 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
     hashkey = id2hash[pid]
     
-    # get morphology
-    from glob import glob
-    morphologies = glob(f'{ref_model_path}/morphology/*.swc')
-    for morph in morphologies:
-        if 'var' not in morph:
-            print(morph)
-            break
+    morph = get_morphology_source_file(ref_model_path)
     
     # create param_v2
     if upgrade_params:
@@ -161,7 +233,6 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     region_cadyn_dict = {   'soma':  ['cadyn_ms', 'caldyn_ms'],
                             'basal': ['cadyn_ms', 'caldyn_ms']}
     
-    # TODO: how to handle morphologies, which one to chose -> make sure same morphology is used in both models
     cell = create.Bpo_cell(f'{transfered_model_path}{pid}_v2.json',
                           morph,
                           cell_type='transFerdinand',
@@ -208,12 +279,13 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     
     
     print('3. Comparing models...')
-    if all(np.array(vm) == ref_tv[1]):
-        print('\t-> models gives identical results')
-    else:
-        print('\t-> models differ')
-        print(np.array(vm))
-        print(ref_tv[1])
+    if len(ref_tv):
+        if all(np.array(vm) == ref_tv[1]):
+            print('\t-> models gives identical results')
+        else:
+            print('\t-> models differ')
+            print(np.array(vm))
+            print(ref_tv[1])
     
     plt.figure(figsize=(12,8))
     plt.title('comparing reference and transfer models', fontsize=20)
@@ -223,6 +295,7 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
     plt.legend(fontsize=20)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
+    plt.savefig('org_and_my.png')
     plt.show()
      
     
@@ -243,6 +316,7 @@ if __name__ == '__main__':
         pps = False
     else:
         pps = True
+        
     
     t,v = simulate_org_model(   args['path'], 
                                 int(args['mid']), 
@@ -250,12 +324,18 @@ if __name__ == '__main__':
                                 print_psection=int(args['psprint']),
                                 return_tv=int(args['return_tv']))
     
+    simulate_snudda(args['path'], args['out'], ref_tv=ref_tv)
+    
+    '''
     simulate_transfered_model(  args['path'], 
                                 args['out'], 
                                 int(args['mid']),  
                                 upgrade_params=args['upgrade'],
                                 print_psection=int(args['psprint']),
-                                ref_tv=[t,v])
+                                ref_tv=ref_tv)'''
+    
+    
+    
     
     
     
