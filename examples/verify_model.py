@@ -24,7 +24,7 @@ options:
 
 
 if run from the terminal, use e.g. the following command:
-python simulate.py -p ../../Alex_model_repo/models/optim/HBP-2022Q2/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/ -o ../data/neurons/striatum/test/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/ -s 0 -i 0
+python simulate.py -p example_models/str-dspn-model1/ -o Transfered_models/dspn/str-dspn-model1/ 
 '''
 
 def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psection=False, current_amplitude=None):
@@ -33,19 +33,33 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     orgdir = os.getcwd()
     os.chdir(f'{model_path}checkpoints')
     
+    # check if the hoc file exists and if not, try to generate it
+    name = f'Cell_{pid}'
+    p = '..'
+    if not os.path.isfile(f'{name}.hoc'):
+        # check in parent dir
+        p = '.'
+        os.chdir('..') # change directory
+        if not os.path.isfile(f'{name}.hoc'):
+            if os.path.isfile(f'generate_hocs.py'):
+                # run command
+                import generate_hocs as gen
+                gen.main()
+            else:
+                raise Exception(f'No hoc file with name {name} and no way to generate it. Please add generate_hoc.py and/or create the hoc Cells')
+                
     # compile mechanisms 
     if return_tv or plot:
         os.system('rm -rf x86_64')
-        os.system("nrnivmodl ../mechanisms")
+        os.system(f"nrnivmodl {p}/mechanisms")
     
     # model setup ----------------------------------
     from neuron import h
     h.load_file("stdrun.hoc");
     
-    name = f'Cell_{pid}'
     h.load_file(f'{name}.hoc')
-    cmd = f'h.{name}("../morphology/")'
-    cell = eval(cmd)
+    cmd = f'h.{name}("{p}/morphology/")'
+    cell = eval(cmd) # instantiate cell
     
     if print_psection:
         for sec in h.allsec():
@@ -57,7 +71,7 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     print('1. simulating reference model...')
     
     # import config files
-    with open('../config/parameters.json') as fp:
+    with open(f'{p}/config/parameters.json') as fp:
         parameters = json.load(fp)
     
     h.v_init = parameters[1]['value']
@@ -66,7 +80,7 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
         stim0 = current_amplitude # nA
         stim1 = 0
     else:
-        with open('../config/protocols.json') as fp:
+        with open(f'{p}/config/protocols.json') as fp:
             protocols = json.load(fp, object_pairs_hook=OrderedDict)
         
         proto = list(p for p in protocols if p.startswith('IDthresh_'))[0]
