@@ -54,10 +54,10 @@ def transfer_all(source_path, new_celltype_path):
         try:
             celltype = d.split('-')[1] 
         except:
-            print()
-            print(f'celltype can not be extracted from the model name of: {d}')
-            print('in order to work with batch transfer, model names have to be in the format:')
-            print('region-type-additional_info, e.g. str-dspn-...')
+            print(f'\nmodel: {d}')
+            print('\tcelltype can not be extracted from the model name')
+            print('\tin order to work with batch transfer, model names have to be in the format:')
+            print('\n\tregion-type-additional_info\n\te.g. str-dspn-...')
             print('--> skipping')
             continue
         destination = os.path.join(new_celltype_path, celltype, d)
