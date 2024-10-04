@@ -150,7 +150,15 @@ def simulate_snudda(    transfered_model_path,
             mhash2name = json.load(h)
         name2mhash = {name:mkey for mkey,name in mhash2name.items()} # reverse key:item
         morph = os.path.splitext(os.path.basename(morph_path))[0]
-        mkey = name2mhash[f'{morph}-var0.swc'] # var0 and the original morphology are identical
+        if f'{morph}-var0.swc' in name2mhash:
+            mkey = name2mhash[f'{morph}-var0.swc'] # var0 and the original morphology are identical
+        elif f'{morph}.swc' in name2mhash:
+            mkey = name2mhash[f'{morph}.swc'] # var0 and the original morphology are identical
+        else:
+            print('name2mhash:')
+            print(name2mhash)
+            raise Exception(f'No key in dict: name2mhash with name {morph}\n'
+                            'neither with with -var0.swc or .swc extention')
     
     # model setup ----------------
     from snudda import Snudda
@@ -345,10 +353,27 @@ def simulate_transfered_model(ref_model_path, transfered_model_path, pid, upgrad
      
 def print_hashkey2id(model_path):
     import sys
-    with open(f'{model_path}/temp/parameters_hash_id.json') as fp:
+    if os.path.isfile(f'{model_path}/temp/parameters_hash_id.json'):
+        fname = f'{model_path}/temp/parameters_hash_id.json'
+    elif os.path.isfile(f'{model_path}/temp/parameter_id_hash_keys.json'):
+        fname = f'{model_path}/temp/parameter_id_hash_keys.json'
+    else:
+        # check if file with other file name (including hash in the name)
+        from glob import glob
+        all_temp_files = glob(f'{model_path}/temp/*.json')
+        file_found = False
+        for fname in all_temp_files:
+            # look for files with both "hash" and "param" in filename
+            if 'hash' in fname and 'param' in fname:
+                # use this file (and hope for the best...)
+                file_found = True
+                break
+        if not file_found:
+            raise Exception(f'No hash-to-id file found in: \n"{model_path}/temp/"')
+    with open(fname) as fp:
         h2id = json.load(fp)
     print(h2id)
-    sys.exit()
+    sys.exit(   )
 
 def get_amplitude(current_amplitude):
     if len(current_amplitude.split()) > 1:
