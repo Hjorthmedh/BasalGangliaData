@@ -227,7 +227,7 @@ def simulate_snudda(    transfered_model_path,
     plt.legend(fontsize=20)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
-    plt.savefig('org_and_snudda.png')
+    plt.savefig(f'org_and_snudda_mid{pid}.png')
     plt.show()
     
     
@@ -433,7 +433,7 @@ if __name__ == '__main__':
                                 print_psection=int(args['psprint']),
                                 return_tv=int(args['return_tv']))
     
-    simulate_snudda(args['path'], args['out'], ref_tv=ref_tv)
+    simulate_snudda(args['out'], args['path'], pid=int(args['mid']), ref_tv=[t,v])
     
     '''
     simulate_transfered_model(  args['path'], 
