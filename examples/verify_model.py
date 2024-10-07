@@ -419,7 +419,7 @@ if __name__ == '__main__':
 
     args = vars(parser.parse_args())
     
-    if args['print_hashkey']:
+    if args['print_hashkeys']:
         print_hashkey2id(args['out'])
         
     if not args['psprint']:
