@@ -22,7 +22,12 @@ def do_transfer(source_path, new_cell_path):
     # create output dir (check for existance is done in prev stage)
     os.makedirs(new_cell_path)
     
-    if os.path.isfile(f'{source_path}/val_models.json'):
+    files_in_folder = [f for f in os.listdir(source_path) if os.path.isfile(os.path.join(source_path, f))]
+    if not len(files_in_folder):
+        raise Exception('\n\nInput Error - the source directory is empty\n'
+                        f'{source_path}\n'
+                        'Possibly the files are in a subdirectory of the source?')
+    elif os.path.isfile(f'{source_path}/val_models.json'):
         opt_res = f'{source_path}/hall_of_fame.json'
         select  = f'{source_path}/val_models.json'
         f = 'val_models.json'
