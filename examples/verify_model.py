@@ -1,5 +1,5 @@
 
-import json, os
+import json, os, warnings
 import numpy as np
 from collections import OrderedDict
 
@@ -27,31 +27,73 @@ if run from the terminal, use e.g. the following command:
 python simulate.py -p example_models/str-dspn-model1/ -o Transfered_models/dspn/str-dspn-model1/ 
 '''
 
-def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psection=False, current_amplitude=None):
+def try2generate_hoc(path=None):
+    from bluepyopt.ephys.models import CellModel
+    
+    if path:
+        orgdir = os.getcwd()
+        os.chdir(path)
+    
+    if not os.path.isfile('cell_model.py'):
+        raise Exception('Can not generate hoc files. \ncell_model.py does not exist in current directory:'
+                        f'\n{os.getcwd()}')
+    import cell_model
+    
+    if not os.path.isfile('hall_of_fame.json'):
+        raise Exception('Can not generate hoc files. \nhall_of_fame.json does not exist in current directory:'
+                        f'\n{os.getcwd()}')   
+    
+    with open('hall_of_fame.json') as fp:
+        hof = json.load(fp, object_pairs_hook=OrderedDict)
+    
+    for i, param_values in enumerate(hof):
+        cell_name = f'Cell_{i}'
+        cell = cell_model.create(cell_name)
+        print(f'-generating and saving {cell_name} to file')
+        with open(f'{cell_name}.hoc', 'w') as fp:
+            fp.write(cell.create_hoc(param_values))
+    
+    if path:
+        # go back to cwd before directory switch
+        os.chdir(orgdir)
+        
+
+def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psection=False, current_amplitude=None, compile_mechanisms=1):
     
     # change directory
     orgdir = os.getcwd()
-    os.chdir(f'{model_path}checkpoints')
+    if not os.path.isdir(model_path):
+        raise Exception('Path Error: the path to the input model does not exist'
+                        f'\n{model_path}')
+    # go to model folder
+    os.chdir(model_path)
     
-    # check if the hoc file exists and if not, try to generate it
-    name = f'Cell_{pid}'
-    p = '..'
-    if not os.path.isfile(f'{name}.hoc'):
-        # check in parent dir
-        p = '.'
-        os.chdir('..') # change directory
-        if not os.path.isfile(f'{name}.hoc'):
-            if os.path.isfile(f'generate_hocs.py'):
-                # run command
-                import generate_hocs as gen
-                gen.main()
-            else:
-                raise Exception(f'No hoc file with name {name} and no way to generate it. Please add generate_hoc.py and/or create the hoc Cells')
-                
     # compile mechanisms 
-    if return_tv or plot:
+    if compile_mechanisms:
+        print('-compiling mechanisms')
+        if not os.path.isdir('mechanisms'):
+            raise Exception('Error: no mechanisms in model folder - can not compile')
         os.system('rm -rf x86_64')
-        os.system(f"nrnivmodl {p}/mechanisms")
+        os.system('nrnivmodl mechanisms')
+        if compile_mechanisms == 2:
+            # compile only
+            return
+    
+    # generate hoc
+    name = f'Cell_{pid}'
+    p = '.'
+    if not os.path.isfile(f'{name}.hoc'):
+        if os.path.isdir('checkpoints') and  os.path.isfile(f'checkpoints/{name}.hoc'):
+            p = '..'
+            os.chdir('checkpoints')
+        elif os.path.isfile('generate_hocs.py'):
+            # generate using generate_hocs.py
+            import generate_hocs as gen
+            gen.main()
+        else:
+            # generate using embedded function (copied from a generate_hocs.py file)
+            print('no hoc models in model dir - try to generate')
+            try2generate_hoc()
     
     # model setup ----------------------------------
     from neuron import h
@@ -82,8 +124,12 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     else:
         with open(f'{p}/config/protocols.json') as fp:
             protocols = json.load(fp, object_pairs_hook=OrderedDict)
-        
-        proto = list(p for p in protocols if p.startswith('IDthresh_'))[0]
+        try:
+            # if IDthresh protocols in file, use first
+            proto = list(par for par in protocols if par.startswith('IDthresh_'))[0]
+        except:
+            # use last protocol in file
+            proto = list(par for par in protocols)[-1]
         stim0 = protocols[proto]['stimuli'][0]['amp']
         stim1 = protocols[proto]['stimuli'][1]['amp']
     
@@ -179,7 +225,12 @@ def simulate_snudda(    transfered_model_path,
     elif os.path.isfile(f'{ref_model_path}config/protocols.json'):
         with open(f'{ref_model_path}config/protocols.json') as fp:
             protocols = json.load(fp, object_pairs_hook=OrderedDict)
-        proto = list(p for p in protocols if p.startswith('IDthresh_'))[0]
+        try:
+            # if IDthresh protocols in file, use first
+            proto = list(par for par in protocols if par.startswith('IDthresh_'))[0]
+        except:
+            # use last protocol in file
+            proto = list(par for par in protocols)[-1]
         stim0 = protocols[proto]['stimuli'][0]['amp'] * 1e-9
         stim1 = protocols[proto]['stimuli'][1]['amp'] * 1e-9
     else:
