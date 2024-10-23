@@ -905,59 +905,6 @@
                 }
             }
         },
-        "mb1b67bcc": {
-            "morphology": "MTC180800A-IDB-cor-rep-res3-var3.swc",
-            "input": {
-                "cortical_background": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-                    "num_inputs": 137,
-                    "frequency": 2,
-                    "population_unit_correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-FS.json"
-                },
-                "thalamic_background": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "0.05*exp(-d/200e-6)",
-                    "num_inputs": 137,
-                    "frequency": 2,
-                    "population_unit_correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-FS.json"
-                },
-                "cortical": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-                    "num_inputs": 52,
-                    "frequency": 0.0,
-                    "population_unit_correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-FS.json"
-                },
-                "thalamic": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "0.05*exp(-d/200e-6)",
-                    "num_inputs": 73,
-                    "frequency": 0.0,
-                    "population_unit_correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-FS.json"
-                }
-            }
-        },
         "me486b19e": {
             "morphology": "MTC180800A-IDB-cor-rep-res3-var6.swc",
             "input": {
