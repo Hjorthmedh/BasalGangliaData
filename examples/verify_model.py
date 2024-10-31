@@ -34,9 +34,14 @@ def try2generate_hoc(path=None):
         orgdir = os.getcwd()
         os.chdir(path)
     
+    print(os.getcwd())
+    
     if not os.path.isfile('cell_model.py'):
         raise Exception('Can not generate hoc files. \ncell_model.py does not exist in current directory:'
                         f'\n{os.getcwd()}')
+    
+    import sys
+    sys.path.insert(0,os.getcwd())
     import cell_model
     
     if not os.path.isfile('hall_of_fame.json'):
@@ -66,6 +71,7 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
         raise Exception('Path Error: the path to the input model does not exist'
                         f'\n{model_path}')
     # go to model folder
+    print(f'CHANGING PATH TO:\n{model_path}') 
     os.chdir(model_path)
     
     # compile mechanisms 
@@ -166,6 +172,8 @@ def simulate_org_model(model_path, pid, return_tv=True, plot=False, print_psecti
     if plot:
         import matplotlib.pyplot as plt
         plt.plot(time, vm)
+        plt.title(model_path)
+        plt.savefig(f'{model_path[-20:]}.png')
         plt.show()
         
         if not return_tv:
