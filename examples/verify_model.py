@@ -115,14 +115,18 @@ def simulate_snudda(ref_model_path, transfered_model_path, pid=0, ref_tv=[]):
     # get hash key corresponding to model index (pid)
     with open(f'{transfered_model_path}temp/parameters_hash_id.json', 'r') as h:
         hash2id = json.load(h)
-    id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
+    id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item
+    
     hashkey = id2hash[pid]
     morph_path = get_morphology_source_file(ref_model_path)
     with open(f'{transfered_model_path}morphology/morphology_hash_filename.json', 'r') as h:
         mhash2name = json.load(h)
+        
     name2mhash = {name:mkey for mkey,name in mhash2name.items()} # reverse key:item
-    morph = os.path.splitext(os.path.basename(morph_path))[0]
-    mkey = name2mhash[f'{morph}-var0.swc'] # var0 and the original morphology are identical
+    morph = os.path.basename(morph_path)
+    
+    mkey = name2mhash[morph]
+        
     # model setup ----------------
     from snudda import Snudda
     network_path = "snudda"
@@ -192,10 +196,18 @@ def get_morphology_source_file(ref_model_path):
     # get morphology
     from glob import glob
     morphologies = glob(f'{ref_model_path}morphology/*.swc')
+    
     for morph in morphologies:
         if 'var' not in morph:
             print(morph)
             return morph
+
+    for morph in morphologies:        
+        if 'var0' in morph:
+            print(morph)
+            return morph
+    
+        
     return None
     
 
@@ -324,7 +336,7 @@ if __name__ == '__main__':
                                 print_psection=int(args['psprint']),
                                 return_tv=int(args['return_tv']))
     
-    simulate_snudda(args['path'], args['out'], ref_tv=ref_tv)
+    simulate_snudda(args['path'], args['out'], ref_tv=[t,v])
     
     '''
     simulate_transfered_model(  args['path'], 
