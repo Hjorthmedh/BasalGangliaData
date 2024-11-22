@@ -3,40 +3,15 @@ TITLE na3
 : modified from Jeff Magee. M.Migliore may97
 : added sh to account for higher threshold M.Migliore, Apr.2002
 
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-
-ENDCOMMENT
-
 NEURON {
 	SUFFIX na3_lts
 	USEION na READ ena WRITE ina
 	RANGE  gbar, ar, sh, ina
-	GLOBAL minf, hinf, mtau, htau, sinf, taus,qinf, thinf
-	RANGE modDA, maxModDA, levelDA
+	RANGE minf, hinf, mtau, htau, sinf, taus,qinf, thinf
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
+    RANGE modulation_factor							    
 }
 
 PARAMETER {
@@ -74,9 +49,10 @@ PARAMETER {
 	ena		(mV)            : must be explicitly def. in hoc
 	celsius
 	v 		(mV)
-        modDA = 0
-        maxModDA = 1
-        levelDA = 0
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM)
 }
 
 
@@ -93,14 +69,18 @@ ASSIGNED {
 	minf 		hinf 		
 	mtau (ms)	htau (ms) 	
 	sinf (ms)	taus (ms)
+    PKAci (mM)
+    modulation_factor (1)
 }
  
 
 STATE { m h s}
 
 BREAKPOINT {
-    SOLVE states METHOD cnexp
-    thegna = gbar*m*m*m*h*s*modulationDA()
+     SOLVE states METHOD cnexp
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+	   
+    thegna = gbar*m*m*m*h*s*modulation_factor
 	ina = thegna * (v - ena)
 } 
 
@@ -161,8 +141,7 @@ FUNCTION trap0(v,th,a,q) {
  	}
 }	
 
-FUNCTION modulationDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
-}  
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
+}

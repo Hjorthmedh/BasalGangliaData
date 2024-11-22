@@ -1,41 +1,17 @@
 TITLE GABA_A synapse with short-term plasticity
 
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-
-ENDCOMMENT
 
 NEURON {
     POINT_PROCESS tmGabaA
     RANGE tau1, tau2, e, i, q
     RANGE tau, tauR, tauF, U, u0
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
-    RANGE failRateDA, failRateACh, failRate
+    RANGE failRate
     NONSPECIFIC_CURRENT i
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope
+    RANGE mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope 							     
+    RANGE modulation_factor, modulation_factor_fail
 }
 
 UNITS {
@@ -54,15 +30,16 @@ PARAMETER {
     tauF = 0 (ms)    : tauF >= 0
     U = 0.1 (1) <0, 1>
     u0 = 0 (1) <0, 1>
-    modDA = 0
-    maxModDA = 1
-    levelDA = 0
-    modACh = 0
-    maxModACh = 1 
-    levelACh = 0
-    failRateDA = 0
-    failRateACh = 0
-    failRate = 0
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM) 
+    mod_pka_fail_min = 0 (1)
+    mod_pka_fail_max = 0 (1)
+    mod_pka_fail_half = 0.000100 (mM)
+    mod_pka_fail_slope = 0.01 (mM) 
+    failRate = 0	 		   
+    failRateModulationScaling = 0
 }
 
 ASSIGNED {
@@ -71,6 +48,11 @@ ASSIGNED {
     g (uS)
     factor
     x
+    PKAci (mM)
+
+    modulation_factor (1)
+    modulation_factor_fail (1)    
+
 }
 
 STATE {
@@ -88,8 +70,10 @@ INITIAL {
 }
 
 BREAKPOINT {
-    SOLVE state METHOD cnexp
-    g = (B - A)*modulationDA()*modulationACh()
+     SOLVE state METHOD cnexp
+     modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+     modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   	   
+    g = (B - A)*modulation_factor
     i = g*(v - e)
 }
 
@@ -111,7 +95,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }
-    if( urand() > failRate*(1 + modDA*(failRateDA-1)*levelDA + modACh*(failRateACh-1)*levelACh)) { 
+    if( urand() > failRate*(1 + modulation_factor_fail)) { 
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
       y = y*exp(-(t-tsyn)/tau)
@@ -130,21 +114,14 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = scop_random()
 }
 
-
-FUNCTION modulationDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
 
-FUNCTION modulationACh() {
-    : returns modulation factor
-    
-    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
-}
 COMMENT
 
 (2019-11-25) Synaptic failure rate (failRate) added. Random factor, no

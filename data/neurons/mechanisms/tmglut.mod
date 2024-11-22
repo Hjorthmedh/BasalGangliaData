@@ -1,35 +1,5 @@
 TITLE Glutamatergic synapse with short-term plasticity (stp)
 
-COMMENT
-stp can be turned of by setting use_stp == 0
-
---------------------------------------------
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-
-ENDCOMMENT
 
 NEURON {
     THREADSAFE
@@ -39,9 +9,13 @@ NEURON {
     RANGE e, g, i, q, mg
     RANGE tau, tauR, tauF, U, u0
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
-    RANGE failRateDA, failRateACh, failRate
-    RANGE modDA, maxMod_AMPADA, levelDA, maxMod_AMPAACh, levelACh
-    RANGE maxMod_NMDADA, modACh, maxMod_NMDAACh 
+    RANGE failRate
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope
+    RANGE mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope 
+    RANGE modulation_factor_ampa, modulation_factor_nmda, modulation_factor_fail
+					
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
 }
@@ -70,20 +44,22 @@ PARAMETER {
     ca_ratio_nmda = 0.1
     mg = 1 (mM)
     
-    modDA = 0
-    maxMod_AMPADA = 1
-    modACh = 0
-    maxMod_AMPAACh = 1 
-    levelACh = 0
+    mod_pka_g_ampa_min = 1 (1)
+    mod_pka_g_ampa_max = 1 (1)
+    mod_pka_g_ampa_half = 0.000100 (mM)
+    mod_pka_g_ampa_slope = 0.01 (mM)
 
-    
-    maxMod_NMDADA = 1
-    levelDA = 0
-    
-    maxMod_NMDAACh = 1 
+    mod_pka_g_nmda_min = 1 (1)
+    mod_pka_g_nmda_max = 1 (1)
+    mod_pka_g_nmda_half = 0.000100 (mM)
+    mod_pka_g_nmda_slope = 0.01 (mM)
 
-    failRateDA = 0
-    failRateACh = 0
+    mod_pka_fail_min = 0 (1)
+    mod_pka_fail_max = 0 (1)
+    mod_pka_fail_half = 0.000100 (mM)
+    mod_pka_fail_slope = 0.01 (mM)
+				
+    failRateScaling = 0
     failRate = 0
     use_stp = 1     : to turn of use_stp -> use 0
 }
@@ -102,7 +78,10 @@ ASSIGNED {
     factor_ampa
     factor_nmda
     x
-    
+    PKAci (mM)
+    modulation_factor_ampa (1)    
+    modulation_factor_nmda (1)
+    modulation_factor_fail (1)
 }
 
 STATE {
@@ -131,16 +110,19 @@ INITIAL {
 BREAKPOINT {
     LOCAL itot_nmda, itot_ampa, mggate
     SOLVE state METHOD cnexp
-    
+
+    modulation_factor_ampa=modulation(PKAci, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope)	   
+    modulation_factor_nmda=modulation(PKAci, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope)	   
+    modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)	   
     : NMDA
     mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
-    g_nmda    = (B_nmda - A_nmda) * modulationDA_NMDA()*modulationACh_NMDA()
+    g_nmda    = (B_nmda - A_nmda) * modulation_factor_nmda
     itot_nmda = g_nmda * (v - e) * mggate
     ical_nmda = ca_ratio_nmda*itot_nmda
     i_nmda    = itot_nmda - ical_nmda
     
     : AMPA
-    g_ampa    = (B_ampa - A_ampa) * modulationDA_AMPA() * modulationACh_AMPA()
+    g_ampa    = (B_ampa - A_ampa) * modulation_factor_ampa
     itot_ampa = g_ampa*(v - e) 
     ical_ampa = ca_ratio_ampa*itot_ampa
     i_ampa    = itot_ampa - ical_ampa
@@ -177,7 +159,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }    
-    if( urand() > failRate*(1 + modDA*(failRateDA-1)*levelDA + modACh*(failRateACh-1)*levelACh)) { 
+    if( urand() > failRate*(1 + modulation_factor_fail)) { 
  
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
@@ -212,33 +194,15 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = scop_random()
 }
 
-
-FUNCTION modulationDA_NMDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA_NMDA = 1 + modDA*(maxMod_NMDADA-1)*levelDA 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
 
-FUNCTION modulationACh_NMDA() {
-    : returns modulation factor
-    
-    modulationACh_NMDA = 1 + modACh*(maxMod_NMDAACh-1)*levelACh 
-}
 
-FUNCTION modulationDA_AMPA() {
-    : returns modulation factor
-    
-    modulationDA_AMPA = 1 + modDA*(maxMod_AMPADA-1)*levelDA 
-}
-
-FUNCTION modulationACh_AMPA() {
-    : returns modulation factor
-    
-    modulationACh_AMPA = 1 + modACh*(maxMod_AMPAACh-1)*levelACh 
-}
 
 COMMENT
 (2019-11-29) Synaptic failure rate (fail) added. Random factor, no

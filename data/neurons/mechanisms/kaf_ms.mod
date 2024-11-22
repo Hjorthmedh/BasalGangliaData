@@ -1,40 +1,16 @@
 TITLE Fast A-type potassium current (Kv4.2)
 
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-    
-ENDCOMMENT
-
 
 NEURON {
     SUFFIX kaf_ms
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, q
-    RANGE modDA, maxModDA, levelDA
-    RANGE modACh, maxModACh, levelACh
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope
+    RANGE mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_slope
+    RANGE modulation_factor_g, modulation_factor_shift
+			     
     RANGE modShift
 }
 
@@ -49,16 +25,17 @@ PARAMETER {
     q = 1	: room temperature (unspecified)
     :q = 2	: body temperature 35 C (Du 2017)
     :q = 3	: body temperature 35 C
-    modDA = 0
-    maxModDA = 1
-    levelDA = 0
-    modShift = 0
-    modACh = 0
-    maxModACh = 1
-    levelACh = 0
 
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM)
 
-
+    mod_pka_shift_min = 0 (1)
+    mod_pka_shift_max = 0 (1)
+    mod_pka_shift_half = 0.000100 (mM)
+    mod_pka_shift_slope = 0.01 (mM)
+			   
 }
 
 ASSIGNED {
@@ -70,14 +47,22 @@ ASSIGNED {
     mtau (ms)
     hinf
     htau (ms)
+    PKAci (mM)
+    modulation_factor_g (1)
+    modulation_factor_shift (1)    
+    modShift
 }
 
 STATE { m h }
 
 BREAKPOINT {
-    SOLVE states METHOD cnexp
-    gk = gbar*m*m*h*modulationDA()
-    modShift = modulationACh()				     
+     SOLVE states METHOD cnexp
+	   modulation_factor_g=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)
+     modulation_factor_shift=modulation(PKAci, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_slope)	   					 
+
+    : In Johanna's version gk depended on modDA, and modShift on modACh
+    gk = gbar*m*m*h*modulation_factor_g
+    modShift = modulation_factor_shift			     
     ik = gk*(v-ek)
 }
 
@@ -118,17 +103,9 @@ PROCEDURE rates() {
     :UNITSON
 }
 
-
-FUNCTION modulationDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
-}
-
-FUNCTION modulationACh() {
-    : returns modulation factor
-    
-    modulationACh = 1 + modACh*(maxModACh-1)*levelACh 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
 
 COMMENT

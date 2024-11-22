@@ -4,34 +4,8 @@ c1 - c2 - c3 - c4 - o
 |    |    |    |    |
 i1 - i2 - i3 - i4 - i5 - is
 
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-    
 ENDCOMMENT
-
-
+			      
 NEURON {
 	SUFFIX kv4_ch
 	USEION k READ ek WRITE ik
@@ -40,7 +14,11 @@ NEURON {
 	GLOBAL ci, ic, oi, io, a, b, am, bm, vc, gamma, delta, vha, vhb
 	GLOBAL i5is, isi5
 	GLOBAL q10i, q10v
-        RANGE modDA, maxModDA, levelDA
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
+    RANGE modulation_factor
+			  
 }
 
 UNITS {
@@ -69,9 +47,10 @@ PARAMETER {
 	q10i = 3
 	q10v = 3
 	celsius		(degC)
-        modDA = 0
-        maxModDA = 1
-        levelDA = 0
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM)
 }
 
 ASSIGNED {
@@ -81,6 +60,8 @@ ASSIGNED {
 	ik	(mA/cm2)
 	alpha	(/ms)
 	beta	(/ms)
+    PKAci (mM)
+    modulation_factor (1)
 }
 
 STATE {
@@ -99,7 +80,8 @@ STATE {
 
 BREAKPOINT {
 	SOLVE kin METHOD sparse
-	g = gbar*o*modulationDA()
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+	g = gbar*o*modulation_factor
 	ik = g*(v-ek)
 }
 
@@ -136,8 +118,7 @@ PROCEDURE rates(v(millivolt)) {LOCAL q10
 	beta = q10*bm*exp((v-vhb)/-vc)
 }
 
-FUNCTION modulationDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }

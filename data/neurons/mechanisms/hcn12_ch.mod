@@ -1,31 +1,3 @@
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-    
-ENDCOMMENT
-
 NEURON {
 	SUFFIX hcn12_ch
 	NONSPECIFIC_CURRENT i
@@ -33,7 +5,11 @@ NEURON {
 	GLOBAL a0, b0, ah, bh, ac, bc, aa0, ba0
 	GLOBAL aa0, ba0, aah, bah, aac, bac
 	GLOBAL kon, koff, b, bf, ai, gca, shift
-	RANGE modDA, maxModDA, levelDA
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
+    RANGE modulation_factor
+					       
 }
 
 UNITS {
@@ -69,9 +45,11 @@ PARAMETER {
 	q10v    = 4                     : q10 value from Magee 1998
 	q10a    = 1.5			: estimated q10 for the cAMP binding reaction
 	celsius			(degC)
-	modDA = 0
-        maxModDA = 1
-        levelDA = 0
+
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM)	
 
 	
 }
@@ -84,6 +62,9 @@ ASSIGNED {
 	beta    (/ms)
 	alphaa	(/ms)
 	betaa	(/ms)
+
+	PKAci (mM)
+	modulation_factor (1)
 }
 
 STATE {
@@ -98,8 +79,10 @@ INITIAL {
 }
 
 BREAKPOINT {
-	SOLVE kin METHOD sparse
-	g = gbar*(o + cao*gca)*modulationDA()
+     SOLVE kin METHOD sparse
+    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+	   
+	g = gbar*(o + cao*gca)*modulation_factor
 	i = g*(v-ehcn)
 }
 
@@ -130,11 +113,11 @@ PROCEDURE rates(v(mV)) {
 	}
 }
 
-FUNCTION modulationDA() {
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
+
 
 COMMENT
 

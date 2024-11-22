@@ -184,28 +184,24 @@ def simulate_snudda(    transfered_model_path,
                         current_amplitude=None):
     
     print('2.1 simulating transfered model in snudda...\n')
-    if not hashkey:
+
+
+    if hashkey is None:
         # get hash key corresponding to model index (pid)
         with open(f'{transfered_model_path}temp/parameters_hash_id.json', 'r') as h:
             hash2id = json.load(h)
-        id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item 
+        id2hash = {int(item):key for key,item in hash2id.items()} # reverse key:item
         hashkey = id2hash[pid]
-    if not mkey:
-        morph_path = get_morphology_source_file(transfered_model_path)
+
+    if mkey is None:
+        morph_path = get_morphology_source_file(ref_model_path)
         with open(f'{transfered_model_path}morphology/morphology_hash_filename.json', 'r') as h:
             mhash2name = json.load(h)
+        
         name2mhash = {name:mkey for mkey,name in mhash2name.items()} # reverse key:item
-        morph = os.path.splitext(os.path.basename(morph_path))[0]
-        if f'{morph}-var0.swc' in name2mhash:
-            mkey = name2mhash[f'{morph}-var0.swc'] # var0 and the original morphology are identical
-        elif f'{morph}.swc' in name2mhash:
-            mkey = name2mhash[f'{morph}.swc'] # var0 and the original morphology are identical
-        else:
-            print('name2mhash:')
-            print(name2mhash)
-            raise Exception(f'No key in dict: name2mhash with name {morph}\n'
-                            'neither with with -var0.swc or .swc extention')
-    
+        morph = os.path.basename(morph_path)
+        mkey = name2mhash[morph]
+        
     # model setup ----------------
     from snudda import Snudda
     network_path = "snudda"
@@ -296,10 +292,18 @@ def get_morphology_source_file(ref_model_path):
     # get morphology
     from glob import glob
     morphologies = glob(f'{ref_model_path}morphology/*.swc')
+    
     for morph in morphologies:
         if 'var' not in morph:
             print(morph)
             return morph
+
+    for morph in morphologies:        
+        if 'var0' in morph:
+            print(morph)
+            return morph
+    
+        
     return None
     
 
@@ -485,6 +489,7 @@ if __name__ == '__main__':
                                 return_tv=int(args['return_tv']))
     
     simulate_snudda(args['out'], args['path'], pid=int(args['mid']), ref_tv=[t,v])
+
     
     '''
     simulate_transfered_model(  args['path'], 

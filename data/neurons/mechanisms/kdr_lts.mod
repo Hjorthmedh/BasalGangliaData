@@ -1,39 +1,10 @@
 TITLE Fast delayed rectifier potassium current (Kv3.1/3.2)
 
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-    
-ENDCOMMENT
-
 
 NEURON {
     SUFFIX kdr_lts
     USEION k READ ek WRITE ik
     RANGE gbar, gk, ik, q
-    RANGE modDA, maxModDA, levelDA
 }
 
 UNITS {
@@ -46,9 +17,6 @@ PARAMETER {
     gbar = 0.0 (S/cm2) 
     :q = 1	: room temperature
     q = 3	: body temperature 35 C
-    modDA = 0
-    maxModDA = 1
-    levelDA = 0
 }
 
 ASSIGNED {
@@ -85,11 +53,6 @@ PROCEDURE rates() {
     UNITSON
 }
 
-FUNCTION modulationDA() {
-    : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
-}
 
 COMMENT
 

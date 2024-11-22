@@ -1,0 +1,16 @@
+{
+    "species": {
+	"cAMP": {
+	    "initial_concentration": 100e-6, 
+	    "diffusion_constant": 0,
+	    "charge": 0,
+	    "regions": ["soma_internal", "dend_internal"]
+	}
+    },
+    "rates": {
+	"cAMP": {
+	    "rates": ["-0.005*cAMP", "-0.005*cAMP"],
+	    "regions": ["soma_internal", "dend_internal"]
+	}
+    }
+}

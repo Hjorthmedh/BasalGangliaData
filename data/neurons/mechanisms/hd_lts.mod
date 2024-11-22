@@ -1,39 +1,15 @@
 TITLE I-h channel from Magee 1998 for distal dendrites
 
-COMMENT
-
-Neuromodulation is added as functions:
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA
-
-where:
-    
-    modDA  [0]: is a switch for turning modulation on or off {1/0}
-    maxModDA [1]: is the maximum modulation for this specific channel (read from the param file)
-                    e.g. 10% increase would correspond to a factor of 1.1 (100% +10%) {0-inf}
-    levelDA  [0]: is an additional parameter for scaling modulation. 
-                Can be used simulate non static modulation by gradually changing the value from 0 to 1 {0-1}
-									
-	  Further neuromodulators can be added by for example:
-          modulationDA = 1 + modDA*(maxModDA-1)
-	  modulationACh = 1 + modACh*(maxModACh-1)
-	  ....
-
-	  etc. for other neuromodulators
-	  
-	   
-								     
-[] == default values
-{} == ranges
-    
-ENDCOMMENT
 
 NEURON {
 	SUFFIX hd_lts
 	NONSPECIFIC_CURRENT i
         RANGE ghdbar, vhalfl
-        GLOBAL linf,taul
-        RANGE modDA, maxModDA, levelDA
+        RANGE linf,taul
+
+    USEION PKAc READ PKAci VALENCE 0
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
+    RANGE modulation_factor			
 }
 
 UNITS {
@@ -55,9 +31,10 @@ PARAMETER {
 			gmt=.4   	    (1)
 			q10=4.5
 		        qtl=1
-		        modDA = 0
-                        maxModDA = 1
-                        levelDA = 0
+    mod_pka_g_min = 1 (1)
+    mod_pka_g_max = 1 (1)
+    mod_pka_g_half = 0.000100 (mM)
+    mod_pka_g_slope = 0.01 (mM)
 }
 
 
@@ -71,6 +48,8 @@ ASSIGNED {
     linf      
     taul
     ghd
+    PKAci (mM)
+    modulation_factor (1)
 }
 
 INITIAL {
@@ -80,9 +59,11 @@ INITIAL {
 
 
 BREAKPOINT {
-	SOLVE states METHOD cnexp
-	ghd = ghdbar*l*modulationDA()
-	i = ghd*(v-ehd)
+     SOLVE states METHOD cnexp
+     modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+	   
+     ghd = ghdbar*l*modulation_factor
+     i = ghd*(v-ehd)
 
 }
 
@@ -110,10 +91,8 @@ PROCEDURE rate(v (mV)) { :callable from hoc
 }
 
 
-FUNCTION modulationDA() {
+
+FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
     : returns modulation factor
-    
-    modulationDA = 1 + modDA*(maxModDA-1)*levelDA 
+    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
-
-
