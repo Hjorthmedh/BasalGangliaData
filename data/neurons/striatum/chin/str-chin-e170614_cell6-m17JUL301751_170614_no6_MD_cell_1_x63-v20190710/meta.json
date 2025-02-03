@@ -1,33 +1,13 @@
 {
     "p05cfd367": {
-        "m92fb243d": {
-            "input": {
-                "cortical_background": {
-                    "conductance": 5e-10,
-                    "frequency": 1.0,
-                    "generator": "poisson",
-                    "jitter": 0.0,
-                    "mod_file": "tmGlut",
-                    "num_inputs": 21,
-                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-CHAT.json",
-                    "population_unit_correlation": 0.0,
-                    "synapse_density": "1.15*0.05/(1+exp(-(d-10e-6)/5e-6))",
-                    "type": "AMPA_NMDA"
-                },
-                "thalamic_background": {
-                    "conductance": 5e-10,
-                    "frequency": 1.0,
-                    "generator": "poisson",
-                    "jitter": 0.0,
-                    "mod_file": "tmGlut",
-                    "num_inputs": 32,
-                    "parameter_file": "$SNUDDA_DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-CHAT.json",
-                    "population_unit_correlation": 0.0,
-                    "synapse_density": "1.15*0.05/(1+exp(-(d-10e-6)/5e-6))",
-                    "type": "AMPA_NMDA"
-                }
-            },
-            "morphology": "optim_chin_morph_renamed2019-11-08.swc",
+        "m_repaired1": {
+            "morphology": "optim_chin_morph_renamed2024-01-27_repaired.swc",
+            "neuromodulation": [
+                "nm215ed41c"
+            ]
+        },
+        "m_repaired2": {
+            "morphology": "chin_morph_newAxon_renamed_2025-01-29.swc",
             "neuromodulation": [
                 "nm215ed41c"
             ]
