@@ -327,45 +327,29 @@
         }
     },
     "ChIN,dSPN": {
-        "ACh": {
-            "conductance": [
-                1e-09,
-                0
-            ],
-            "channel_parameters": {
-                "mod_file": ""
-            },
-            "cluster_size": 1,
-            "cluster_spread": null,
+        "GABA": {
             "pruning": {
-                "f1": 0.5,
-                "soft_max": 10,
-                "mu2": 15,
-                "a3": 0.1,
-                "dist_pruning": null,
-                "cluster_pruning": false
-            }
+                "f1": 0.0345,
+                "mu2": 2.0757,
+                "a3": 0.9735
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
         }
     },
     "ChIN,iSPN": {
-        "ACh": {
-            "conductance": [
-                1e-09,
-                0
-            ],
-            "channel_parameters": {
-                "mod_file": ""
-            },
-            "cluster_size": 1,
-            "cluster_spread": null,
+        "GABA": {
             "pruning": {
-                "f1": 0.5,
-                "soft_max": 10,
-                "mu2": 10,
-                "a3": 0.1,
-                "dist_pruning": null,
-                "cluster_pruning": false
-            }
+                "f1": 0.0517,
+                "mu2": 2.2161,
+                "a3": 0.8309
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
         }
     },
     "LTS,dSPN": {
@@ -445,6 +429,175 @@
                 "dist_pruning": null,
                 "cluster_pruning": false
             }
+        }
+    },
+    "ChIN,FS": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.1307,
+                "mu2": 0.3907,
+                "a3": 1.0
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "ChIN,LTS": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.3,
+                "mu2": 0.0175,
+                "a3": 1.0
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "ChIN,TH": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.1212,
+                "mu2": 1.0771,
+                "a3": 0.9997
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "ChIN,NGF": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.0419,
+                "mu2": 0.748,
+                "a3": 0.9999
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "TH,dSPN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.3166,
+                "mu2": 1.4891,
+                "a3": 0.9995
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "TH,iSPN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.4039,
+                "mu2": 1.4956,
+                "a3": 1.0
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "TH,ChIN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.44,
+                "mu2": 0.1752,
+                "a3": 0.9979
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "TH,LTS": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.2312,
+                "mu2": 3.2652,
+                "a3": 0.2618
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "NGF,ChIN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.1096,
+                "mu2": 1.1996,
+                "a3": 0.992
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "NGF,dSPN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.3606,
+                "mu2": 0.3717,
+                "a3": 1.0
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "NGF,iSPN": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.42,
+                "mu2": 0.468,
+                "a3": 0.9995
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "NGF,NGF": {
+        "gap_junction": {
+            "pruning": {
+                "f1": 0.1637,
+                "mu2": 0.2571,
+                "a3": 1.0
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "NGF,TH": {
+        "gap_junction": {
+            "pruning": {
+                "f1": 0.3273,
+                "mu2": 0.162,
+                "a3": 0.9999
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
         }
     }
 }
