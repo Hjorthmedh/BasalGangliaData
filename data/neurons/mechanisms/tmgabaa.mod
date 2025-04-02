@@ -24,7 +24,7 @@ PARAMETER {
     : q = 2, now included in tau1,tau2 parameters.     
     tau1= 0.25 (ms) : ORIG: 0.5ms
     tau2 = 3.75 (ms)  : ORIG: 7.5ms, tau2 > tau1
-    e = -65 (mV)
+    e = -60 (mV)
     tau = 3 (ms)
     tauR = 500 (ms)  : tauR > tau
     tauF = 0 (ms)    : tauF >= 0
@@ -136,6 +136,8 @@ amplitude set by g
 the synapse was reinitalised then the time constants changed with each
 initalise. Updated: Johannes Hjorth, hjorth@kth.se 
 
+(2025-04-02) Set GABA reversal potential to -60mV as per [4]
+
 Implementation of GABA_A synapse model with short-term facilitation
 and depression based on modified tmgsyn.mod [1] by Tsodyks et al [2].
 Choice of time constants follows [3].  NEURON implementation by Alexander
@@ -151,4 +153,9 @@ networks with frequency-dependent synapses. J Neurosci. 20(1):RC50.
 O'Donnell P, Finkel LH (2005) NMDA/AMPA ratio impacts state transitions
 and entrainment to oscillations in a computational model of the nucleus
 accumbens medium spiny projection neuron. J Neurosci 25(40):9080-95.
+
+[4] Day M, Belal M, Surmeier WC, Melendez A, Wokosin D, Tkatch T, 
+Clarke VRJ, Surmeier DJ (2024) GABAergic regulation of striatal spiny 
+projection neurons depends upon their activity state. PLOS Biology.
+22(7):e3002752.
 ENDCOMMENT
