@@ -204,7 +204,7 @@ def simulate_snudda(    transfered_model_path,
         
     # model setup ----------------
     from snudda import Snudda
-    network_path = "snudda"
+    network_path = "snudda_network"
     ss = Snudda(network_path=network_path)
     ss.init_tiny(   neuron_paths=[transfered_model_path], 
                     neuron_names=["Cell"], 
@@ -274,7 +274,7 @@ def simulate_snudda(    transfered_model_path,
     plt.legend(fontsize=20)
     plt.xticks(fontsize=20)
     plt.yticks(fontsize=20)
-    plt.savefig(f'org_and_snudda_mid{pid}.png')
+    plt.savefig(f'org_and_snudda_pkey_{hashkey}_mkey_{mkey}.png')
     plt.show()
     
     
@@ -462,7 +462,7 @@ def main_compare(ref_model, trans_model, mid=0, print_psection=False, current_am
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='script for direct comparison between org and transfered model')
+    parser = argparse.ArgumentParser(description='script for direct comparison between org and transferred model')
     parser.add_argument('-p','--path', help='path to original model', required=True)
     parser.add_argument('-o','--out', help='path to output model', required=True)
     parser.add_argument('-i','--mid', help='model id (0-9, default 0)', default=0)
@@ -470,7 +470,7 @@ if __name__ == '__main__':
     parser.add_argument('-v','--plot', help='plot voltage of reference model by itself? (default False)', default=0)
     parser.add_argument('-r','--return_tv', help='return time and voltage? Needed for comparison (default True)', default=1)
     parser.add_argument('-u','--upgrade', help='upgrade params--must be done if not done before (default False)', default=0)
-    parser.add_argument(      '--print_hashkeys', help='print all hashkeys:id combinations in the transfered param file and exit', action="store_true", default=False)
+    parser.add_argument(      '--print_hashkeys', help='print all hashkeys:id combinations in the transferred param file and exit', action="store_true", default=False)
 
     args = vars(parser.parse_args())
     
