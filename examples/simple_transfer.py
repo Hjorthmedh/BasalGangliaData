@@ -85,7 +85,6 @@ def transfer_all(source_path, new_celltype_path, clean=False):
         do_transfer(sub_source_path, destination)
         
         if clean:
-            import shutil
             shutil.rmtree(f"{destination}/temp")
 
 def transfer_single(source_path, new_celltype_path, clean=False):    
@@ -104,7 +103,6 @@ def transfer_single(source_path, new_celltype_path, clean=False):
     do_transfer(source_path, new_cell_path)
     
     if clean:
-        import shutil
         shutil.rmtree(f"{new_cell_path}/temp")
     
 
