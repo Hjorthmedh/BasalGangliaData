@@ -1,5 +1,6 @@
 
-import shutil, os, sys, argparse
+import shutil, os, sys, argparse, glob
+import recenter_morph as rcm
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tools")))
 
 from transfer import SimpleTransfer as strans
@@ -16,10 +17,18 @@ if no arguments are given an example model will be transfered
     $ python simple_transfer.py -s <source> -d <destination> -a 1
 '''
 
-   
+def center_morphology(source_path):
+    # loop over all swc files in the morphology folder of the source and checks that the morphology is centered
+    allm = glob.glob(os.path.join(f'{source_path}/morphology/', "*.swc"))
+    for mfile in allm:
+        rcm.recenter(mfile)
+        
 
 def do_transfer(source_path, new_cell_path):
-    # create output dir (check for existance is done in prev stage)
+    # The morphology must be centered - check and center if not centered.
+    center_morphology(source_path)
+    
+    # create output dir (check for existence is done in prev stage)
     os.makedirs(new_cell_path)
     
     files_in_folder = [f for f in os.listdir(source_path) if os.path.isfile(os.path.join(source_path, f))]
@@ -50,7 +59,7 @@ def do_transfer(source_path, new_cell_path):
                             selected_models=select)
 
 
-def transfer_all(source_path, new_celltype_path):
+def transfer_all(source_path, new_celltype_path, clean=False):
     print(f"Reading from source_path={source_path}")
     subdir = [ f.name for f in os.scandir(source_path) if f.is_dir() ]
     print(subdir)
@@ -74,8 +83,11 @@ def transfer_all(source_path, new_celltype_path):
             continue    
         
         do_transfer(sub_source_path, destination)
+        
+        if clean:
+            shutil.rmtree(f"{destination}/temp")
 
-def transfer_single(source_path, new_celltype_path):    
+def transfer_single(source_path, new_celltype_path, clean=False):    
     # create a new folder for storing the new cell (using the same name as the source)
     if os.path.normpath(source_path).count(os.sep): # this check if there are more than one level in the path - if so use last
         source_name = os.path.split(source_path)[-1]
@@ -90,6 +102,9 @@ def transfer_single(source_path, new_celltype_path):
     
     do_transfer(source_path, new_cell_path)
     
+    if clean:
+        shutil.rmtree(f"{new_cell_path}/temp")
+    
 
 
 if __name__ == '__main__':
@@ -97,6 +112,7 @@ if __name__ == '__main__':
     parser.add_argument('--source', '-s', help='source directory')
     parser.add_argument('--destination', '-d', help='destination argument')
     parser.add_argument('--all', '-a', help='transfer all models in directory (sub directories)', action="store_true", default=False)
+    parser.add_argument('--clean', '-c', help='clean dest by deleting temp files', action="store_true", default=False)
     #parser.add_argument('-hof','--hall_off_fame', help='list of best models (best_models/hall_off_fame)', default=None)
     #parser.add_argument('-rm','--delete', help='delete destination -- can not be used with the -a/--all option', default=0)
     args = parser.parse_args()
@@ -116,7 +132,7 @@ if __name__ == '__main__':
     
     # do the transfer
     if args.all:
-        transfer_all(source_path, new_celltype_path)
+        transfer_all(source_path, new_celltype_path, clean=args.clean)
     else:
-        transfer_single(source_path, new_celltype_path)
+        transfer_single(source_path, new_celltype_path, clean=args.clean)
     
