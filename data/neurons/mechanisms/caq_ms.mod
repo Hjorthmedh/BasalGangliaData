@@ -17,7 +17,7 @@ NEURON {
     RANGE pbar, ica
     RANGE mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill
     RANGE mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill
-    RANGE modulation_factor		   
+    RANGE modulation_factor, modulation_factor2
 
 }
 

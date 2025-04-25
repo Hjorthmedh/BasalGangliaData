@@ -17,8 +17,9 @@ NEURON {
     RANGE pbar, ica
 
     USEION PKAc READ PKAci VALENCE 0
-    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill 
-    RANGE modulation_factor
+    RANGE mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill 
+    RANGE mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill 
+    RANGE modulation_factor, modulation_factor2
 
 }
 
@@ -27,10 +28,16 @@ PARAMETER {
     :q = 1	: room temperature 22 C
     q = 3	: body temperature 35 C
 
-    mod_pka_g_min = 1 (1)
-    mod_pka_g_max = 1 (1)
-    mod_pka_g_half = 0.000100 (mM)
-    mod_pka_g_hill = 4 (1)
+    mod_pka_p_min = 1 (1)
+    mod_pka_p_max = 1 (1)
+    mod_pka_p_half = 0.000100 (mM)
+    mod_pka_p_hill = 4 (1)
+
+    mod_pka_p2_min = 1 (1)
+    mod_pka_p2_max = 1 (1)
+    mod_pka_p2_half = 0.000100 (mM)
+    mod_pka_p2_hill = 4 (1)
+
 } 
 
 ASSIGNED { 
@@ -46,16 +53,16 @@ ASSIGNED {
     htau (ms)
     PKAci (mM)
     modulation_factor (1)
-
+    modulation_factor2 (1)
 }
 
 STATE { m h }
 
 BREAKPOINT {
      SOLVE states METHOD cnexp
-     modulation_factor=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)	   
-	   
-    ica = pbar*m*m*m*h*ghk(v, cai, cao)*modulation_factor
+     modulation_factor=hill(PKAci, mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill)	   
+     modulation_factor2=hill(PKAci, mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill)	   	   
+    ica = pbar*m*m*m*h*ghk(v, cai, cao)*modulation_factor*modulation_factor2
 }
 
 INITIAL {
