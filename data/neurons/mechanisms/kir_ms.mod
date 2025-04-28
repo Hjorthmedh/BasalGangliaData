@@ -9,7 +9,7 @@ NEURON {
     RANGE gbar, gk, ik, shift
 
     USEION PKAc READ PKAci VALENCE 0
-    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope 
+    RANGE mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill
     RANGE modulation_factor		   
 }
 
@@ -28,7 +28,7 @@ PARAMETER {
     mod_pka_g_min = 1 (1)
     mod_pka_g_max = 1 (1)
     mod_pka_g_half = 0.000100 (mM)
-    mod_pka_g_slope = 0.01 (mM)
+    mod_pka_g_hill = 4 (1)
 }
 
 ASSIGNED {
@@ -46,7 +46,7 @@ STATE { m }
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    modulation_factor=modulation(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_slope)	   
+    modulation_factor=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)	   
     gk = gbar*m*modulation_factor
     ik = gk*(v-ek)
 }
@@ -69,10 +69,13 @@ PROCEDURE rates() {
     UNITSON
 }
 
-FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
-    : returns modulation factor
-    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
+FUNCTION hill(conc (mM),  mod_min (1), mod_max (1), half_activation (mM), hill_coefficient (1)) (1) {
+	UNITSOFF
+	hill = mod_min + (mod_max-mod_min) * pow(conc, hill_coefficient) / (pow(conc, hill_coefficient) + pow(half_activation, hill_coefficient))
+	UNITSON
 }
+
+
 
 
 COMMENT
