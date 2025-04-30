@@ -13,7 +13,7 @@ NEURON {
     SUFFIX bk_ms
     USEION ca READ cai
     USEION k READ ek WRITE ik
-    RANGE gbar, ik, o
+    RANGE gbar, ik
 }
 
 PARAMETER {
