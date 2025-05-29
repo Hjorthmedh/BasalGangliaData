@@ -1,5 +1,5 @@
 {
-    "p02f00743": [
+    "p63c887bc": [
         {
             "param_name": "celsius",
             "type": "global",
@@ -15,42 +15,42 @@
             "param_name": "g_pas",
             "sectionlist": "axonal",
             "type": "section",
-            "value": 0.0027693028427140153
+            "value": 0.0048706033543794115
         },
         {
             "dist_type": "uniform",
             "param_name": "g_pas",
             "sectionlist": "somatic",
             "type": "section",
-            "value": 0.0003533324368278116
+            "value": 3.389355908542575e-05
         },
         {
             "dist_type": "uniform",
             "param_name": "g_pas",
             "sectionlist": "basal",
             "type": "section",
-            "value": 6.934195262817158e-06
+            "value": 1.2366154808102041e-06
         },
         {
             "dist_type": "uniform",
             "param_name": "e_pas",
             "sectionlist": "somatic",
             "type": "section",
-            "value": -66.07450964888776
+            "value": -65.15463750883515
         },
         {
             "dist_type": "uniform",
             "param_name": "e_pas",
             "sectionlist": "axonal",
             "type": "section",
-            "value": -60.739798792177545
+            "value": -61.23926933182085
         },
         {
             "dist_type": "uniform",
             "param_name": "e_pas",
             "sectionlist": "basal",
             "type": "section",
-            "value": -67.0073445088436
+            "value": -62.24627745473321
         },
         {
             "dist_type": "uniform",
@@ -94,7 +94,7 @@
             "param_name": "gNaTs2_tbar_NaTs2_t",
             "sectionlist": "somatic",
             "type": "range",
-            "value": 1.3628380165674403
+            "value": 1.1980560077699804
         },
         {
             "dist_type": "uniform",
@@ -103,7 +103,7 @@
             "param_name": "gSKv3_1bar_SKv3_1",
             "sectionlist": "somatic",
             "type": "range",
-            "value": 0.002728876500799886
+            "value": 0.005060730064908337
         },
         {
             "dist_type": "uniform",
@@ -112,7 +112,7 @@
             "param_name": "gK_Pstbar_K_Pst",
             "sectionlist": "somatic",
             "type": "range",
-            "value": 0.05419382226276775
+            "value": 0.055462299637336857
         },
         {
             "dist_type": "uniform",
@@ -130,7 +130,7 @@
             "param_name": "gbar_kir",
             "sectionlist": "somatic",
             "type": "range",
-            "value": 0.0008600757329300523
+            "value": 0.00013138353384722456
         },
         {
             "dist_type": "uniform",
@@ -143,9 +143,9 @@
         },
         {
             "dist_type": "uniform",
-            "mech": "CaDynamics_E2",
+            "mech": "CaDynamics_E2_ngf",
             "mech_param": "gamma",
-            "param_name": "gamma_CaDynamics_E2",
+            "param_name": "gamma_CaDynamics_E2_ngf",
             "sectionlist": "somatic",
             "type": "range",
             "value": 0.000511
@@ -179,9 +179,9 @@
         },
         {
             "dist_type": "uniform",
-            "mech": "CaDynamics_E2",
+            "mech": "CaDynamics_E2_ngf",
             "mech_param": "decay",
-            "param_name": "decay_CaDynamics_E2",
+            "param_name": "decay_CaDynamics_E2_ngf",
             "sectionlist": "somatic",
             "type": "range",
             "value": 731.707637
@@ -211,7 +211,7 @@
             "param_name": "gK_Pstbar_K_Pst",
             "sectionlist": "axonal",
             "type": "range",
-            "value": 0.3597921676043299
+            "value": 0.19250377159287918
         },
         {
             "dist_type": "uniform",
@@ -229,7 +229,7 @@
             "param_name": "gNaTa_tbar_NaTa_t",
             "sectionlist": "axonal",
             "type": "range",
-            "value": 0.5564979878145532
+            "value": 0.360321723905127
         },
         {
             "dist_type": "uniform",
@@ -238,13 +238,13 @@
             "param_name": "gSKv3_1bar_SKv3_1",
             "sectionlist": "axonal",
             "type": "range",
-            "value": 0.5477726021272965
+            "value": 0.6186086288121077
         },
         {
             "dist_type": "uniform",
-            "mech": "CaDynamics_E2",
+            "mech": "CaDynamics_E2_ngf",
             "mech_param": "gamma",
-            "param_name": "gamma_CaDynamics_E2",
+            "param_name": "gamma_CaDynamics_E2_ngf",
             "sectionlist": "axonal",
             "type": "range",
             "value": 0.010353
@@ -278,9 +278,9 @@
         },
         {
             "dist_type": "uniform",
-            "mech": "CaDynamics_E2",
+            "mech": "CaDynamics_E2_ngf",
             "mech_param": "decay",
-            "param_name": "decay_CaDynamics_E2",
+            "param_name": "decay_CaDynamics_E2_ngf",
             "sectionlist": "axonal",
             "type": "range",
             "value": 64.27799
@@ -319,7 +319,7 @@
             "param_name": "gK_Pstbar_K_Pst",
             "sectionlist": "basal",
             "type": "range",
-            "value": 0.002706394871887467
+            "value": 0.00452834940706079
         },
         {
             "dist_type": "uniform",
@@ -328,7 +328,7 @@
             "param_name": "gSKv3_1bar_SKv3_1",
             "sectionlist": "basal",
             "type": "range",
-            "value": 0.0003229778565021988
+            "value": 0.0006293139593157336
         },
         {
             "dist_type": "uniform",
@@ -337,7 +337,7 @@
             "param_name": "gIhbar_Ih",
             "sectionlist": "basal",
             "type": "range",
-            "value": 3.3262149156746607e-05
+            "value": 2.3410332042311616e-05
         },
         {
             "dist_type": "uniform",
@@ -346,7 +346,7 @@
             "param_name": "gbar_kir",
             "sectionlist": "basal",
             "type": "range",
-            "value": 6.9003571615777e-05
+            "value": 0.00010214894907359032
         },
         {
             "dist_type": "uniform",
