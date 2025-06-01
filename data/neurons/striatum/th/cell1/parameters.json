@@ -1,5 +1,5 @@
 {
-    "p2e123f3b": [
+    "p1eaef4d8": [
         {
             "param_name": "v_init",
             "type": "global",
@@ -60,22 +60,6 @@
             "value": 2.3281146418837935
         },
         {
-            "comment": "should be last sec only... 1.6e-3",
-            "dist_type": "uniform",
-            "param_name": "gbar_Nap_Et2_ngf",
-            "sectionlist": "axonal",
-            "type": "range",
-            "value": 0.0003
-        },
-        {
-            "comment": "should be last sec only...",
-            "dist_type": "uniform",
-            "param_name": "tmin_hs_naf_th",
-            "sectionlist": "axonal",
-            "type": "range",
-            "value": 10
-        },
-        {
             "dist_type": "uniform",
             "param_name": "q_naf_th",
             "sectionlist": "axonal",
@@ -116,6 +100,56 @@
             "sectionlist": "somatic",
             "type": "range",
             "value": 0.4
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "gbar_naf_th",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 19.57653775163587
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "gbar_Kv3",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 2.3281146418837935
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "gbar_Nap_Et2_ngf",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 0.0016
+        },
+        {
+            "comment": "should be last sec only...",
+            "dist_type": "uniform",
+            "param_name": "tmin_hs_naf_th",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 10
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "q_naf_th",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 3.8
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "use_hs_naf_th",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 1
+        },
+        {
+            "dist_type": "uniform",
+            "param_name": "gbar_kas_fs",
+            "sectionlist": "myelinated",
+            "type": "range",
+            "value": 0.004
         }
     ]
 }
