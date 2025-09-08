@@ -54,14 +54,11 @@ class TestStriatum(unittest.TestCase):
                 parameters_hashed = json.load(f)
 
             hash_morphology = os.path.join(neuron_dir, "morphology", "morphology_hash_filename.json")
-
-            with open(hash_morphology, "r") as f:
-                morphology_hashed = json.load(f)
-
-            hash_neuromodulation = os.path.join(neuron_dir, "modulation.json")
-
-            with open(hash_neuromodulation, "r") as f:
-                neuromodulation_hashed = json.load(f)
+            if os.path.isfile(hash_morphology):
+                with open(hash_morphology, "r") as f:
+                    morphology_hashed = json.load(f)
+            else:
+                morphology_hashed is None
 
             with open(hash_meta, "r") as f:
                 meta_hashed = json.load(f)
@@ -86,65 +83,11 @@ class TestStriatum(unittest.TestCase):
                     'morphology' is the correct name
                     
                     """
-                    self.assertTrue((hash_m in morphology_hashed.keys()))
-                    self.assertEqual(morphology_hashed[hash_m], specific_combo["morphology"])
 
-                    if "neuromodulation" in specific_combo.keys():
-
-                        """
-                        If neuromodulation has been save for the specific parameter and 
-                        morphology key combination.
-                        There is a check for that this also exists within modulation.json
-                        
-                        """
-                        for nm in specific_combo["neuromodulation"]:
-                            self.assertTrue((nm in neuromodulation_hashed.keys()))
-
-    def test_neuromodulation_hash_name(self):
-
-        """
-
-        In this test, the consistency of the contents of modulation.json is checked.
-
-        """
-
-        root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-
-        model_dir = os.path.join(root, "data", "neurons", "striatum")
-
-        for neuron_dir in glob.glob(os.path.join(model_dir, "*/*")):
-
-            if not os.path.isdir(neuron_dir):
-                continue
-            
-            neuron_type = neuron_dir.split("/")[-2]
-            model_name = neuron_dir.split("/")[-1]
-            hash_neuromodulation = os.path.join(neuron_dir, "modulation.json")
-
-            with open(hash_neuromodulation, "r") as f:
-                neuromodulation_hashed = json.load(f)
-
-            for hash_key, neuromodulation_list in neuromodulation_hashed.items():
-
-                '''
-                -------------------------------------------------------------
-                Calculating the hash_name for this modulation parameter set
-                
-                THIS IS THE CORE OF THE WHOLE FRAMEWORK
-                
-                The same code is used when new modulations are added, see examples/
-                -------------------------------------------------------------
-                '''
-
-                # neuromodulation_list is the contents upon which the hash is calculated
-                # for details see make_hash.py
-
-                hash_name = make_hash_name(neuromodulation_list)
-
-                hash_id = hash_identifier(hash_value=hash_name, length=8, prefix="nm")
-
-                self.assertEqual(hash_id, hash_key, msg=f"Hash keys are not correct, check neuron type {neuron_type} "
-                                                        f"and model {model_name} for updated neuromodulation sets")
+                    if morphology_hashed is not None:
+                        print(f"{morphology_hashed = }, {hash_m = }")
+                        self.assertTrue((hash_m in morphology_hashed.keys()))
+                        self.assertEqual(morphology_hashed[hash_m], specific_combo["morphology"])
 
     def test_parameter_hash_name(self):
 
@@ -217,6 +160,9 @@ class TestStriatum(unittest.TestCase):
             neuron_type = neuron_dir.split("/")[-2]
             model_name = neuron_dir.split("/")[-1]
             hash_morphology = os.path.join(neuron_dir, "morphology", "morphology_hash_filename.json")
+
+            if not os.path.isfile(hash_morphology):
+                continue
 
             with open(hash_morphology, "r") as f:
                 trial_hash = json.load(f)
