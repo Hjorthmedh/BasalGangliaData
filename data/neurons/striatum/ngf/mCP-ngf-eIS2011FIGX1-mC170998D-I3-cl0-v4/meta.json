@@ -1,34 +1,7 @@
 {
-    "p1863c9a5": {
-        "m22be6817": {
-            "input": {
-                "cortical_background": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-                    "num_inputs": 186,
-                    "frequency": 2,
-                    "correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-MS.json"
-                },
-                "thalamic_background": {
-                    "generator": "poisson",
-                    "type": "AMPA_NMDA",
-                    "synapse_density": "0.05*exp(-d/200e-6)",
-                    "num_inputs": 186,
-                    "frequency": 2,
-                    "correlation": 0.0,
-                    "jitter": 0.0,
-                    "conductance": 5e-10,
-                    "mod_file": "tmGlut",
-                    "parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json"
-                }
-            },
+    "p63c887bc": {
+        "m77b14a60": {
             "morphology": "C170998D-I3_-_Scale_x1.000_y0.950_z1.000_-_Clone_0.swc"
         }
-        
     }
 }
