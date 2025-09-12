@@ -1,24 +1,36 @@
 import json
+from argparse import ArgumentParser
 
-with open('striatum-connectivity.json', 'r') as h:
-    data = json.load(h)
+def update_config(original_config, new_config):
 
-# open updated notebooks
-with open('../../../../Snudda/examples/notebooks/optimise_prune/ChIN/network-config-opt.json', 'r') as h:
-    chin = json.load(h)
-with open('../../../../Snudda/examples/notebooks/optimise_prune/TH/network-config-opt.json', 'r') as h:
-    th = json.load(h)
-with open('../../../../Snudda/examples/notebooks/optimise_prune/NGF/network-config-opt.json', 'r') as h:
-    ngf = json.load(h)
+    with open(original_config, "r") as f:
+        original = json.load(f)
 
-# merge
-for cell in [chin, th, ngf]:
-    for key, item in cell['connectivity'].items():
-        for k in item.keys():
-            item[k]['conductance'] = [1.1e-09, 1.5e-09]
-        data[key] = item
+    with open(new_config, "r") as f:
+        new_data = json.load(f)
 
-# save to file
-with open('striatum-connectivity.json', 'w') as h:
-    json.dump(data, h, indent=4)
+    if "connectivity" not in new_data:
+        raise KeyError(f"'connectivity' tag missing in {new_config}")
 
+
+    for pair, data in new_data["connectivity"].items():
+        if pair not in original:
+            raise KeyError(f"Connectivity between {pair} not in {original_config}, please add first")
+
+        for type, data2 in data.items():
+            print(f"Updating {pair} {type}")
+            original[pair][type]["pruning"] = data2["pruning"]
+
+    with open(f"{original_config}-updated", "wt") as f:
+        json.dump(original, f, indent=4)
+        
+
+if __name__ == "__main__":
+    parser = ArgumentParser("Update network config")
+    parser.add_argument("main_config", help="Config file to update")
+    parser.add_argument("new_config_data", help="Config file with new data")
+
+    args = parser.parse_args()
+
+    update_config(args.main_config, args.new_config_data)
+    
