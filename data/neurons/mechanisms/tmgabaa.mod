@@ -2,6 +2,7 @@ TITLE GABA_A synapse with short-term plasticity
 
 
 NEURON {
+    THREADSAFE					  
     POINT_PROCESS tmGabaA
     RANGE tau1, tau2, e, i, q
     RANGE tau, tauR, tauF, U, u0
