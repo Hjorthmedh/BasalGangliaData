@@ -11,7 +11,7 @@ The solution of A->G->bath with rate constants 1/tau1 and 1/tau2 is
 If tau2-tau1 is very small compared to tau1, this is an alphasynapse with time constant tau2.
 If tau1/tau2 is very small, this is single exponential decay with time constant tau2.
 
-The factor is evaluated in the initial block 
+The factor is evaluated in the initial block
 such that an event of weight 1 generates a
 peak conductance of 1.
 
@@ -27,6 +27,8 @@ NEURON {
     RANGE tau, tauR, tauF, U, u0
     RANGE failRate
     NONSPECIFIC_CURRENT i
+
+    RANDOM release_probability
 }
 
 UNITS {
@@ -36,8 +38,8 @@ UNITS {
 }
 
 PARAMETER {
-    : q = 2,      
-    tau1= 0.15 (ms) 
+    : q = 2,
+    tau1= 0.15 (ms)
     tau2 = 40 (ms)
     e = 0 (mV)
     tau = 100 (ms)
@@ -94,7 +96,7 @@ VERBATIM
         return;
 ENDVERBATIM
     }
-    if( urand() > failRate ){ 
+    if( urand() > failRate ){
       z = z*exp(-(t-tsyn)/tauR)
       z = z + (y*(exp(-(t-tsyn)/tau) - exp(-(t-tsyn)/tauR)) / (tau/tauR - 1) )
       y = y*exp(-(t-tsyn)/tau)
@@ -113,5 +115,12 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = random_uniform(release_probability)
 }
+
+COMMENT
+(2025-10-08) NEURON 9.0+ compatibility. Replaced scop_random with the
+new RANDOM keyword.
+See: https://nrn.readthedocs.io/en/latest/nmodl/language/nmodl_neuron_extension.html#random
+
+ENDCOMMENT
