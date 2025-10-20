@@ -590,32 +590,32 @@
                 "tau2": [
                     0.00275,
                     1000.0
-                ],
-            "pruning": {
+                ]
+	    },
+	    "pruning": {
                 "f1": 0.2312,
                 "mu2": 3.2652,
                 "a3": 0.2618
-            },
-            "conductance": [
+	    },
+	    "conductance": [
                 3e-10,
                 1.5e-10
-            ]
-        }
-    },
-    "NGF,ChIN": {
-        "GABA": {
-            "channel_parameters": {
-                "tau1": [
-                    0.01,
-                    1000.0
-                ],
-                "tau2": [
-                    0.08,
-                    1000.0
-                ],
-                "mod_file": "tmGabaA"
-            }
-        },
+	    ]
+	},
+	"NGF,ChIN": {
+            "GABA": {
+		"channel_parameters": {
+                    "tau1": [
+			0.01,
+			1000.0
+                    ],
+                    "tau2": [
+			0.08,
+			1000.0
+                    ],
+                    "mod_file": "tmGabaA"
+		}
+            },
             "pruning": {
                 "f1": 0.1096,
                 "mu2": 1.1996,
