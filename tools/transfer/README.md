@@ -91,7 +91,7 @@ simulate an old version of the network, Snudda will complain!
 ## Example usage:
 
 ```
-python ../../../BasalGangliaData/examples/simple_transfer.py -s source_data -d destination_folder -a
+python simple_transfer.py -s source_data -d destination_folder -a
 ```
 
 
