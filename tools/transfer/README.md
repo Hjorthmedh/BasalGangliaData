@@ -88,4 +88,10 @@ neuron instance within the network. If your models have changed and you try to
 simulate an old version of the network, Snudda will complain! 
 
 
+## Example usage:
+
+```
+python simple_transfer.py -s source_data -d destination_folder -a
+```
+
 
