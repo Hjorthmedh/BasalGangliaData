@@ -23,7 +23,7 @@ class SimpleTransfer:
     Also assumes that the morphology file is in source/morphology
         if not, specify as argument
         
-    How about selected???
+    If model selection is enabled (selected=True), the list of models is filled from selected_models file.
     """
 
     def __init__(self,  source, 
@@ -73,12 +73,12 @@ class SimpleTransfer:
         transfer_parameters(direct_path_param=self.parameters_path_folder,
                             direct_path_best_models=self.optimisation_result_file, destination=self.destination)
 
+        if self.selected:
+            transfer_selected_models(source=self.source, destination=self.destination, direc_path_selected=self.selected_models)
+
         transfer_morphologies(direct_path_morph=self.morphology_path_folder,
                               destination=self.destination, selected=self.selected)
         write_meta(directory=self.destination, selected=self.selected)
-
-        if self.selected:
-            transfer_selected_models(source=self.source, destination=self.destination, direc_path_selected=self.selected_models)
 
 
 

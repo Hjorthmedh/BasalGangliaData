@@ -38,15 +38,18 @@ def do_transfer(source_path, new_cell_path):
                         'Possibly the files are in a subdirectory of the source?')
     elif os.path.isfile(f'{source_path}/val_models.json'):
         opt_res = f'{source_path}/hall_of_fame.json'
-        select  = f'{source_path}/val_models.json'
+        selected_models  = f'{source_path}/val_models.json'
+        selected = True
         f = 'val_models.json'
     elif os.path.isfile(f'{source_path}/hall_of_fame.json'):
         opt_res = f'{source_path}/hall_of_fame.json'
-        select  = None
+        selected_models  = None
+        selected = False
         f = 'hall_of_fame.json'
     elif os.path.isfile(f'{source_path}/best_models.json'):
         opt_res = None
-        select  = None
+        selected_models  = None
+        selected = False
         f = 'best_models.json'
     else:
         raise Exception(f'Neither of: val_models, hall_of_fame nor best_models exist in source: \n{source_path}')
@@ -56,7 +59,7 @@ def do_transfer(source_path, new_cell_path):
     strans.SimpleTransfer(  source_path, 
                             new_cell_path, 
                             optimisation_result_file=opt_res,
-                            selected_models=select)
+                            selected=selected, selected_models=selected_models)
 
 
 def transfer_all(source_path, new_celltype_path, clean=False):
