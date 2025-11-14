@@ -38,7 +38,7 @@
 	
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -49,15 +49,25 @@
 
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
 	    "correlation": 0.0,
 	    "type": "AMPA_NMDA",
 	    "mod_file": "tmGlut"	    
-	}
+	},
 
+	"GPe_FoxP2": {
+            "generator": "poisson",
+            "type": "GABA",
+            "frequency": 3.5,
+            "synapse_density": "30/4000e-6",
+            "correlation": 0.0,
+            "conductance": 0.2e-9,
+            "mod_file": "tmGabaA",
+            "parameter_file": "$DATA/synapses/striatum/GPe_FoxP2_SPN.json"
+	}
     },
 
     "ispn": {
@@ -97,7 +107,7 @@
 	
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -108,14 +118,25 @@
 
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-MS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
 	    "correlation": 0.0,
 	    "type": "AMPA_NMDA",
 	    "mod_file": "tmGlut"	    
-	}
+	},
+
+	"GPe_FoxP2": {
+            "generator": "poisson",
+            "type": "GABA",
+	    "frequency": 3.5,
+            "synapse_density": "60/4000e-6",
+            "correlation": 0.0,
+            "conductance": 0.2e-9,
+            "mod_file": "tmGabaA",
+            "parameter_file": "$DATA/synapses/striatum/GPe_FoxP2_SPN.json"
+        }
 
     },
 
@@ -155,7 +176,7 @@
 
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-FS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -166,14 +187,25 @@
 	
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-FS.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
 	    "correlation": 0.0,
 	    "type": "AMPA_NMDA",
 	    "mod_file": "tmGlut"
-	}	
+	},
+
+	"GPe_PV": {
+            "generator": "poisson",
+            "type": "GABA",
+            "num_inputs": 50,
+            "frequency": 50.0,
+            "correlation": 0.0,
+            "conductance": 0.6e-9,
+            "mod_file": "tmGabaA",
+            "parameter_file": "$DATA/synapses/striatum/GPe_PV_FS.json"
+	}
 	
     },
 
@@ -237,7 +269,7 @@
 
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-CHAT.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -248,7 +280,7 @@
 
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_Analysis_191001.h5-parameters-CHAT.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -285,7 +317,7 @@
 
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_parameters-NGF.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -296,7 +328,7 @@
 
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_parameters-NGF.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -333,7 +365,7 @@
 
 	"thalamic": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_parameters-THIN.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
@@ -344,7 +376,7 @@
 
 	"thalamic_background": {
 	    "synapse_parameter_file": "$DATA/synapses/striatum/TH_parameters-THIN.json",
-	    "synapse_density": "0.05*exp(-d/200e-6)",
+	    "synapse_density": "1",
 	    "cluster_size": null,
 	    "cluster_spread": null,
 	    "conductance": 0.5e-9,
