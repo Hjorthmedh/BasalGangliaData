@@ -99,4 +99,7 @@ if __name__ == "__main__":
 
     # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_1.5/network-synapses.hdf5")
 
-    process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_2/network-synapses.hdf5")        
+    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_2/network-synapses.hdf5")        
+
+    # process_file("/home/hjorth/temp/delme2k/network-synapses.hdf5")
+    process_file("/home/hjorth/temp/delme2knomu2/network-synapses.hdf5")    

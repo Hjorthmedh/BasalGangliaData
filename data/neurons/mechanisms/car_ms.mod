@@ -19,7 +19,7 @@ NEURON {
     USEION PKAc READ PKAci VALENCE 0
     RANGE mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill 
     RANGE mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill 
-    RANGE modulation_factor, modulation_factor2
+    RANGE modulation_factor, modulation_factor1, modulation_factor2
 
 }
 
@@ -53,6 +53,7 @@ ASSIGNED {
     htau (ms)
     PKAci (mM)
     modulation_factor (1)
+    modulation_factor1 (1)    
     modulation_factor2 (1)
 }
 
@@ -60,9 +61,10 @@ STATE { m h }
 
 BREAKPOINT {
      SOLVE states METHOD cnexp
-     modulation_factor=hill(PKAci, mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill)	   
+     modulation_factor1=hill(PKAci, mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill)	   
      modulation_factor2=hill(PKAci, mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill)	   	   
-    ica = pbar*m*m*m*h*ghk(v, cai, cao)*modulation_factor*modulation_factor2
+     modulation_factor = modulation_factor1 * modulation_factor2
+     ica = pbar*m*m*m*h*ghk(v, cai, cao)*modulation_factor
 }
 
 INITIAL {
