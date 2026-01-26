@@ -2,6 +2,7 @@ import os
 import numpy as np
 import json
 from snudda import SnuddaLoad
+import argparse
 
 def process_file(path):
     sl = SnuddaLoad(path)
@@ -81,25 +82,16 @@ def process_file(path):
     plt.ion()
     plt.show()
         
-            
-    
-    import pdb
-    pdb.set_trace()
+    input("Press a key")     
+
+
+
 
 
 if __name__ == "__main__":
-
-    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k/network-synapses.hdf5")
-
-    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_zero/network-synapses.hdf5")
-
-    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_one/network-synapses.hdf5")
-
-    # rocess_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_one_sm3/network-synapses.hdf5")
-
-    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_1.5/network-synapses.hdf5")
-
-    # process_file("/home/hjorth/HBP/Snudda/examples/networks/test-10k-mu2_2/network-synapses.hdf5")        
-
-    # process_file("/home/hjorth/temp/delme2k/network-synapses.hdf5")
-    process_file("/home/hjorth/temp/delme2knomu2/network-synapses.hdf5")    
+    parser = argparse.ArgumentParser(description='Check density of synapses in network synapse file')
+    parser.add_argument('path', type=str, help='Path to the network-synapses.hdf5 file')
+    
+    args = parser.parse_args()
+    
+    process_file(args.path)    
