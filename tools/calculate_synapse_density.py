@@ -3,7 +3,8 @@ import numpy as np
 import json
 from snudda import SnuddaLoad
 import argparse
-
+import matplotlib.pyplot as plt
+    
 def process_file(path):
     sl = SnuddaLoad(path)
 
@@ -25,7 +26,8 @@ def process_file(path):
         print(f"Processing {neuron_name}")
     
         for neuron_id in sl.get_centre_neurons_iterator(neuron_name=neuron_name,
-                                                        return_distance=False):
+                                                        return_distance=False,
+                                                        n_neurons=500):
 
             # post_id = neuron_id
             n_incoming = np.sum(connection_matrix[:, neuron_id])
@@ -53,14 +55,18 @@ def process_file(path):
                 dend_len = morph_info[morph_stub]["dend"]["length"]
                 
                 incoming_synapse_density[morph_stub].append(n_incoming/dend_len)
+            else:
+                print(f"Missing {morph_stub} in morph_info")
+                import pdb
+                pdb.set_trace()
 
         
 
     for name, data in incoming_synapses_name.items():
-        print(f"{name}: {np.mean(data):.2f} +/ {np.std(data):.2f}")
+        print(f"{name}: {np.mean(data):.2f} +/- {np.std(data):.2f}")
 
     for morph, data in incoming_synapses_morph.items():
-        print(f"{os.path.basename(morph)}: {np.mean(data):.2f} +/ {np.std(data):.2f}")
+        print(f"{os.path.basename(morph)}: {np.mean(data):.2f} +/- {np.std(data):.2f}")
 
     len_list = []
     den_list = []
@@ -73,7 +79,7 @@ def process_file(path):
         den_list.append(np.mean(data))
 
 
-    import matplotlib.pyplot as plt
+
     plt.figure()
     plt.plot(len_list,den_list,'k.')
     plt.xlabel("Dendritic length (micrometer)")
@@ -81,6 +87,10 @@ def process_file(path):
     plt.savefig("spn_synapse_density_summary.png")
     plt.ion()
     plt.show()
+
+
+    # import pdb
+    # pdb.set_trace()
         
     input("Press a key")     
 
