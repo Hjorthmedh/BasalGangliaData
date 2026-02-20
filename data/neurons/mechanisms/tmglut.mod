@@ -11,10 +11,14 @@ NEURON {
     RANGE failRate
 
     USEION PKAc READ PKAci VALENCE 0
+    USEION Substrate READ Substratei VALENCE 0
+    USEION pSubstrate READ pSubstratei VALENCE 0
+    
     RANGE mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope
     RANGE mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope
     RANGE modulation_factor_ampa, modulation_factor_nmda, modulation_factor_fail
-
+    RANGE plasticity_min, plasticity_max
+							       
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
 
@@ -60,6 +64,9 @@ PARAMETER {
     mod_pka_fail_half = 0.000100 (mM)
     mod_pka_fail_slope = 0.01 (mM)
 
+    plasticity_min = 1 (1)
+    plasticity_max = 3 (1)						   
+			      
     failRateScaling = 0
     failRate = 0
     use_stp = 1     : to turn of use_stp -> use 0
@@ -83,6 +90,10 @@ ASSIGNED {
     modulation_factor_ampa (1)
     modulation_factor_nmda (1)
     modulation_factor_fail (1)
+
+    pSubstratei (mM)
+    Substratei (mM)
+
 }
 
 STATE {
@@ -112,9 +123,10 @@ BREAKPOINT {
     LOCAL itot_nmda, itot_ampa, mggate
     SOLVE state METHOD cnexp
 
-    modulation_factor_ampa=modulation(PKAci, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope)
-    modulation_factor_nmda=modulation(PKAci, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope)
+    modulation_factor_ampa=modulation(PKAci, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope) * plasticity(Substratei, pSubstratei, plasticity_min, plasticity_max)
+    modulation_factor_nmda=modulation(PKAci, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope) * plasticity(Substratei, pSubstratei, plasticity_min, plasticity_max)
     modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)
+
     : NMDA
     mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
     g_nmda    = (B_nmda - A_nmda) * modulation_factor_nmda
@@ -203,6 +215,10 @@ FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slop
     modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
 }
 
+FUNCTION plasticity(substrate (mM), p_substrate (mM), plasticity_min, plasticity_max) {
+     : returns plasticity_factor	       
+     plasticity = plasticity_min + (plasticity_max - plasticity_min) * p_substrate / (substrate + p_substrate + 1e-15)	       
+     }
 
 
 COMMENT
