@@ -65,7 +65,7 @@ PARAMETER {
     mod_pka_fail_slope = 0.01 (mM)
 
     plasticity_min = 1 (1)
-    plasticity_max = 3 (1)						   
+    plasticity_max = 1 (1)						   
 			      
     failRateScaling = 0
     failRate = 0
