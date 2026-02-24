@@ -50,7 +50,7 @@ BREAKPOINT {
 
     : write current here
     if (use_rxd > 0) {
-        ical = -flux * 2 * FARADAY * depth * (1e-4) : um/cm => 1e-4
+        ical = flux * 2 * FARADAY * depth * (1e-4) : um/cm => 1e-4
         i = -ical : eletroneutral pump
     }
 }
