@@ -2,7 +2,7 @@ TITLE Calcium dynamics for L and T calcium pool
 
 NEURON {
     SUFFIX caldyn_ms
-    USEION cal READ ical, cali WRITE cali VALENCE 2
+    USEION cal READ ical, cali WRITE cali, ical VALENCE 2
     NONSPECIFIC_CURRENT i
     RANGE pump, cainf, taur, depth
     RANGE use_rxd
@@ -50,8 +50,8 @@ BREAKPOINT {
 
     : write current here
     if (use_rxd > 0) {
-        ical = flux * 2 * FARADAY * depth * (1e-4) : um/cm => 1e-4
-        i = -ical : eletroneutral pump
+        ical = -flux * 2 * FARADAY * depth * (1e-4) : um/cm => 1e-4
+        : i = -ical : eletroneutral pump
     }
 }
 
