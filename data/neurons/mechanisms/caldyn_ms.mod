@@ -26,6 +26,7 @@ PARAMETER {
     pump = 0.02
 
     use_rxd = 0 (1)
+
 }
 
 STATE { cali (mM) }
@@ -45,26 +46,24 @@ ASSIGNED {
 }
 
 BREAKPOINT {
-    SOLVE state METHOD cnexp : redundant?
-
-
-    : write current here
     if (use_rxd > 0) {
+        drive_pump    = -kt*(cali-cainf)/(cali+kd)
+        flux = pump*drive_pump + (cainf-cali)/taur
+
         ical = -flux * 2 * FARADAY * depth * (1e-4) : um/cm => 1e-4
-        : i = -ical : eletroneutral pump
+        i = -ical : eletroneutral pump
+    } else {
+        SOLVE state METHOD cnexp
     }
 }
 
 DERIVATIVE state {
-    drive_channel = -(1e4)*ical/(2*FARADAY*depth)
     drive_pump    = -kt*(cali-cainf)/(cali+kd)
 
+    drive_channel = -(1e4)*ical/(2*FARADAY*depth)
     if (drive_channel <= 0.) { drive_channel = 0. }
 
-    flux = drive_channel + pump*drive_pump + (cainf-cali)/taur
-
-    cali' = flux    : RxD overwrites this
-
+    cali' = drive_channel + pump*drive_pump + (cainf-cali)/taur
 }
 
 COMMENT
@@ -72,9 +71,13 @@ COMMENT
 Original NEURON model by Wolf (2005) and Destexhe (1992).  Adaptation by
 Alexander Kozlov <akozlov@kth.se>. Updated by Robert Lindroos <robert.lindroos@ki.se>.
 
-2026-02-24
- – Writes a calcium current instead of concentrations for use with RxD when use_rxd > 0.0
-   and a compensatory non-specific counter current.
+February 2026 (WT, JH):
+ – Writes a calcium current instead of concentrations for use with RxD.
+
+   To use this feature, set use_rxd = 1.0
+
+ – This assumes an electroneutral pump, so it adds a counter current to the pump current.
+
 
 Updates by RL:
 -cainf changed from 10 to 70 nM (sabatini et al., 2002 The Life Cycle of Ca 2+ Ions in Dendritic Spines)
