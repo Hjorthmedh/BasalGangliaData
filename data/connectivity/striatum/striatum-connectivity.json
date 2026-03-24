@@ -1,32 +1,5 @@
 {
     "FS,FS": {
-        "GABA": {
-            "conductance": [
-                1.1e-09,
-                1.5e-09
-            ],
-            "channel_parameters": {
-                "tau1": [
-                    0.00133,
-                    1000.0
-                ],
-                "tau2": [
-                    0.0057,
-                    1000.0
-                ],
-                "mod_file": "tmGabaA"
-            },
-            "cluster_size": 1,
-            "cluster_spread": null,
-            "pruning": {
-                "f1": 0.15,
-                "soft_max": 5,
-                "mu2": 2,
-                "a3": 1,
-                "dist_pruning": null,
-                "cluster_pruning": false
-            }
-        },
         "gap_junction": {
             "conductance": [
                 5e-10,
@@ -36,12 +9,9 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.7,
-                "soft_max": 8,
-                "mu2": 2,
-                "a3": 0.5,
-                "dist_pruning": null,
-                "cluster_pruning": false
+                "soft_max": 4.7724,
+                "mu2": 2.2742,
+                "a3": 0.7703
             }
         }
     },
@@ -66,13 +36,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.5,
-                "soft_max": 5,
-                "mu2": 2,
-                "a3": 1.0,
                 "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "cluster_pruning": false
-            }
+                "soft_max": 7,
+                "mu2": 5,
+                "a3": 1
+            }	    
         }
     },
     "FS,iSPN": {
@@ -95,14 +63,12 @@
             },
             "cluster_size": 1,
             "cluster_spread": null,
-            "pruning": {
-                "f1": 0.5,
-                "soft_max": 5,
-                "mu2": 2,
-                "a3": 0.9,
+	    "pruning": {
                 "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "cluster_pruning": false
-            }
+                "soft_max": 4,
+                "mu2": 5,
+                "a3": 0.75
+            }	    
         }
     },
     "FS,LTS": {
@@ -126,6 +92,25 @@
             }
         }
     },
+
+    "FS,NGF": {
+        "GABA": {
+	    "conductance": [
+                1.1e-10,
+                1.5e-10
+            ],
+            "channel_parameters": {
+                "mod_file": "tmGabaA"
+            },	    
+            "pruning": {
+                "soft_max": 3.21,
+                "mu2": 1.447,
+                "a3": 0.9080
+            }
+        }
+    },
+    
+    
     "dSPN,dSPN": {
         "GABA": {
             "conductance": [
@@ -147,12 +132,11 @@
             },
             "cluster_size": 1,
             "cluster_spread": null,
-            "pruning": {
-                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.209,
-                "mu2": 1.6864,
-                "a3": 0.9998
-            }
+	    "pruning": {
+		"soft_max": 1.5,
+		"mu2": 3.5,
+		"a3": 0.6		
+            }	    
         }
     },
     "dSPN,iSPN": {
@@ -176,12 +160,11 @@
             },
             "cluster_size": 1,
             "cluster_spread": null,
-            "pruning": {
-                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.2175,
-                "mu2": 1.7053,
-                "a3": 0.4214
-            }
+	    "pruning": {
+		"soft_max": 1.5,
+		"mu2": 3.5,
+		"a3": 0.25		
+            }	    
         }
     },
     "dSPN,ChIN": {
@@ -197,12 +180,9 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.1,
-                "soft_max": 3,
-                "mu2": 2.4,
-                "a3": 0.1,
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "cluster_pruning": false
+                "soft_max": 1.2185,
+                "mu2": 2.0673,
+                "a3": 0.2161		
             }
         }
     },
@@ -227,12 +207,11 @@
             },
             "cluster_size": 1,
             "cluster_spread": null,
-            "pruning": {
-                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.1741,
-                "mu2": 1.5767,
-                "a3": 0.9837
-            }
+	    "pruning": {
+		"soft_max": 1.5,
+		"mu2": 3.5,
+		"a3": 0.7		
+            }	    
         }
     },
     "iSPN,iSPN": {
@@ -256,12 +235,11 @@
             },
             "cluster_size": 1,
             "cluster_spread": null,
-            "pruning": {
-                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.3105,
-                "mu2": 1.6518,
-                "a3": 0.999
-            }
+	    "pruning": {
+		"soft_max": 1.5,
+		"mu2": 3.5,
+		"a3": 1		
+            }	    
         }
     },
     "iSPN,ChIN": {
@@ -277,45 +255,52 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.1,
-                "soft_max": 3,
-                "mu2": 2.4,
-                "a3": 0.1,
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "cluster_pruning": false
+                "soft_max": 1.5601,
+                "mu2": 1.5487,
+                "a3": 0.1447		
             }
         }
     },
     "ChIN,dSPN": {
-        "GABA": {
-            "pruning": {
-                "f1": 0.0345,
-                "mu2": 2.0757,
-                "a3": 0.9735
-            },
+        "ACh": {
             "conductance": [
-                1.1e-09,
-                1.5e-09
-            ]
+                1e-09,
+                0
+            ],
+            "channel_parameters": {
+                "mod_file": ""
+            },
+            "cluster_size": 1,
+            "cluster_spread": null,
+	    "pruning": {
+                    "soft_max": 1.4018,
+                    "mu2": 1.6149,
+                    "a3": 0.11
+            }
         }
     },
     "ChIN,iSPN": {
-        "GABA": {
-            "pruning": {
-                "f1": 0.0517,
-                "mu2": 2.2161,
-                "a3": 0.8309
-            },
+        "ACh": {
             "conductance": [
-                1.1e-09,
-                1.5e-09
-            ]
+                1e-09,
+                0
+            ],
+            "channel_parameters": {
+                "mod_file": ""
+            },
+            "cluster_size": 1,
+            "cluster_spread": null,
+            "pruning": {
+		"soft_max": 0.9782,
+                    "mu2": 2.4219,
+                    "a3": 0.2993
+            }
         }
     },
     "LTS,dSPN": {
         "GABA": {
             "conductance": [
-                1e-09,
+                0.5e-09,
                 0
             ],
             "channel_parameters": {
@@ -332,19 +317,17 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.3,
-                "soft_max": 15,
-                "mu2": 3,
-                "a3": 0.3,
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "cluster_pruning": false
+                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 4.9651,
+                "mu2": 2.6456,
+                "a3": 0.1062
             }
         }
     },
     "LTS,iSPN": {
         "GABA": {
             "conductance": [
-                1e-09,
+                0.5e-09,
                 0
             ],
             "channel_parameters": {
@@ -361,19 +344,17 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.3,
-                "soft_max": 15,
-                "mu2": 3,
-                "a3": 0.3,
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "cluster_pruning": false
+                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 4.3242,
+                "mu2": 3.7229,
+                "a3": 0.1803
             }
         }
     },
     "LTS,ChIN": {
         "GABA": {
             "conductance": [
-                1e-09,
+                0.5e-09,
                 0
             ],
             "channel_parameters": {
@@ -382,100 +363,64 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.5,
-                "soft_max": 10,
-                "mu2": 3,
-                "a3": 0.4,
-                "dist_pruning": null,
-                "cluster_pruning": false
+                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 4.8468,
+                "mu2": 2.4658,
+                "a3": 0.1564
             }
         }
     },
-    "ChIN,FS": {
-        "nACh": {
-            "channel_parameters": {
-                "tau1": [
-                    0.0012,
-                    1000.0
-                ],
-                "tau2": [
-                    0.008,
-                    1000.0
-                ],
-                "mod_file": "nACh"
-            },
-            "pruning": {
-                "f1": 0.1307,
-                "mu2": 0.3907,
-                "a3": 1.0
-            },
-            "conductance": [
-                1.1e-09,
-                1.5e-09
-            ]
-        }
-    },
-    "ChIN,LTS": {
+    "dSPN,TH": {
         "GABA": {
             "pruning": {
-                "f1": 0.3,
-                "mu2": 0.0175,
-                "a3": 1.0
+                "soft_max": 2.0119,
+                "mu2": 0.1674,
+                "a3": 0.3495
             },
             "conductance": [
-                1.1e-09,
-                1.5e-09
-            ]
-        }
-    },
-    "ChIN,TH": {
-        "nACh": {
+                2.4e-10,
+                1e-10
+            ],
             "channel_parameters": {
                 "tau1": [
-                    0.00015,
+                    0.0013,
                     1000.0
                 ],
                 "tau2": [
-                    0.04,
+                    0.0124,
                     1000.0
                 ],
-                "mod_file": "nACh"
-            },
-            "pruning": {
-                "f1": 0.1212,
-                "mu2": 1.0771,
-                "a3": 0.9997
-            },
-            "conductance": [
-                1.1e-09,
-                1.5e-09
-            ]
+                "failRate": 0.7,
+		"mod_file": "tmGabaA"
+	    }
         }
     },
-    "ChIN,NGF": {
-        "nACh": {
+    "iSPN,TH": {
+        "GABA": {
+            "pruning": {
+                "soft_max": 2.0296,
+                "mu2": 0.4583,
+                "a3": 0.357
+            },
+            "conductance": [
+                2.4e-10,
+                1e-10
+            ],
             "channel_parameters": {
                 "tau1": [
-                    0.0005,
+                    0.0013,
                     1000.0
                 ],
                 "tau2": [
-                    0.04,
+                    0.0124,
                     1000.0
                 ],
-                "mod_file": "nACh"
-            },
-            "pruning": {
-                "f1": 0.0419,
-                "mu2": 0.748,
-                "a3": 0.9999
-            },
-            "conductance": [
-                1.2e-9,
-                1.5e-9
-            ]
+                "failRate": 0.7,
+		"mod_file": "tmGabaA"
+	    }
         }
     },
+    
     "TH,dSPN": {
         "GABA": {
             "channel_parameters": {
@@ -490,9 +435,9 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "f1": 0.3166,
-                "mu2": 1.4891,
-                "a3": 0.9995
+                "soft_max": 1.75,
+                "mu2": 2.4,
+                "a3": 0.82
             },
             "conductance": [
                 1.1e-09,
@@ -514,9 +459,9 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "f1": 0.4039,
-                "mu2": 1.4956,
-                "a3": 1.0
+                "soft_max": 3.6,
+                "mu2": 1.24,
+                "a3": 0.38
             },
             "conductance": [
                 1.1e-09,
@@ -538,9 +483,9 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "f1": 0.44,
-                "mu2": 0.1752,
-                "a3": 0.9979
+                "soft_max": 3,
+                "mu2": 2,
+                "a3": 1
             },
             "conductance": [
                 1.1e-09,
@@ -561,37 +506,37 @@
                 ],
 		"mod_file": "tmGabaA"
 	    },
-	    "pruning": {
-                "f1": 0.2312,
-                "mu2": 3.2652,
-                "a3": 0.2618
-	    },
+            "pruning": {
+                "soft_max": 6,
+                "mu2": 1.1,
+                "a3": 1.0
+            },
 	    "conductance": [
                 3e-10,
-                1.5e-10
+                0.5e-10
 	    ]
-	},
-	"NGF,ChIN": {
-            "GABA": {
-		"channel_parameters": {
-                    "tau1": [
-			0.01,
-			1000.0
-                    ],
-                    "tau2": [
-			0.08,
-			1000.0
-                    ],
-                    "mod_file": "tmGabaA"
-		}
-            },
+	}
+    },
+    "NGF,ChIN": {
+        "GABA": {
+	    "channel_parameters": {
+                "tau1": [
+		    0.01,
+		    1000.0
+                ],
+                "tau2": [
+		    0.08,
+		    1000.0
+                ],
+                "mod_file": "tmGabaA"
+	    },
             "pruning": {
-                "f1": 0.1096,
-                "mu2": 1.1996,
-                "a3": 0.992
+                "soft_max": 2.1833,
+                "mu2": 0.9946,
+                "a3": 0.4167
             },
             "conductance": [
-                8e-10,
+                0.5e-10,
                 1.5e-10
             ]
         }
@@ -622,12 +567,12 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "f1": 0.3606,
-                "mu2": 0.3717,
+                "soft_max": 2,
+                "mu2": 0.609,
                 "a3": 1.0
             },
             "conductance": [
-                9e-09,
+                0.5e-09,
                 1.5e-09
             ]
         }
@@ -658,40 +603,185 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "f1": 0.42,
-                "mu2": 0.468,
-                "a3": 0.9995
+                "soft_max": 2,
+                "mu2": 0.8158,
+                "a3": 0.9999
             },
             "conductance": [
-                9e-09,
+                0.5e-09,
                 1.5e-09
             ]
         }
     },
+
+    "NGF,FS": {
+        "GABA": {
+            "pruning": {
+                "soft_max": 2.6624,
+                "mu2": 0.9396,
+                "a3": 0.8772
+            },
+            "channel_parameters": {
+                "tau1": [
+                    0.01,
+                    1000.0
+                ],
+                "tau2": [
+                    0.08,
+                    1000.0
+                ],
+                "tau": [
+                    0.001,
+                    1000.0
+                ],
+                "tauR": [
+                    0.2,
+                    1000.0
+                ],
+                "tauF": [
+                    0.2,
+                    1000.0
+                ],		
+                "mod_file": "tmGabaA"
+	    },
+	    "conductance": [
+                0.5e-09,
+                1.5e-09
+	    ]
+        }
+    },
+    
     "NGF,NGF": {
         "gap_junction": {
             "pruning": {
-                "f1": 0.1637,
-                "mu2": 0.2571,
+                "soft_max": 2.9,
+                "mu2": 0.4,
                 "a3": 1.0
             },
             "conductance": [
-                3.5e-10,
-                1.5e-10
+                0.75e-10,
+                0.5e-10
             ]
         }
     },
     "NGF,TH": {
         "gap_junction": {
             "pruning": {
-                "f1": 0.3273,
-                "mu2": 0.162,
-                "a3": 0.9999
+                "soft_max": 2,
+                "mu2": 0.8195,
+                "a3": 1.0
             },
             "conductance": [
                 1.1e-10,
                 1.5e-10
             ]
         }
+    },
+    
+
+    "ChIN,FS": {
+        "nACh": {
+            "channel_parameters": {
+                "tau1": [
+                    0.0012,
+                    1000.0
+                ],
+                "tau2": [
+                    0.008,
+                    1000.0
+                ],
+                "mod_file": "nACh"
+            },
+            "pruning": {	
+                "f1": 0.6387,
+                "soft_max": 1.2234,
+                "mu2": 0.6051,
+                "a3": 0.6162
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "ChIN,LTS": {
+        "GABA": {
+            "pruning": {
+                "f1": 0.9714,
+                "soft_max": 2.5112,
+                "mu2": 0.38,
+                "a3": 0.7127		
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ],
+	    "channel_parameters": {
+		"mod_file": ""
+	    }
+        }
+    },
+    "ChIN,TH": {
+        "nACh": {
+            "channel_parameters": {
+                "tau1": [
+                    0.00015,
+                    1000.0
+                ],
+                "tau2": [
+                    0.04,
+                    1000.0
+                ],
+                "mod_file": "nACh"
+            },
+            "pruning": {
+                "f1": 0.458,
+                "soft_max": 2.4808,
+                "mu2": 1.2167,
+                "a3": 0.5597
+            },
+            "conductance": [
+                1.1e-09,
+                1.5e-09
+            ]
+        }
+    },
+    "ChIN,NGF": {
+        "nACh": {
+            "channel_parameters": {
+                "tau1": [
+                    0.0005,
+                    1000.0
+                ],
+                "tau2": [
+                    0.04,
+                    1000.0
+                ],
+                "mod_file": "nACh"
+            },
+            "pruning": {
+                "f1": 0.6342,
+                "soft_max": 2.2278,
+                "mu2": 1.7368,
+                "a3": 0.7005
+            },
+            "conductance": [
+                1.8e-9,
+                1.5e-9
+            ]
+        }
+    },
+    "ChIN,ChIN": {
+	"GABAnACh": {
+	    "conductance": [0.5e-9, 0.5e-9],
+	    "channel_parameters":  {
+		"mod_file": ""
+	    },
+	    "pruning": {
+		"soft_max": 1.8673,
+		"mu2": 0.2955,
+		"a3": 0.0402
+	    }
+	}
     }
 }
