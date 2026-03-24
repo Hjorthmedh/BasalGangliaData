@@ -18,7 +18,7 @@ UNITS {
 }
 
 PARAMETER {
-    depth = 0.2  (um)
+    depth = 0.2  (um)  : OLD: 0.2, might be OK... peak cal 65000nM
     cainf = 70e-6 (mM)
     taur = 43 (ms)
     kt = 1e-4 (mM/ms)
