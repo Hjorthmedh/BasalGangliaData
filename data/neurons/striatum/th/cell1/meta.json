@@ -11,7 +11,57 @@
 		"axon_diameter": [1.294695359500809e-6],
 		"axon_myelin_length": [84.83259475903913e-6],
 		"axon_myelin_diameter": [1e-6]
-	    }
+	    },
+            "input": {
+                "cortical_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 1,
+                    "frequency": 1,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/Cortex_parameters-THIN.json"
+                },
+                "thalamic_background": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "0.05*exp(-d/200e-6)",
+                    "num_inputs": 1,
+                    "frequency": 1,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/TH_parameters-THIN.json"
+                },
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 0,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/Cortex_parameters-THIN.json"
+                },
+                "thalamic": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "0.05*exp(-d/200e-6)",
+                    "num_inputs": 0,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 5e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/TH_parameters-THIN.json"
+                }
+            }
         }
     }
 }
