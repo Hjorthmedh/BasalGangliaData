@@ -1,0 +1,120 @@
+Optimization of striatal NGF cell models using cortical NGC
+reconstructions from NMC portal (Blue Brain Project/EPFL)
+and electrophysiology of Ibanez-Sandoval et al., 2011 (DOI:
+10.1523/JNEUROSCI.2628-11.2011).
+
+release/  validated models of the striatal NGF cells. See files
+          `hall_of_fame.json` for the best electrical parameters,
+          `morphology/*.swc` for morphological reconstructions and
+          `validation/val_models.json` for validated morpho-electric
+          combinations.
+
+-------------------------------------------------------
+The optimization was done using A. Kozlov's optim setup in repo:
+
+	https://gitr.sys.kth.se/akozlov/bgmod.git
+
+under branch:
+	
+	ngf_updated_fig4_optim
+
+using folder:
+
+	models/optim/ngf/optim/Roberts_optim
+	
+	
+Otimization protocols can be found in the config folder
+
+After optimization:
+1. Use the notebooks to select models and update hall_of_fame.json
+2. run variate.sh     (simulates p-m combinations, extracts features and writes to file)
+3. run validate.sh	  (plot features and compare to exp data)
+
+:::::::::::
+After this the models were transferred from bpo to snudda using 
+
+	simple_transfer.py
+
+in bgdata/examples 
+	
+	https://github.com/Hjorthmedh/BasalGangliaData
+	
+like:
+
+	BasalGangliaData/examples$ python simple_transfer.py -s <akozlov>/models/optim/ngf/optim/Roberts_optim/ -d <szmod>/snudda/snudda_data/wt/neurons/striatum/ngf/
+
+
+-------------------------------
+Apr -26: model selection pipeline updated
+
+  Model selection history (NGF IS2011FIG4A):
+
+  Starting point: 10 models from BluePyOpt optimization (hall_of_fame_orig.json, 2026-04-07)
+
+  Step 1 — Visual inspection (select_v3_bmid9.ipynb, 2026-04-07)
+    Original index 5 rejected: model went into depolarization block for the largest
+    long current step, which is not physiologically plausible for this cell type.
+    9 models saved to hall_of_fame.json; original 10 backed up as hall_of_fame_orig.json.
+
+  Step 2 — Automated z-score validation (validate.py, 2026-04-09)
+    Models run across stimulus range (variate.py), features scored against population
+    statistics (IS2011 Table 1, mean ± std). Threshold: 3 standard deviations.
+    Rejected models printed to stdout with offending features and z-scores.
+    Backups written automatically as hall_of_fame_{YYYYMMDD_HHMMSS}_from_val.json.
+    Current state of hall_of_fame.json: 5 models (as of 2026-04-09).
+
+  Features scored:
+    vm_rest, ir_fitrest (R_in at 0 pA), ap_avg_thresh, ap_half_width,
+    ap_amplitude, ap_peak, ahp_depth_abs
+
+  Feature derivation:
+    vm_rest      -- eFEL voltage_base averaged across subthreshold steps
+    ir_fitrest   -- slope of IV curve fit evaluated at 0 pA
+    ap_avg_thresh, ap_half_width, ap_amplitude, ap_peak -- eFEL features
+    ahp_depth_abs -- eFEL AHP_depth_abs (absolute AHP trough voltage)
+                     For experimental data (IS2011 Table 1), derived as
+                     AP threshold minus AHP amplitude (ap_avg_thresh - ahp_depth),
+                     where ahp_depth is the paper definition (threshold - AHP min).
+
+  Previously tracked AHP metrics (removed from scoring 2026-04-09):
+    ahp_depth      -- paper definition: AP threshold - AHP minimum (26 ± 4.47 mV)
+    ahp_depth_efel -- eFEL definition:  AHP minimum - voltage_base  (18 ± 7.61 mV)
+    ahp_depth_abs  -- absolute AHP minimum voltage (-70 ± 6.24 mV;
+                      std from error propagation of threshold and ahp_depth stds)
+
+-------------------------------
+Feb -26: plotting updated. viz_selected_models.py and validate.py (run via validate.sh)
+
+-------------------------------
+May 29 -25: After bug discovered in BasalGangliaData
+
+-fixed the CaDynamics (by using the _ngf version).
+	mechanisms.json and parameters.json were updated
+	and re-run optimization. 
+
+-------------------------------
+Oct 12 -24
+
+this model is based on the model:  
+mCP-ngf-eIS2011FIGX1-mC170998D-I3-cl0/id-0/
+
+with adjusted current amplitude in protocols adjusted from the IV curve of fig 4
+(rather than from the example traces)
+from:
+[-185, -99, 157, 185, 341] 
+to
+[-161, -82, 139, 167, 293]
+
+Features are also update:
+* steady_state_voltage set to -83 for all protocols
+* voltage_after_stim: removed
+* maximum_voltage (stim 3): 53 to 51 
+* steady_state_stimend (stim 3): 53 to 51
+* minimum_votage (stim 1 and 2): removed
+* sag_amplitude (stim 2): removed
+
+* peak_voltage (stim 4 and 5): 22 to 20 +/- 1 to 3
+* AHP_depth_abs std (stim 4 and 5) from 1 to 3
+
+Simulation time increased in order to reduce depolarization block (frequent in older models)
+
