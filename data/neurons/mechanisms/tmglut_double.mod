@@ -16,9 +16,9 @@ NEURON {
     RANGE ca_ratio_ampa, ca_ratio_nmda, mggate, use_stp
     RANGE failRate
 
-    USEION PKAc READ PKAci VALENCE 0
-    RANGE mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope
-    RANGE mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope
+    USEION DA READ DAi VALENCE 0
+    RANGE mod_da_g_ampa_min, mod_da_g_ampa_max, mod_da_g_ampa_half, mod_da_g_ampa_slope
+    RANGE mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_slope
     RANGE modulation_factor_ampa, modulation_factor_nmda, modulation_factor_fail
     
     NONSPECIFIC_CURRENT i
@@ -46,20 +46,20 @@ PARAMETER {
     ca_ratio_nmda = 0.1
     mg = 1 (mM)
 
-    mod_pka_g_ampa_min = 1 (1)
-    mod_pka_g_ampa_max = 1 (1)
-    mod_pka_g_ampa_half = 0.000100 (mM)
-    mod_pka_g_ampa_slope = 0.01 (mM)
+    mod_da_g_ampa_min = 1 (1)
+    mod_da_g_ampa_max = 1 (1)
+    mod_da_g_ampa_half = 0.000100 (mM)
+    mod_da_g_ampa_slope = 0.01 (mM)
 
-    mod_pka_g_nmda_min = 1 (1)
-    mod_pka_g_nmda_max = 1 (1)
-    mod_pka_g_nmda_half = 0.000100 (mM)
-    mod_pka_g_nmda_slope = 0.01 (mM)
+    mod_da_g_nmda_min = 1 (1)
+    mod_da_g_nmda_max = 1 (1)
+    mod_da_g_nmda_half = 0.000100 (mM)
+    mod_da_g_nmda_slope = 0.01 (mM)
 
-    mod_pka_fail_min = 0 (1)
-    mod_pka_fail_max = 0 (1)
-    mod_pka_fail_half = 0.000100 (mM)
-    mod_pka_fail_slope = 0.01 (mM)
+    mod_da_fail_min = 0 (1)
+    mod_da_fail_max = 0 (1)
+    mod_da_fail_half = 0.000100 (mM)
+    mod_da_fail_slope = 0.01 (mM)
 
     failRateScaling = 0
     failRate = 0
@@ -99,7 +99,7 @@ ASSIGNED {
     g_nmda (uS)
 
     x
-    PKAci (mM)
+    DAi (mM)
     modulation_factor_ampa (1)
     modulation_factor_nmda (1)
     modulation_factor_fail (1)
@@ -133,9 +133,9 @@ BREAKPOINT {
     SOLVE state METHOD cnexp
 
 
-    modulation_factor_ampa=modulation(PKAci, mod_pka_g_ampa_min, mod_pka_g_ampa_max, mod_pka_g_ampa_half, mod_pka_g_ampa_slope)
-    modulation_factor_nmda=modulation(PKAci, mod_pka_g_nmda_min, mod_pka_g_nmda_max, mod_pka_g_nmda_half, mod_pka_g_nmda_slope)
-    modulation_factor_fail=modulation(PKAci, mod_pka_fail_min, mod_pka_fail_max, mod_pka_fail_half, mod_pka_fail_slope)
+    modulation_factor_ampa=hill(DAi, mod_da_g_ampa_min, mod_da_g_ampa_max, mod_da_g_ampa_half, mod_da_g_ampa_slope)
+    modulation_factor_nmda=hill(DAi, mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_slope)
+    modulation_factor_fail=hill(DAi, mod_da_fail_min, mod_da_fail_max, mod_da_fail_half, mod_da_fail_slope)
     
     : NMDA
     mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 2.62 (mM))) : 3.57 instead of 2.62 if LJP not corrected
@@ -226,10 +226,10 @@ FUNCTION urand() {
     urand = random_uniform(release_probability)
 }
 
-FUNCTION modulation(conc (mM), mod_min (1), mod_max (1), mod_half (mM), mod_slope (mM)) (1) {
-    : returns modulation factor
-    modulation = mod_min + (mod_max-mod_min) / (1 + exp(-(conc - mod_half)/mod_slope))
-}
+FUNCTION hill(conc (mM),  mod_min (1), mod_max (1), half_activation (mM), hill_coefficient (1)) (1) {
+     hill = mod_min + (mod_max-mod_min) * pow(conc, hill_coefficient) / (pow(conc, hill_coefficient) + pow(half_activation, hill_coefficient))
+ }
+
 
 
 COMMENT
