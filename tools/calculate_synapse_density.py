@@ -81,9 +81,30 @@ def process_file(path):
 
 
     plt.figure()
+    fig, ax = plt.subplots(figsize=(4, 4), dpi=300)
+    ax.plot(len_list, den_list, 'k.', markersize=6)
+
     plt.plot(len_list,den_list,'k.')
     plt.xlabel("Dendritic length (micrometer)")
     plt.ylabel("Synapse density (1/micrometer)")
+
+    # Turn spines on and style them
+    for spine in ["top", "right", "left", "bottom"]:
+        ax.spines[spine].set_visible(True)
+        ax.spines[spine].set_linewidth(1.2)
+
+    # Ticks outward, on all sides
+    ax.tick_params(direction="out",
+                   length=4,
+                   width=1.2,
+                   top=True,
+                   right=True)
+
+    ax.set_xlabel("Dendritic length (µm)", fontsize=11)
+    ax.set_ylabel("Synapse density (µm⁻¹)", fontsize=11)
+    plt.tight_layout()
+    fig.subplots_adjust(left=0.18, bottom=0.18, right=0.95, top=0.95)
+    plt.savefig("spn_synapse_density_summary.pdf", bbox_inches="tight")
     plt.savefig("spn_synapse_density_summary.png")
     plt.ion()
     plt.show()
