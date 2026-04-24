@@ -2,7 +2,7 @@ import json
 import copy
 
 # Define the new morphologies
-morphologies = [f"18AUG11448_170614_no_1_7_MD_cell_1_x63-cor_centered-ax{i}.swc" for i in range(1, 20)]
+morphologies = [f"17JUL302018_170614_no6_MD_cell_2_x63-cor_centered-ax{i}.swc" for i in range(1, 20)]
 
 # Load the original meta.json
 with open("meta.json", "r") as f:
