@@ -56,14 +56,14 @@ ASSIGNED {
 STATE { m h }
 
 BREAKPOINT {
-     SOLVE states METHOD cnexp
-	   modulation_factor_g=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)
-     modulation_factor_shift=hill(PKAci, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_hill)	   					 
-
-    : In Johanna's version gk depended on modDA, and modShift on modACh
+	: In Johanna's version gk depended on modDA, and modShift on modACh
+	modulation_factor_g=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)
+    modulation_factor_shift=hill(PKAci, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_hill)	   					 
+	modShift = modulation_factor_shift
+    
+    SOLVE states METHOD cnexp
     gk = gbar*m*m*h*modulation_factor_g
-    modShift = modulation_factor_shift			     
-    ik = gk*(v-ek)
+    	ik = gk*(v-ek)
 }
 
 DERIVATIVE states {
@@ -80,7 +80,7 @@ INITIAL {
 
 PROCEDURE rates() {
     UNITSOFF
-    minf = 1/(1+exp((v-(-10+modShift))/(-17.7)))
+    minf = 1/(1+exp((v-(-9+modShift))/(-17.7)))
     mtau = 0.9+1.1/(1+exp((v-(-30))/10))
     hinf = 1/(1+exp((v-(-75.6))/11.8))
     htau = 14
