@@ -1,9 +1,10 @@
 
-import shutil, os, sys, argparse, glob
+import shutil, os, sys, argparse, glob, json, tempfile
 import recenter_morph as rcm
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tools")))
 
 from transfer import SimpleTransfer as strans
+import transform_parameters_from_v2_to_v1 as _tconv
 
 '''
 if no arguments are given an example model will be transfered
@@ -15,7 +16,59 @@ if no arguments are given an example model will be transfered
 -use -a or --all to batch transfer all models in one directory
 
     $ python simple_transfer.py -s <source> -d <destination> -a 1
+
+v2 parameter format (nested dict) is detected automatically and converted to v1
+(list) before transfer. The models file may also be in THIN format (a dict with
+a "models" key); in that case the list is extracted and section names are mapped
+from the THIN convention (axon/soma) to the BluePyOpt convention (axonal/somatic).
 '''
+
+# Section-name mapping from THIN optimisation output to BluePyOpt sectionlist names
+_SECTION_MAP = {'.axon': '.axonal', '.soma': '.somatic'}
+
+
+def _is_v2_params(path):
+    """Return True if the parameters file uses the v2 nested-dict format."""
+    with open(path) as f:
+        data = json.load(f)
+    return isinstance(data, dict)
+
+
+def _normalize_section_names(models_list):
+    """Rename .axon -> .axonal and .soma -> .somatic in model parameter keys."""
+    result = []
+    for model in models_list:
+        new_model = {}
+        for k, v in model.items():
+            for old, new in _SECTION_MAP.items():
+                if k.endswith(old):
+                    k = k[:-len(old)] + new
+                    break
+            new_model[k] = v
+        result.append(new_model)
+    return result
+
+
+def _load_and_normalize_models(models_path):
+    """Load a models file and normalise it to a plain list with BluePyOpt section names.
+
+    Handles both the plain-list v1 format and the THIN format
+    {"models": [...], "version": ..., ...}.  Returns None when the file is
+    already a plain list with no section-name changes needed (so the original
+    file can be used directly).
+    """
+    with open(models_path) as f:
+        raw = json.load(f)
+
+    if isinstance(raw, dict):
+        models = raw.get('models', [raw])
+        return _normalize_section_names(models)
+
+    # Plain list – only rewrite if any key needs renaming
+    if any(k.endswith(('.axon', '.soma')) for m in raw for k in m):
+        return _normalize_section_names(raw)
+
+    return None  # already correct, no temp file needed
 
 def center_morphology(source_path):
     # loop over all swc files in the morphology folder of the source and checks that the morphology is centered
@@ -27,10 +80,10 @@ def center_morphology(source_path):
 def do_transfer(source_path, new_cell_path):
     # The morphology must be centered - check and center if not centered.
     center_morphology(source_path)
-    
+
     # create output dir (check for existence is done in prev stage)
     os.makedirs(new_cell_path)
-    
+
     files_in_folder = [f for f in os.listdir(source_path) if os.path.isfile(os.path.join(source_path, f))]
     if not len(files_in_folder):
         raise Exception('\n\nInput Error - the source directory is empty\n'
@@ -53,13 +106,55 @@ def do_transfer(source_path, new_cell_path):
         f = 'best_models.json'
     else:
         raise Exception(f'Neither of: val_models, hall_of_fame nor best_models exist in source: \n{source_path}')
-    
+
     print(f'\ntranfering source: \n\t{source_path} \nto destination \n\t{new_cell_path}')
     print(f'\nusing opt_file: {f}\n')
-    strans.SimpleTransfer(  source_path, 
-                            new_cell_path, 
-                            optimisation_result_file=opt_res,
-                            selected=selected, selected_models=selected_models)
+
+    params_file     = os.path.join(source_path, 'config', 'parameters.json')
+    params_override = None   # path to converted v1 params (temp file)
+    mech_override   = None   # dir containing converted mechanisms.json (temp dir)
+    models_override = None   # path to normalised models list (temp file)
+    tmp_dir         = None
+
+    try:
+        # ── v2 parameter detection and conversion ─────────────────────────────
+        if os.path.exists(params_file) and _is_v2_params(params_file):
+            print(f'Detected v2 parameter format; converting to v1 ...')
+            tmp_dir = tempfile.mkdtemp(prefix='simple_transfer_')
+            v1, m1  = _tconv.read_data(params_file)
+            params_override = os.path.join(tmp_dir, 'parameters.json')
+            mech_override   = tmp_dir
+            with open(params_override, 'w') as fp:
+                json.dump(v1, fp, indent=3)
+            with open(os.path.join(tmp_dir, 'mechanisms.json'), 'w') as fp:
+                json.dump(m1, fp, indent=3)
+            print(f'v1 parameters written to {params_override}')
+
+        # ── models-file normalisation (THIN format / section-name mapping) ────
+        actual_opt_res = opt_res or f'{source_path}/best_models.json'
+        if os.path.exists(actual_opt_res):
+            models = _load_and_normalize_models(actual_opt_res)
+            if models is not None:
+                if tmp_dir is None:
+                    tmp_dir = tempfile.mkdtemp(prefix='simple_transfer_')
+                models_override = os.path.join(tmp_dir, 'models_normalized.json')
+                with open(models_override, 'w') as fp:
+                    json.dump(models, fp, indent=4)
+                print(f'Normalised {len(models)} model(s) written to {models_override}')
+
+        strans.SimpleTransfer(
+            source_path,
+            new_cell_path,
+            optimisation_result_file=models_override or opt_res,
+            parameters_path_folder=params_override,
+            mechanisms_path_folder=mech_override,
+            selected=selected,
+            selected_models=selected_models,
+        )
+
+    finally:
+        if tmp_dir:
+            shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
 def transfer_all(source_path, new_celltype_path, clean=False):
