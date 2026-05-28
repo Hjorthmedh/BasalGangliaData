@@ -6,7 +6,7 @@ TITLE Glutamatergic synapse with short-term plasticity (stp)
 					    
 NEURON {
     THREADSAFE
-    POINT_PROCESS tmGlutPlast
+    POINT_PROCESS tmGlutPlastAcc
     RANGE tau1_ampa, tau2_ampa, tau1_nmda, tau2_nmda
     RANGE g_ampa, g_nmda, i_ampa, i_nmda, nmda_ratio
     RANGE e, g, i, q, mg
@@ -21,9 +21,8 @@ NEURON {
     RANGE mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_hill
     RANGE modulation_factor_ampa, modulation_factor_nmda, modulation_factor_fail
 
-    RANGE mod_psub_g_ampa_min, mod_psub_g_ampa_max, mod_psub_g_ampa_half, mod_psub_g_ampa_hill
-    RANGE mod_psub_fail_min, mod_psub_fail_max, mod_psub_fail_half, mod_psub_fail_hill   
 
+    RANGE ltp_decay_tau, ltp_onset_tau, ltp_accumulated, ltp_psub_threshold, ltp_max									 
 									 
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
@@ -66,16 +65,10 @@ PARAMETER {
     mod_da_g_nmda_hill = 1 (1)
 
     : Order reversed for fail in hill function, assuming failure decreases for increased psubstrate			
-    mod_psub_fail_min = 1 (1)
-    mod_psub_fail_max = 1 (1)
-    mod_psub_fail_half = 0.000100 (mM)
-    mod_psub_fail_hill = 1 (1)
-
-    mod_psub_g_ampa_min = 1 (1)
-    mod_psub_g_ampa_max = 1 (1)
-    mod_psub_g_ampa_half = 0.000100 (mM)
-    mod_psub_g_ampa_hill = 1 (1)
-
+    ltp_decay_tau = 100000000 (ms) : 10e5 seconds, guestimate
+    ltp_onset_tau = 10000 (ms)      : 10 s
+    ltp_psub_threshold = 0.0013 (mM)					      
+    ltp_max = 0			   
 			      
     failRate = 0 (1) <0,1>
     use_stp = 1     : to turn of use_stp -> use 0
@@ -101,6 +94,7 @@ ASSIGNED {
     modulation_factor_ampa (1)
     modulation_factor_nmda (1)
     modulation_factor_fail (1)
+
 }
 
 STATE {
@@ -108,6 +102,8 @@ STATE {
     B_ampa (uS)
     A_nmda (uS)
     B_nmda (uS)
+
+    ltp_accumulated (1)
 }
 
 INITIAL {
@@ -124,18 +120,21 @@ INITIAL {
     tp_nmda = (tau1_nmda*tau2_nmda)/(tau2_nmda-tau1_nmda) * log(tau2_nmda/tau1_nmda)
     factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda)
     factor_nmda = 1/factor_nmda
+
+    ltp_accumulated = 0			 
 }
 
 BREAKPOINT {
     LOCAL itot_nmda, itot_ampa, mggate
     SOLVE state METHOD cnexp
 
-    modulation_factor_ampa=hill(DAi, mod_da_g_ampa_min, mod_da_g_ampa_max, mod_da_g_ampa_half, mod_da_g_ampa_hill) * hill(pSubstratei, mod_psub_g_ampa_min, mod_psub_g_ampa_max, mod_psub_g_ampa_half, mod_psub_g_ampa_hill)			       
+    modulation_factor_ampa=hill(DAi, mod_da_g_ampa_min, mod_da_g_ampa_max, mod_da_g_ampa_half, mod_da_g_ampa_hill) * (1 + ltp_accumulated)
+
     modulation_factor_nmda=hill(DAi, mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_hill)
 
     : Order of min and max parameters reversed, to get decreasing function instead.			       
-    modulation_factor_fail=hill(pSubstratei, mod_psub_fail_max, mod_psub_fail_min, mod_psub_fail_half, mod_psub_fail_hill)
-
+    modulation_factor_fail=fmax(1-ltp_accumulated, 0)
+			       
     : NMDA
     mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
     g_nmda    = (B_nmda - A_nmda) * modulation_factor_nmda
@@ -163,6 +162,25 @@ DERIVATIVE state {
     B_ampa' = -B_ampa/tau2_ampa
     A_nmda' = -A_nmda/tau1_nmda
     B_nmda' = -B_nmda/tau2_nmda
+
+    : max to get threshold, min to limit maximal speed
+    ltp_accumulated' = (ltp_max - ltp_accumulated) * fmin(1, fmax((pSubstratei - ltp_psub_threshold)/ltp_psub_threshold, 0)) / ltp_onset_tau - ltp_accumulated/ltp_decay_tau			   
+}
+
+FUNCTION fmax(a, b) {
+    if (a > b) {
+        fmax = a
+    } else {
+        fmax = b
+    }
+}
+
+FUNCTION fmin(a, b) {
+    if (a < b) {
+        fmin = a
+    } else {
+        fmin = b
+    }
 }
 
 NET_RECEIVE(weight (uS), y, z, u, tsyn (ms)) {
