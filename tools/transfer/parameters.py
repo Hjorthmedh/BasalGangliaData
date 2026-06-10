@@ -131,14 +131,26 @@ def combine_hall_of_fame_with_optimisation_parameters(source=None, destination=N
         with open(os.path.join(destination, "temp", "selected_models.json"), "r") as f:
             selected = json.load(f)
 
-        # Filter the parameter sets which were parameter ids were finally selected
-        hall_of_fame_sets = [hall_of_fame_sets[int(k)] for k in selected.keys()]
+        sorted_par_keys = sorted(selected.keys(), key=lambda x: int(x))
+        max_par_index = max(int(k) for k in sorted_par_keys)
+
+        if max_par_index < len(hall_of_fame_sets):
+            # Par values are valid indices into hall_of_fame — filter to selected models
+            hall_of_fame_sets = [hall_of_fame_sets[int(k)] for k in sorted_par_keys]
+        # else: hall_of_fame was already pre-filtered to exactly the selected models;
+        # use positional mapping (i-th sorted par key → i-th hall_of_fame entry)
 
     '''
     Combination of parameter set and hall of fame parameters
     '''
 
     combined_parameters = combine_hall_of_fame_parameters(parameter_set, hall_of_fame_sets)
+
+    # Remap sequential keys (0,1,2,...) back to the original par indices from val_models.json
+    # so write_meta can match against selected_models.json
+    if isinstance(selected, dict):
+        orig_keys = sorted(selected.keys(), key=lambda x: int(x))
+        combined_parameters = {orig_keys[i]: v for i, v in enumerate(combined_parameters.values())}
 
     save_parameter_set(parameter_set=combined_parameters,
                        destination=temp_dir)
