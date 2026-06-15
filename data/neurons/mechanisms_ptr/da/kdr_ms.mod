@@ -3,7 +3,7 @@ TITLE Fast delayed rectifier potassium current (Kv3.1/3.2)
 NEURON {
     SUFFIX kdr_ms
     USEION k READ ek WRITE ik
-    RANGE gbar, gk, ik
+    RANGE gbar, gk, ik, q
 }
 
 UNITS {

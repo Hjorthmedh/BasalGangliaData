@@ -67,14 +67,15 @@ class SimpleTransfer:
 
     def transfer(self):
 
-
         transfer_mechanisms(source=self.source, direct_path=self.mechanisms_path_folder,
                             destination=self.destination)
-        transfer_parameters(direct_path_param=self.parameters_path_folder,
-                            direct_path_best_models=self.optimisation_result_file, destination=self.destination)
 
         if self.selected:
             transfer_selected_models(source=self.source, destination=self.destination, direc_path_selected=self.selected_models)
+
+        transfer_parameters(direct_path_param=self.parameters_path_folder,
+                            direct_path_best_models=self.optimisation_result_file, destination=self.destination,
+                            selected=self.selected)
 
         transfer_morphologies(direct_path_morph=self.morphology_path_folder,
                               destination=self.destination, selected=self.selected)
