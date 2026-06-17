@@ -1,1583 +1,1583 @@
 {
-  "p047a6bb7": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    "p047a6bb7": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 19,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p08df4357": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p08df4357": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 29,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p116c624b": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p116c624b": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 22,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p133df8e0": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p133df8e0": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 36,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p1cd5defe": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p1cd5defe": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 31,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p238d51d1": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p238d51d1": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 28,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p266c7fb8": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p266c7fb8": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 15,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p272f9557": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p272f9557": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 25,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p295c50fd": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p295c50fd": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 39,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p2ecc7334": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p2ecc7334": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 19,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3011abd8": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3011abd8": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 38,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3762fe01": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3762fe01": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 23,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3832aa3a": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3832aa3a": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 28,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3900bef0": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3900bef0": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 29,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3c6b5232": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3c6b5232": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 23,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3f21fd29": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3f21fd29": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 16,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p3f9dfe00": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p3f9dfe00": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 26,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p413c8889": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p413c8889": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 30,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p426a988e": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p426a988e": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 26,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p47d379ce": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p47d379ce": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 18,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p4d93b0c3": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p4d93b0c3": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 17,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p53b70df2": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p53b70df2": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 30,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p54dfea77": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p54dfea77": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 20,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p607c0a42": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p607c0a42": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 17,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p664ecb6e": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p664ecb6e": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 13,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p70874b2a": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p70874b2a": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 12,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p733ec61e": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p733ec61e": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 20,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p793a3d75": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p793a3d75": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 21,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p7e8d7d6f": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p7e8d7d6f": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 32,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p881c7f54": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p881c7f54": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 26,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p8b1585a0": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p8b1585a0": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 22,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p8bcdee47": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p8bcdee47": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 24,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p973cbb84": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p973cbb84": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 13,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "p9f9c331a": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "p9f9c331a": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 12,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "paf75a0ec": {
-    "m265f1bc4": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "paf75a0ec": {
+        "m265f1bc4": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var4.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 14,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var4.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pb5a5193d": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pb5a5193d": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 31,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pb7358f32": {
-    "mf4ba6a4e": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pb7358f32": {
+        "mf4ba6a4e": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 24,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var7.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pb823efb9": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pb823efb9": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 16,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pb8351fef": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pb8351fef": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 18,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pbae91695": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pbae91695": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 24,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pbd0a2290": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pbd0a2290": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 23,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pc2d8a8e6": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pc2d8a8e6": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 28,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pcec5cf27": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pcec5cf27": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 22,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pd2ca4eaf": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pd2ca4eaf": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 28,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pdc4da746": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pdc4da746": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 38,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pdd9466e2": {
-    "m8ded5e00": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pdd9466e2": {
+        "m8ded5e00": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 16,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var3.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pe268b744": {
-    "m872fbb26": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pe268b744": {
+        "m872fbb26": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 28,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var5.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pe2b0b6c2": {
-    "ma4dacccf": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pe2b0b6c2": {
+        "ma4dacccf": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 22,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var1.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pe5eef847": {
-    "mda52699c": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pe5eef847": {
+        "mda52699c": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 21,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var2.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pfa505758": {
-    "m803558b5": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pfa505758": {
+        "m803558b5": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 22,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var0.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
-    }
-  },
-  "pfddd6423": {
-    "m265f1bc4": {
-      "input": {
-        "cortical_background": {
-          "conductance": 5e-10,
-          "frequency": 1.0,
-          "generator": "poisson",
-          "jitter": 0.0,
-          "mod_file": "tmGlut",
-          "num_inputs": 21,
-          "parameter_file": "$SNUDDA_DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json",
-          "correlation": 0.0,
-          "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
-          "type": "AMPA_NMDA"
+    },
+    "pfddd6423": {
+        "m265f1bc4": {
+            "morphology": "lts_morp_9862_centered_no_axon_resampled-var4.swc",
+            "axon_density": [
+                "xyz",
+                "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
+                [
+                    -0.0002,
+                    0.0009,
+                    -0.0001,
+                    0.0001,
+                    -3e-05,
+                    3e-05
+                ]
+            ],
+            "input": {
+                "cortical": {
+                    "generator": "poisson",
+                    "type": "AMPA_NMDA",
+                    "synapse_density": "1.15*0.05/(1+exp(-(d-30e-6)/5e-6))",
+                    "num_inputs": 31,
+                    "frequency": 0.0,
+                    "correlation": 0.0,
+                    "jitter": 0.0,
+                    "conductance": 1e-10,
+                    "mod_file": "tmGlut",
+                    "parameter_file": "$DATA/synapses/striatum/M1RH_Analysis_190925.h5-parameters-LTS.json"
+                }
+            }
         }
-      },
-      "morphology": "lts_morp_9862_centered_no_axon_resampled-var4.swc",
-      "axon_density": [
-        "xyz",
-        "12*3000*1e12*( 0.25*exp(-(((x-200e-6)/100e-6)**2 + ((y-0)/50e-6)**2 + ((z-0)/30e-6)**2)) + 1*exp(-(((x-300e-6)/300e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/10e-6)**2)) + 1*exp(-(((x-700e-6)/100e-6)**2 + ((y-0)/15e-6)**2 + ((z-0)/15e-6)**2)) )",
-        [
-          -0.0002,
-          0.0009,
-          -0.0001,
-          0.0001,
-          -3e-05,
-          3e-05
-        ]
-      ]
     }
-  }
 }
