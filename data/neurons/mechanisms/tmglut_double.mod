@@ -65,25 +65,27 @@ PARAMETER {
     failRate = 0
     use_stp = 1     : to turn of use_stp -> use 0
 
-    tau1_ampa      (ms)
-    tau2_ampa      (ms)
-    tau3_ampa      (ms)
-    I2_ampa
-    I3_ampa
-    tpeak_ampa     (ms)
-    factor_ampa
-    tau1_nmda      (ms)
-    tau2_nmda      (ms)
-    tau3_nmda      (ms)
-    I2_nmda
-    I3_nmda
-    tpeak_nmda     (ms)
-    factor_nmda
-    nmda_ratio
-
-
-
-
+    : Static, pre-scaled-at-35 degC defaults (Q10=1.7) ported from szmod's
+    : validate_synapse/ pipeline (github.com/Hjorthmedh/szmod, branch
+    : feature/tmglut-double-tau-fit) -- see COMMENT block below for the fit
+    : + Q10 derivation. Static rather than celsius-computed at INITIAL time:
+    : see tmglut.mod's 2019-06-05 note for the reinitialise() drift bug a
+    : dynamic version would risk reintroducing.
+    tau1_ampa = 0.846816 (ms)    : 22 degC: 1.688 ms
+    tau2_ampa = 1.727243 (ms)    : 22 degC: 3.443 ms
+    tau3_ampa = 8.636215 (ms)    : 22 degC: 17.215 ms (inert, I3_ampa=0)
+    I2_ampa = 1
+    I3_ampa = 0
+    tpeak_ampa = 1.184174 (ms)
+    factor_ampa = 3.894093
+    tau1_nmda = 4.480124 (ms)    : 22 degC: 8.930 ms
+    tau2_nmda = 32.086260 (ms)   : 22 degC: 63.959 ms
+    tau3_nmda = 401.444439 (ms)  : 22 degC: 800.219 ms
+    I2_nmda = 1
+    I3_nmda = 0.159
+    tpeak_nmda = 10.930500 (ms)
+    factor_nmda = 1.307173
+    nmda_ratio = 0.5 (1)
 }
 
 ASSIGNED {
@@ -233,6 +235,40 @@ FUNCTION hill(conc (mM),  mod_min (1), mod_max (1), half_activation (mM), hill_c
 
 
 COMMENT
+(2026-06-24) AMPA/NMDA time constants for the triple-exponential kernel
+ported from the szmod project's validate_synapse/ pipeline
+(github.com/Hjorthmedh/szmod, branch feature/tmglut-double-tau-fit), fit
+using the same joint Nelder-Mead procedure described in tmglut.mod's
+COMMENT block (8 szmod WT SPN models, full distance-stratified dendrite
+set averaged every iteration). Only the PARAMETER defaults below and
+this note were added -- the DA/ACh modulation formalism and everything
+else here are unchanged. tau1/2/3, I2/I3, factor, and tpeak previously
+had no defaults at all (had to be set externally before every run, see
+the 2020-09 note below); they now have static, pre-scaled-at-35 degC
+defaults, same convention as tmglut.mod.
+
+AMPA: a regularized 4-param fit (tau1, tau2, tau3, I3_ampa; I2_ampa=1
+fixed) against the same targets tmglut.mod uses (Ding et al. 2008 CS/TS
+Table 1 midpoint: t10-90=2.1 ms, tau2=4.74 ms) converged to I3_ampa ~
+0.0075 -- negligible -- confirming AMPA decay does not need the 3rd
+exponential. tau1_ampa/tau2_ampa from that fit converge to the same
+values as tmglut.mod's own 2-exponential fit, since with I3=0 the two
+mechanisms' AMPA kernels are mathematically identical:
+	tau1_ampa = 1.688 ms,  tau2_ampa = 3.443 ms,  I2_ampa = 1,  I3_ampa = 0
+	(tau3_ampa is then inert; any value > tau1_ampa works, e.g. 5*tau2_ampa)
+
+NMDA: Chapman et al. 2003 NMDA decay genuinely is biexponential
+(digitised -70 mV trace: tau_fast=71.5 ms, tau_slow=861.9 ms,
+fast-amplitude-fraction=0.811), so this fit a real 4-param triexponential
+model (tau1_nmda ~ rise, tau2_nmda ~ fast decay, tau3_nmda ~ slow decay,
+I3_nmda = slow:fast amplitude ratio; I2_nmda=1 fixed) against rise +
+tau_fast + tau_slow + amp_fast_frac targets:
+	tau1_nmda = 8.930 ms,  tau2_nmda = 63.959 ms,  tau3_nmda = 800.22 ms,
+	I2_nmda = 1,  I3_nmda = 0.159
+	-> full-stratified validation (longer simlen for an accurate slow-tau
+	read): rise=12.13 ms, tau_fast=70.9 ms, tau_slow=833.2 ms,
+	amp_fast_frac=0.807 (targets: 12.13 / 71.5 / 861.9 / 0.811)
+
 (2025-11-03) Switched to new modulation formalism, in line with new tmglut.mod
 
 (2025-10-08) NEURON 9.0+ compatibility. Replaced scop_random with the
