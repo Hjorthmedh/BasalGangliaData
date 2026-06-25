@@ -65,27 +65,31 @@ PARAMETER {
     failRate = 0
     use_stp = 1     : to turn of use_stp -> use 0
 
-    : Static, pre-scaled-at-35 degC defaults (Q10=1.7) ported from szmod's
-    : validate_synapse/ pipeline (github.com/Hjorthmedh/szmod, branch
-    : feature/tmglut-double-tau-fit) -- see COMMENT block below for the fit
-    : + Q10 derivation. Static rather than celsius-computed at INITIAL time:
-    : see tmglut.mod's 2019-06-05 note for the reinitialise() drift bug a
-    : dynamic version would risk reintroducing.
-    tau1_ampa = 0.846816 (ms)    : 22 degC: 1.688 ms
-    tau2_ampa = 1.727243 (ms)    : 22 degC: 3.443 ms
-    tau3_ampa = 8.636215 (ms)    : 22 degC: 17.215 ms (inert, I3_ampa=0)
-    I2_ampa = 1
-    I3_ampa = 0
-    tpeak_ampa = 1.184174 (ms)
-    factor_ampa = 3.894093
-    tau1_nmda = 4.480124 (ms)    : 22 degC: 8.930 ms
-    tau2_nmda = 32.086260 (ms)   : 22 degC: 63.959 ms
-    tau3_nmda = 401.444439 (ms)  : 22 degC: 800.219 ms
-    I2_nmda = 1
-    I3_nmda = 0.159
-    tpeak_nmda = 10.930500 (ms)
-    factor_nmda = 1.307173
-    nmda_ratio = 0.5 (1)
+    : No PARAMETER defaults here by design -- tau1/2/3, I2/I3, tpeak, factor
+    : (per receptor type) and nmda_ratio are set externally, per pathway,
+    : from JSON config (see ../../synapses/striatum/tmGlut_double_config/
+    : for pathway-specific fits, and ../../synapses/striatum/
+    : tmGlut_double-default.json for the generic default -- see COMMENT
+    : block below for the fit + Q10 derivation behind that default).
+    tau1_ampa      (ms)
+    tau2_ampa      (ms)
+    tau3_ampa      (ms)
+    I2_ampa
+    I3_ampa
+    tpeak_ampa     (ms)
+    factor_ampa
+    tau1_nmda      (ms)
+    tau2_nmda      (ms)
+    tau3_nmda      (ms)
+    I2_nmda
+    I3_nmda
+    tpeak_nmda     (ms)
+    factor_nmda
+    nmda_ratio
+
+
+
+
 }
 
 ASSIGNED {
@@ -235,17 +239,33 @@ FUNCTION hill(conc (mM),  mod_min (1), mod_max (1), half_activation (mM), hill_c
 
 
 COMMENT
+(2026-06-25) Per Johannes's direction, moved the AMPA/NMDA default
+tau1/2/3, I2/I3, factor, and tpeak values (added below on 2026-06-24,
+see that note) out of PARAMETER and into an external JSON config
+instead: ../../synapses/striatum/tmGlut_double-default.json, alongside
+the existing per-pathway configs in
+../../synapses/striatum/tmGlut_double_config/. PARAMETER itself is back
+to its original bare-declaration state (these RANGE vars are set
+externally, per the 2020-09 note below). The numbers themselves, and the
+fit they came from, are unchanged from the 2026-06-24 note -- only where
+they live changed. NMDA values in that JSON were originally fit against
+digitisation-derived targets later found inconsistent with Chapman et
+al. 2003's own reported decay components; both the JSON and the note
+below have since been updated with a corrected refit against the paper's
+actual values (szmod validate_synapse/optimize_double_joint.py).
+
 (2026-06-24) AMPA/NMDA time constants for the triple-exponential kernel
 ported from the szmod project's validate_synapse/ pipeline
 (github.com/Hjorthmedh/szmod, branch feature/tmglut-double-tau-fit), fit
 using the same joint Nelder-Mead procedure described in tmglut.mod's
 COMMENT block (8 szmod WT SPN models, full distance-stratified dendrite
-set averaged every iteration). Only the PARAMETER defaults below and
-this note were added -- the DA/ACh modulation formalism and everything
-else here are unchanged. tau1/2/3, I2/I3, factor, and tpeak previously
-had no defaults at all (had to be set externally before every run, see
-the 2020-09 note below); they now have static, pre-scaled-at-35 degC
-defaults, same convention as tmglut.mod.
+set averaged every iteration). Only the PARAMETER defaults (since moved
+to JSON, see the 2026-06-25 note above) and this note were added -- the
+DA/ACh modulation formalism and everything else here are unchanged.
+tau1/2/3, I2/I3, factor, and tpeak previously had no defaults at all (had
+to be set externally before every run, see the 2020-09 note below); they
+now have static, pre-scaled-at-35 degC default values, same convention as
+tmglut.mod (just sourced from JSON rather than PARAMETER).
 
 AMPA: a regularized 4-param fit (tau1, tau2, tau3, I3_ampa; I2_ampa=1
 fixed) against the same targets tmglut.mod uses (Ding et al. 2008 CS/TS
@@ -257,17 +277,37 @@ mechanisms' AMPA kernels are mathematically identical:
 	tau1_ampa = 1.688 ms,  tau2_ampa = 3.443 ms,  I2_ampa = 1,  I3_ampa = 0
 	(tau3_ampa is then inert; any value > tau1_ampa works, e.g. 5*tau2_ampa)
 
-NMDA: Chapman et al. 2003 NMDA decay genuinely is biexponential
-(digitised -70 mV trace: tau_fast=71.5 ms, tau_slow=861.9 ms,
-fast-amplitude-fraction=0.811), so this fit a real 4-param triexponential
-model (tau1_nmda ~ rise, tau2_nmda ~ fast decay, tau3_nmda ~ slow decay,
-I3_nmda = slow:fast amplitude ratio; I2_nmda=1 fixed) against rise +
-tau_fast + tau_slow + amp_fast_frac targets:
-	tau1_nmda = 8.930 ms,  tau2_nmda = 63.959 ms,  tau3_nmda = 800.22 ms,
-	I2_nmda = 1,  I3_nmda = 0.159
+This isn't just an artifact of the single-decay-tau AMPA target giving
+the optimizer nothing to fit a 2nd exponential to: szmod's
+validate_synapse/Experimental_traces/fit_ding2008_ampa_biexp.py fits a
+free biexponential directly to each of Ding et al. 2008's individual
+digitised quantal AMPA traces (5 cortical + 6 thalamic) and finds no
+stable second time constant -- 9/11 fits degenerate (the two taus
+collapse together, or one amplitude fraction collapses to ~0/~1); the
+2 that don't either hit the fit's upper bound (clearly fitting
+digitisation noise) or carry ~0% of the amplitude in the "slow"
+component anyway. Contrast with Chapman et al. 2003's NMDA traces below,
+where the same free-fit procedure lands on a stable, consistent fast/slow
+split across cells. AMPA decay genuinely looks monoexponential at the
+single-trace level, not just at the population-mean level the 4.74ms
+target was built from.
+
+NMDA: Chapman et al. 2003 NMDA decay genuinely is biexponential. Fit
+against rise + tau_fast + tau_slow + amp_fast_frac targets taken
+directly from the paper's own reported decay components (not from a
+digitised-trace re-fit -- an earlier version of this fit used
+tau_fast=71.5ms/tau_slow=861.9ms/fast_frac=0.811 derived that way, found
+inconsistent with the paper's own values and superseded; see git history
+if needed):
+	targets: rise=12.13 ms, tau_fast=48.0 ms, tau_slow=324.0 ms, amp_fast_frac=0.34
+	(fast=48+-6 ms, slow=324+-37 ms, fast-amplitude-fraction=0.34+-0.03)
+
+Fit (22 degC reference, joint Nelder-Mead, full-stratified, 8 models):
+	tau1_nmda = 8.566 ms,  tau2_nmda = 40.336 ms,  tau3_nmda = 315.954 ms,
+	I2_nmda = 1,  I3_nmda = 0.9538
 	-> full-stratified validation (longer simlen for an accurate slow-tau
-	read): rise=12.13 ms, tau_fast=70.9 ms, tau_slow=833.2 ms,
-	amp_fast_frac=0.807 (targets: 12.13 / 71.5 / 861.9 / 0.811)
+	read): rise=12.13 ms, tau_fast=47.8 ms, tau_slow=323.4 ms,
+	amp_fast_frac=0.339 (targets: 12.13 / 48.0 / 324.0 / 0.34)
 
 (2025-11-03) Switched to new modulation formalism, in line with new tmglut.mod
 

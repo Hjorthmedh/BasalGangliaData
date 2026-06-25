@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "description": "Generic default tmGlut_double parameters, used when no pathway-specific config from tmGlut_double_config/ applies. 35 degC, Q10=1.7-scaled from a 22 degC joint Nelder-Mead fit across 8 szmod WT SPN models. See tmglut_double.mod's COMMENT block (2026-06-24/2026-06-25 entries) for the fit and Q10 derivation.",
+    "source": "github.com/Hjorthmedh/szmod, branch feature/tmglut-double-tau-fit, validate_synapse/best_tau_ampa_double_joint.json + best_tau_nmda_double_joint.json"
+  },
+  "data": {
+    "tau1_ampa": 0.846816,
+    "tau2_ampa": 1.727243,
+    "tau3_ampa": 8.636215,
+    "I2_ampa": 1,
+    "I3_ampa": 0,
+    "tpeak_ampa": 1.184174,
+    "factor_ampa": 3.894093,
+    "tau1_nmda": 4.297326,
+    "tau2_nmda": 20.235352,
+    "tau3_nmda": 158.503975,
+    "I2_nmda": 1,
+    "I3_nmda": 0.953788,
+    "tpeak_nmda": 11.128153,
+    "factor_nmda": 0.757881,
+    "nmda_ratio": 0.5
+  }
+}
