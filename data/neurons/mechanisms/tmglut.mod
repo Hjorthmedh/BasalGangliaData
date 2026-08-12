@@ -30,11 +30,19 @@ UNITS {
 }
 
 PARAMETER {
-    : q = 2 --- We have manually corrected these
-    tau1_ampa= 1.1 (ms)     : ORIG 2.2, ampa same as in Wolf? not same as in Du et al 2017 (and glutamate.mod)
-    tau2_ampa = 5.75 (ms)  : ORIG 11.5 ms,  tau2 > tau1
-    tau1_nmda= 2.76  (ms)    : ORIG 5.52 ms Chapman et al 2003; table 1, adult rat (rise time, rt = 12.13. rt ~= 2.197*tau (wiki;rise time) -> tau = 12.13 / 2.197 ~= 5.52
-    tau2_nmda = 115.5 (ms)   : ORIG 231 ms, Chapman et al 2003; table 1, adult rat
+    : Temperature correction: tau(T_sim) = tau(T_ref) / Q10^((T_sim - T_ref) / 10)
+    : Q10 = 1.7, T_ref = 22 degC (experiments), T_sim = 35 degC (simulation)
+    : factor = 1.7^((35-22)/10) = 1.7^1.3 = 1.993
+    : 22 degC values from joint Nelder-Mead optimisation across 8 szmod WT SPN models
+    : (Ding et al. 2008 AMPA targets; Chapman et al. 2003 NMDA targets) -- ported
+    : from szmod's validate_synapse/ pipeline, see COMMENT block below.
+    : Q10 lowered from the standard 2.4 to 1.7 (slower than canonical scaling) so the
+    : simulated EPSP 20-80% rise time and decay shape approximately match the example
+    : EPSPs in Johansson & Silberberg (2020) Fig. S2E (M1 cortical input onto dSPN/iSPN).
+    tau1_ampa = 0.847 (ms)   : 22 degC: 1.688 ms
+    tau2_ampa = 1.727 (ms)   : 22 degC: 3.443 ms
+    tau1_nmda = 3.365 (ms)   : 22 degC: 6.708 ms
+    tau2_nmda = 111.45 (ms)  : 22 degC: 222.15 ms
     nmda_ratio = 0.5 (1)
     e = 0 (mV)
     tau = 3 (ms)
@@ -117,7 +125,10 @@ BREAKPOINT {
     modulation_factor_nmda=hill(DAi, mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_hill)
     modulation_factor_fail=hill(DAi, mod_da_fail_min, mod_da_fail_max, mod_da_fail_half, mod_da_fail_hill)
     : NMDA
-    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 3.57 (mM)))
+    : -mggate: 	Ecker et al. (2020): ~5 mV LJP correction to Jahr & Stevens (1990)
+	: 	Mg block (3.57 -> 2.62 mM), consistent with the CsCl-based J&S
+	: 	recording solutions and smaller than typical gluconate-based LJPs.
+    mggate    = 1 / (1 + exp(-0.062 (/mV) * v) * (mg / 2.62 (mM)))
     g_nmda    = (B_nmda - A_nmda) * modulation_factor_nmda
     itot_nmda = g_nmda * (v - e) * mggate
     ical_nmda = ca_ratio_nmda*itot_nmda
@@ -208,6 +219,79 @@ FUNCTION hill(conc (mM),  mod_min (1), mod_max (1), half_activation (mM), hill_c
 
 
 COMMENT
+(2026-06-24) AMPA/NMDA time constants, Q10 temperature scaling, and the
+NMDA Mg-block LJP correction below ported from the szmod project's
+validate_synapse/ pipeline (github.com/Hjorthmedh/szmod, branch
+validate-synapse-szmod), replacing the previous
+tau1_ampa=1.1/tau2_ampa=5.75/tau1_nmda=2.76/tau2_nmda=115.5 ms defaults
+and the mg=3.57 (un-LJP-corrected) Mg-block constant (now 2.62 mM,
+matching tmglut_double.mod here, which already had this correction --
+see Ecker et al. 2020 note at the mggate line below). Only those four
+tau values, the mg constant, and this note were touched -- the DA/ACh
+modulation formalism and everything else below are unchanged.
+
+Experimental references:
+
+AMPA: Ding, Peterson and Surmeier 2008. https://doi.org/10.1523/JNEUROSCI.0435-08.2008
+	Corticostriatal and Thalamostriatal Synapses Have Distinctive Properties
+	(mouse)
+NMDA: Chapman, Keefe and Wilcox 2003. DOI: 10.1152/jn.00342.2002
+	Evidence for Functionally Distinct Synaptic NMDA Receptors in Ventromedial Versus Dorsolateral Striatum
+	(rat)
+
+Optimization procedure:
+	Targets were the mean 10-90% rise time and the monoexponential decay time constant (tau2)
+	averaged over all dendritic sections in each model, simulated under voltage clamp at -70 mV
+	with Na/K conductances (naf, kaf, kas, kdr, kir, bk, sk, Im) set to zero to match
+	pharmacological block conditions in the experiments.
+
+	AMPA targets (Ding et al. 2008, their Table 1 / Fig. 2, room temp, corticostriatal):
+		t10-90 = 2.1 ms,  tau2 = 4.74 ms
+	NMDA targets (Chapman et al. 2003, their Table 1, room temp, dorsal striatum):
+		t10-90 = 12.13 ms, tau2 = 231.0 ms
+
+	The AMPA decay target was originally taken as 4.8 ms (Ding et al. 2008's
+	corticostriatal value alone); it was corrected to 4.74 ms -- the actual
+	mean of Table 1's corticostriatal (4.80 ms) and thalamostriatal (4.67 ms)
+	decay values -- and the AMPA fit below re-run accordingly. The rise-time
+	target (2.1 ms) was already the correct corticostriatal/thalamostriatal
+	mean and is unchanged. NMDA targets/fit are unaffected by this correction.
+
+	A joint Nelder-Mead optimization (scipy.optimize.minimize) was run simultaneously
+	across all 8 szmod WT SPN models (4 dSPN + 4 iSPN). One persistent worker process
+	per model held the cell loaded throughout; the optimizer dispatched (tau1, tau2) pairs
+	to all 8 workers each iteration and minimized the sum of squared relative errors in
+	mean t10-90 and mean tau2 across all models. A distance-stratified dendritic subset
+	(~15 sections per model, 97 total) was used for speed.
+
+	Optimization gave (22 degC, reference temperature of experiments):
+		tau1_ampa = 1.688 ms
+		tau2_ampa = 3.443 ms
+		tau1_nmda = 6.708 ms
+		tau2_nmda = 222.15 ms
+
+Kinetics were also adjusted for temperature, using a standard approximation for channel/synapse kinetics (Q10 model):
+
+	tau(T) = tau(tref) / q10^((celsius - tref)/10)
+
+	See e.g. Hille "Ion Channels of Excitable Membranes" (3rd ed., 2001),
+	or https://link.springer.com/rwe/10.1007/978-1-4614-7320-6_236-1
+
+	The canonical Q10 ~ 2.4 gave a 35 degC EPSP that rose and decayed too fast
+	compared to example EPSPs in Johansson & Silberberg (2020) Fig. S2E
+	(cortical M1 input onto striatal dSPN/iSPN, similar recording
+	temperature/protocol to this model). Q10=1.7 was instead chosen
+	empirically (single- and multi-synapse current-clamp simulations, see
+	szmod's validate_synapse/compare_tmglut.py and Experimental_traces/m1_spn.json)
+	to approximately match the 20-80% EPSP rise time and the early decay
+	shape of those example traces; it is not an independently measured value.
+
+	-> factor = 1.7^((35-22)/10) = 1.7^1.3 = 1.993
+	   tau1_ampa = 1.688 / 1.993 = 0.847 ms
+	   tau2_ampa = 3.443 / 1.993 = 1.727 ms
+	   tau1_nmda = 6.708 / 1.993 = 3.365 ms
+	   tau2_nmda = 222.15 / 1.993 = 111.45 ms
+
 (2025-10-08) NEURON 9.0+ compatibility. Replaced scop_random with the
 new RANDOM keyword.
 See: https://nrn.readthedocs.io/en/latest/nmodl/language/nmodl_neuron_extension.html#random
