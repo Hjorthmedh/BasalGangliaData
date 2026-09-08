@@ -1,5 +1,30 @@
 {
     "FS,FS": {
+        "GABA": {
+            "conductance": [
+                1.1e-09,
+                0.5e-09
+            ],
+            "channel_parameters": {
+                "tau1": [
+                    0.00133,
+                    1000.0
+                ],
+                "tau2": [
+                    0.0057,
+                    1000.0
+                ],
+                "mod_file": "tmGabaA"
+            },
+            "cluster_size": 1,
+            "cluster_spread": null,
+            "pruning": {
+                "soft_max": 6.487,
+                "mu2": 4.5421,
+                "a3": 0.5
+            }
+        },
+	
         "gap_junction": {
             "conductance": [
                 5e-10,
@@ -531,9 +556,9 @@
                 "mod_file": "tmGabaA"
 	    },
             "pruning": {
-                "soft_max": 2.1833,
-                "mu2": 0.9946,
-                "a3": 0.4167
+                "soft_max": 1.8628,
+                "mu2": 0.9198,
+                "a3": 0.2874
             },
             "conductance": [
                 0.5e-10,
@@ -567,9 +592,9 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "soft_max": 2,
-                "mu2": 0.609,
-                "a3": 1.0
+                "soft_max": 1.9707,
+                "mu2": 0.7136,
+                "a3": 0.9093
             },
             "conductance": [
                 0.5e-09,
@@ -603,9 +628,9 @@
                 "mod_file": "tmGabaA"
             },
             "pruning": {
-                "soft_max": 2,
-                "mu2": 0.8158,
-                "a3": 0.9999
+                "soft_max": 2.2401,
+                "mu2": 0.6984,
+                "a3": 0.9421
             },
             "conductance": [
                 0.5e-09,
