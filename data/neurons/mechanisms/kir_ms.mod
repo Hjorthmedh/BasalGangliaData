@@ -57,6 +57,7 @@ DERIVATIVE states {
 }
 
 INITIAL {
+    modulation_factor=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)
     rates()
     m = minf
 }
