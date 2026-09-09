@@ -62,6 +62,8 @@ BREAKPOINT {
 }
 
 INITIAL {
+    modulation_factor=hill(PKAci, mod_pka_p_min, mod_pka_p_max, mod_pka_p_half, mod_pka_p_hill)
+    modulation_factor2=hill(PKAci, mod_pka_p2_min, mod_pka_p2_max, mod_pka_p2_half, mod_pka_p2_hill)
     rates()
     m = minf
 }
