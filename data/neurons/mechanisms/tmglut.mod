@@ -115,6 +115,10 @@ INITIAL {
     tp_nmda = (tau1_nmda*tau2_nmda)/(tau2_nmda-tau1_nmda) * log(tau2_nmda/tau1_nmda)
     factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda)
     factor_nmda = 1/factor_nmda
+
+    modulation_factor_ampa=hill(DAi, mod_da_g_ampa_min, mod_da_g_ampa_max, mod_da_g_ampa_half, mod_da_g_ampa_hill)
+    modulation_factor_nmda=hill(DAi, mod_da_g_nmda_min, mod_da_g_nmda_max, mod_da_g_nmda_half, mod_da_g_nmda_hill)
+    modulation_factor_fail=hill(DAi, mod_da_fail_min, mod_da_fail_max, mod_da_fail_half, mod_da_fail_hill)
 }
 
 BREAKPOINT {
