@@ -73,6 +73,9 @@ DERIVATIVE states {
 }
 
 INITIAL {
+    modulation_factor_g=hill(PKAci, mod_pka_g_min, mod_pka_g_max, mod_pka_g_half, mod_pka_g_hill)
+    modulation_factor_shift=hill(PKAci, mod_pka_shift_min, mod_pka_shift_max, mod_pka_shift_half, mod_pka_shift_hill)
+    modShift = modulation_factor_shift
     rates()
     m = minf
     h = hinf
