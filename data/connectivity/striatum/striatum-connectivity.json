@@ -19,9 +19,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "soft_max": 2.7243,
-                "mu2": 3.3935,
-                "a3": 0.9952
+                "dist_pruning": "exp(-(0.5*d/50e-6)**2)",
+                "soft_max": 2.2365,
+                "mu2": 1.4858,
+                "a3": 0.9972
             }
         },
 	
