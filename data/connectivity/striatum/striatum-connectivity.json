@@ -55,9 +55,9 @@
             "cluster_spread": null,
             "pruning": {
                 "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "soft_max": 7,
-                "mu2": 5,
-                "a3": 1
+                "soft_max": 5.5047,
+                "mu2": 2.6749,
+                "a3": 0.9751
             }	    
         }
     },
@@ -75,9 +75,9 @@
             "cluster_spread": null,
 	    "pruning": {
                 "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "soft_max": 4,
-                "mu2": 5,
-                "a3": 0.75
+                "soft_max": 5.9457,
+                "mu2": 2.9953,
+                "a3": 0.8987
             }	    
         }
     },
@@ -135,9 +135,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-		"soft_max": 1.5,
-		"mu2": 3.5,
-		"a3": 0.6		
+                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 1.3037,
+                "mu2": 2.9315,
+                "a3": 0.5774
             }	    
         }
     },
@@ -155,9 +156,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-		"soft_max": 1.5,
-		"mu2": 3.5,
-		"a3": 0.25		
+                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 1.9345,
+                "mu2": 3.0635,
+                "a3": 0.291
             }	    
         }
     },
@@ -194,9 +196,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-		"soft_max": 1.5,
-		"mu2": 3.5,
-		"a3": 0.7		
+                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 1.4402,
+                "mu2": 2.7158,
+                "a3": 0.5934
             }	    
         }
     },
@@ -214,9 +217,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-		"soft_max": 1.5,
-		"mu2": 3.5,
-		"a3": 1		
+                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "soft_max": 2.039,
+                "mu2": 2.5394,
+                "a3": 0.8308
             }	    
         }
     },
