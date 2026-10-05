@@ -66,6 +66,9 @@ class SynapseDensity:
 
         synapses, _ = self.snudda_load.find_synapses(pre_id=None, post_id=neuron_id)
 
+        if synapses is None:
+            return None
+
         if pre_type is not None:
             pre_id_list = self.snudda_load.get_neuron_id_of_type(neuron_type=pre_type)
 
@@ -92,7 +95,9 @@ class SynapseDensity:
         density = np.zeros(len(self.edges) - 1)
 
         for neuron_id in neuron_id_list:
-            density += self.calculate_synapse_density(neuron_id, pre_type=pre_type)
+            d = self.calculate_synapse_density(neuron_id, pre_type=pre_type)
+            if d is not None:
+                density += d
 
         density /= len(neuron_id_list)
 
