@@ -64,12 +64,13 @@ class SynapseDensity:
         morph_file = self.snudda_load.get_morphology(neuron_id)
         dend_density = self.calculate_dendrite_density(morph_file)
 
-        if pre_type is not None:
-            pre_id = self.snudda_load.get_neuron_id_of_type(neuron_type=pre_type)
-        else:
-            pre_id = None
+        synapses, _ = self.snudda_load.find_synapses(pre_id=None, post_id=neuron_id)
 
-        synapses, _ = self.snudda_load.find_synapses(pre_id=pre_id, post_id=neuron_id)
+        if pre_type is not None:
+            pre_id_list = self.snudda_load.get_neuron_id_of_type(neuron_type=pre_type)
+
+            mask = np.isin(synapses[:, 0], pre_id_list)
+            synapses = synapses[mask, :]
 
         synapse_soma_dist = synapses[:, 8] * 1e-6
         synapses_per_bin, bin_edges = np.histogram(synapse_soma_dist, bins=self.edges)
@@ -139,7 +140,7 @@ class SynapseDensity:
             plot_label += f" ({morph})"
             ax = self.plot_density(density=density, label=plot_label, ax=ax)
 
-        ax.set_title(f"Synapse density on {neuron_type}" + ("" if pre_type is None else f"from {pre_type}"))
+        ax.set_title(f"Synapse density on {neuron_type}" + ("" if pre_type is None else f" from {pre_type}"))
 
         pre_text = "" if pre_type is None else f"-from-{pre_type}"
         fig_path = os.path.join(self.fig_path, f"synaptic-density-on-{neuron_type}{pre_text}.png")
