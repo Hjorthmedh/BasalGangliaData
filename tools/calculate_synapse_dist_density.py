@@ -167,4 +167,4 @@ if __name__ == "__main__":
 
     sd.plot_all_density(neuron_type=args.neuron_type, pre_type=args.pre_type)
 
-    input("Press a key to exit.")
+    # input("Press a key to exit.")
