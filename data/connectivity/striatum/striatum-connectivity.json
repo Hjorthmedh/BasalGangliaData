@@ -54,11 +54,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "dist_pruning": "exp(-(0.5*d/50e-6)**2)",
-                "f1": 0.8126,
-                "soft_max": 1.327,
-                "mu2": 0.2527,
-                "a3": 0.9923		
+                "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
+                "f1": 1,
+                "soft_max": 6,
+                "mu2": 7,
+                "a3": 1		
             }	    
         }
     },
@@ -75,11 +75,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "exp(-(0.5*d/50e-6)**2)",
-                "f1": 0.8604,
-                "soft_max": 0.8741,
-                "mu2": 0.8654,
-                "a3": 0.9847		
+                "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
+                "f1": 1,
+                "soft_max": 6,
+                "mu2": 7,
+                "a3": 1		
             }	    
         }
     },
@@ -142,7 +142,7 @@
     "dSPN,dSPN": {
         "GABA": {
             "conductance": [
-                3e-10,
+                2.4e-10,
                 1e-10
             ],
             "channel_parameters": {
@@ -163,7 +163,7 @@
     "dSPN,iSPN": {
         "GABA": {
             "conductance": [
-                3e-10,
+                2.4e-10,
                 1e-10
             ],
             "channel_parameters": {
