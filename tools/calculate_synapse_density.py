@@ -33,7 +33,7 @@ def process_file(path):
             n_incoming = np.sum(connection_matrix[:, neuron_id])
 
             name = sl.data["neurons"][neuron_id]["name"]
-            morph = sl.data["neurons"][neuron_id]["morphology"]
+            morph = sl.get_morphology(neuron_id)
 
             morph_stub = os.path.splitext(os.path.basename(morph))[0]
             
