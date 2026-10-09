@@ -7,11 +7,11 @@
             ],
             "channel_parameters": {
                 "tau1": [
-                    0.000734,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.003456,
+                    0.004156,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -54,10 +54,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "soft_max": 5.5047,
-                "mu2": 2.6749,
-                "a3": 0.9751
+                "dist_pruning": "exp(-(0.5*d/50e-6)**2)",
+                "f1": 0.8126,
+                "soft_max": 1.327,
+                "mu2": 0.2527,
+                "a3": 0.9923		
             }	    
         }
     },
@@ -74,10 +75,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "exp(-(0.5*d/60e-6)**2)",
-                "soft_max": 5.9457,
-                "mu2": 2.9953,
-                "a3": 0.8987
+                "dist_pruning": "exp(-(0.5*d/50e-6)**2)",
+                "f1": 0.8604,
+                "soft_max": 0.8741,
+                "mu2": 0.8654,
+                "a3": 0.9847		
             }	    
         }
     },
@@ -88,7 +90,15 @@
                 0.5e-10
             ],
             "channel_parameters": {
-                "mod_file": "tmGabaA"
+                "tau1": [
+                    0.0001,
+                    1000.0
+                ],
+                "tau2": [
+                    0.004156,
+                    1000.0
+                ],
+                "mod_file": "tmGabaA"	    
             },
             "cluster_size": 1,
             "cluster_spread": null,
@@ -110,7 +120,15 @@
                 0.5e-10
             ],
             "channel_parameters": {
-                "mod_file": "tmGabaA"
+                "tau1": [
+                    0.0001,
+                    1000.0
+                ],
+                "tau2": [
+                    0.004156,
+                    1000.0
+                ],
+                "mod_file": "tmGabaA"	    
             },	    
             "pruning": {
                 "soft_max": 3.21,
@@ -135,10 +153,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "soft_max": 1.3037,
-                "mu2": 2.9315,
-                "a3": 0.5774
+                "f1": 0.1412,
+                "soft_max": 3.5328,
+                "mu2": 3.8958,
+                "a3": 0.9934		
             }	    
         }
     },
@@ -156,10 +174,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "soft_max": 1.9345,
-                "mu2": 3.0635,
-                "a3": 0.291
+                "f1": 0.3112,
+                "soft_max": 2.0772,
+                "mu2": 3.9972,
+                "a3": 0.5422
             }	    
         }
     },
@@ -171,7 +189,16 @@
             ],
             "channel_parameters": {
                 "failRate": 0.7,
+                "tau1": [
+                    0.0001,
+                    1000.0
+                ],
+                "tau2": [
+		    0.010437,
+                    1000.0
+                ],		
                 "mod_file": "tmGabaA"
+		
             },
             "cluster_size": 1,
             "cluster_spread": null,
@@ -196,10 +223,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "soft_max": 1.4402,
-                "mu2": 2.7158,
-                "a3": 0.5934
+                "f1": 0.191,
+                "soft_max": 3.1407,
+                "mu2": 2.8798,
+                "a3": 0.3741	
             }	    
         }
     },
@@ -217,10 +244,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "dist_pruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "soft_max": 2.039,
-                "mu2": 2.5394,
-                "a3": 0.8308
+                "f1": 0.1882,
+                "soft_max": 3.9376,
+                "mu2": 3.3769,
+                "a3": 0.9569		
             }	    
         }
     },
@@ -232,6 +259,14 @@
             ],
             "channel_parameters": {
                 "failRate": 0.4,
+                "tau1": [
+                    0.0001,
+                    1000.0
+                ],
+                "tau2": [
+		    0.010437,
+                    1000.0
+                ],		
                 "mod_file": "tmGabaA"
             },
             "cluster_size": 1,
@@ -287,11 +322,11 @@
             ],
             "channel_parameters": {
                 "tau1": [
-                    0.000317,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.0047,
+                    0.0068,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -314,11 +349,11 @@
             ],
             "channel_parameters": {
                 "tau1": [
-                    0.000317,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.0047,
+                    0.0068,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -340,7 +375,15 @@
                 0
             ],
             "channel_parameters": {
-                "mod_file": "tmGabaA"
+                "mod_file": "tmGabaA",
+		"tau1": [
+                    0.0001,
+                    1000.0
+                ],
+                "tau2": [
+		    0.0068,
+                    1000.0
+                ]		
             },
             "cluster_size": 1,
             "cluster_spread": null,
@@ -365,11 +408,11 @@
             ],
             "channel_parameters": {
                 "tau1": [
-                    0.0013,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.0124,
+                    0.010437,
                     1000.0
                 ],
                 "failRate": 0.7,
@@ -390,11 +433,11 @@
             ],
             "channel_parameters": {
                 "tau1": [
-                    0.0013,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.0124,
+                    0.010437,
                     1000.0
                 ],
                 "failRate": 0.7,
@@ -407,11 +450,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.0012,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.008,
+                    0.010437,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -431,11 +474,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.0012,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.008,
+                    0.010437,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -455,11 +498,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.0012,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.008,
+                    0.010437,
                     1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -479,11 +522,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.00025,
+                    0.0001,
                     1000.0
                 ],
                 "tau2": [
-                    0.00275,
+                    0.017602,
                     1000.0
                 ],
 		"mod_file": "tmGabaA"
@@ -503,11 +546,11 @@
         "GABA": {
 	    "channel_parameters": {
                 "tau1": [
-		    0.01,
+		    0.006738,
 		    1000.0
                 ],
                 "tau2": [
-		    0.08,
+		    0.079359,
 		    1000.0
                 ],
                 "mod_file": "tmGabaA"
@@ -527,11 +570,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.01,
+                    0.006738,
                     1000.0
                 ],
                 "tau2": [
-                    0.08,
+                    0.079359,
                     1000.0
                 ],
                 "tau": [
@@ -563,11 +606,11 @@
         "GABA": {
             "channel_parameters": {
                 "tau1": [
-                    0.01,
+                    0.006738,
                     1000.0
                 ],
                 "tau2": [
-                    0.08,
+                    0.079359,
                     1000.0
                 ],
                 "tau": [
@@ -605,11 +648,11 @@
             },
             "channel_parameters": {
                 "tau1": [
-                    0.01,
+                    0.006738,
                     1000.0
                 ],
                 "tau2": [
-                    0.08,
+                    0.079359,
                     1000.0
                 ],
                 "tau": [
