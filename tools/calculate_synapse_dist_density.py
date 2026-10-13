@@ -1,5 +1,7 @@
 # This code calculates the density of synapses along the dendrite, as a function of the soma
 
+# TODO: Remove edge effects by only considering centre neurons!!
+
 import os
 import numpy as np
 import json
@@ -85,13 +87,15 @@ class SynapseDensity:
         return density
 
 
-    def calculate_synapse_density_for_morphology(self, morphology, pre_type=None):
+    def calculate_synapse_density_for_morphology(self, morphology, pre_type=None, core_diameter=300e-6):
 
         neuron_id_list = [x["neuron_id"]
                           for x in self.snudda_load.data["neurons"]
                           if snudda_parse_path(x["morphology"], self.snudda_load.snudda_data) == morphology \
                           and x["virtual_neuron"] == False]
 
+        neuron_id_list = self.get_core(neuron_id_list, core_diameter=core_diameter)
+        
         density = np.zeros(len(self.edges) - 1)
 
         for neuron_id in neuron_id_list:
@@ -103,6 +107,15 @@ class SynapseDensity:
 
         return density
 
+    def get_core(self, neuron_id_list, core_diameter=300e-6):
+
+        centre_point = np.mean(self.snudda_load.data["neuron_positions"], axis=0)
+        dist_to_centre = np.linalg.norm(self.snudda_load.data["neuron_positions"] - centre_point, axis=1)
+
+        centre_id = [x for x in neuron_id_list if dist_to_centre[x] < core_diameter/2]
+
+        return centre_id
+        
     def plot_density(self, density, label="Synapse density", ax=None, color=None, title=None, y_label="Synapse density", fig_path=None):
         if ax is None:
             fig, ax = plt.subplots(figsize=(8, 5))
@@ -132,13 +145,13 @@ class SynapseDensity:
 
         return ax
 
-    def plot_all_density(self, neuron_type, pre_type=None):
+    def plot_all_density(self, neuron_type, pre_type=None, core_diameter=300e-6):
         all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
 
         ax = None
         for morph in all_morph:
             print(f"Processing {morph}")
-            density = self.calculate_synapse_density_for_morphology(morphology=morph, pre_type=pre_type)
+            density = self.calculate_synapse_density_for_morphology(morphology=morph, pre_type=pre_type, core_diameter=core_diameter)
             plot_label = f"Synaptic density on {neuron_type}"
             if pre_type is not None:
                 plot_label += f" for {pre_type}"
@@ -160,11 +173,12 @@ if __name__ == "__main__":
     parser.add_argument("network_path", help="Path to network file")
     parser.add_argument("neuron_type", help="Post synaptic neuron type")
     parser.add_argument("--pre_type", help="Pre-synaptic neuron type", default=None)
+    parser.add_argument("--core_diameter", help="Diameter of core of neurons (default 300e-6)", default=300e-6)
 
     args = parser.parse_args()
 
     sd = SynapseDensity(network_file=args.network_path)
 
-    sd.plot_all_density(neuron_type=args.neuron_type, pre_type=args.pre_type)
+    sd.plot_all_density(neuron_type=args.neuron_type, pre_type=args.pre_type, core_diameter=args.core_diameter)
 
     # input("Press a key to exit.")
