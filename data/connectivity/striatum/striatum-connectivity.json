@@ -153,10 +153,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "f1": 0.1412,
-                "soft_max": 3.5328,
-                "mu2": 3.8958,
-                "a3": 0.9934		
+                "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
+                "f1": 0.501,
+                "soft_max": 3.0732,
+                "mu2": 1.9982,
+                "a3": 0.1983		
             }	    
         }
     },
@@ -174,10 +175,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "f1": 0.3112,
-                "soft_max": 2.0772,
-                "mu2": 3.9972,
-                "a3": 0.5422
+                "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
+                "f1": 0.5604,
+                "soft_max": 3.0567,
+                "mu2": 1.9945,
+                "a3": 0.0672		
             }	    
         }
     },
@@ -223,10 +225,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "f1": 0.191,
-                "soft_max": 3.1407,
-                "mu2": 2.8798,
-                "a3": 0.3741	
+                "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
+                "f1": 0.5026,
+                "soft_max": 3.0199,
+                "mu2": 1.9995,
+                "a3": 0.2045		
             }	    
         }
     },
@@ -244,10 +247,11 @@
             "cluster_size": 1,
             "cluster_spread": null,
 	    "pruning": {
-                "f1": 0.1882,
-                "soft_max": 3.9376,
-                "mu2": 3.3769,
-                "a3": 0.9569		
+                "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
+                "f1": 0.5,
+                "soft_max": 3.0552,
+                "mu2": 1.9878,
+                "a3": 0.3731		
             }	    
         }
     },
