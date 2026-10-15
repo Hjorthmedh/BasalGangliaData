@@ -5,6 +5,7 @@
 import os
 import numpy as np
 import json
+import h5py
 from snudda import SnuddaLoad
 from snudda.utils.snudda_path import snudda_parse_path
 from snudda.neurons.morphology_data import MorphologyData
@@ -13,7 +14,7 @@ import matplotlib.pyplot as plt
 
 class SynapseDensity:
 
-    def __init__(self, network_file, edges=None):
+    def __init__(self, network_file, edges=None, input_file=None):
         self.network_file = network_file
         self.snudda_load = SnuddaLoad(self.network_file)
         self.fig_path = os.path.join(os.path.dirname(network_file), "figures")
@@ -26,6 +27,10 @@ class SynapseDensity:
         else:
             self.edges = np.arange(0, 300e-6, 10e-6)
 
+        if input_file is not None:
+            self.input_data = h5py.File(input_file, "r")
+        else:
+            self.input_data = None
 
     def calculate_dendrite_density(self, neuron_morphology):
         # Dendritic length found at each distance from soma
@@ -107,6 +112,49 @@ class SynapseDensity:
 
         return density
 
+    def calculate_input_density(self, neuron_id, input_type=None):
+
+        morph_file = self.snudda_load.get_morphology(neuron_id)
+        dend_density = self.calculate_dendrite_density(morph_file)
+
+        synapses_per_bin = np.zeros((len(self.edges) + 1, ))
+
+        for it in self.input_data["input"][str(neuron_id)].keys():
+            if input_type is not None and it != input_type:
+                # Only looking at specific input this time
+                continue
+
+            input_soma_dist = self.input_data["input"][str(neuron_id)][input_type].attrs["distance_to_soma"][()]
+            syn_per_bin, bin_edges = np.histogram(input_soma_dist, bins=self.edges)
+            synapses_per_bin += syn_per_bin
+
+        density = np.divide(synapses_per_bin, dend_density,
+                            out=np.zeros_like(synapses_per_bin, dtype=float),
+                            where=dend_density > 0)
+
+        return density
+
+    def calculate_input_density_for_morphology(self, morphology, input_type=None, core_diameter=300e-6):
+
+        neuron_id_list = [x["neuron_id"]
+                          for x in self.snudda_load.data["neurons"]
+                          if snudda_parse_path(x["morphology"], self.snudda_load.snudda_data) == morphology \
+                          and x["virtual_neuron"] == False]
+
+        neuron_id_list = self.get_core(neuron_id_list, core_diameter=core_diameter)
+
+        density = np.zeros(len(self.edges) - 1)
+
+        for neuron_id in neuron_id_list:
+            d = self.calculate_input_density(neuron_id, input_type=input_type)
+            if d is not None:
+                density += d
+
+        density /= len(neuron_id_list)
+
+        return density
+
+
     def get_core(self, neuron_id_list, core_diameter=300e-6):
 
         centre_point = np.mean(self.snudda_load.data["neuron_positions"], axis=0)
@@ -167,6 +215,27 @@ class SynapseDensity:
         plt.ion()
         plt.show()
 
+    def plot_all_input_density(self, neuron_type, input_type=None, core_diameter=300e-6):
+        all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
+
+        ax = None
+        for morph in all_morph:
+            print(f"Processing {morph}")
+            density = self.calculate_input_density_for_morphology(morphology=morph, input_type=input_type, core_diameter=core_diameter)
+            plot_label = f"Input density on {neuron_type}"
+            if input_type is not None:
+                input_label += f" ({input_type})"
+            plot_label += f" ({morph})"
+            ax = self.plot_input_density(density=density, label=plot_label, ax=ax)
+
+        ax.set_title(f"Input density on {neuron_type}" + ("" if input_type is None else f"({input_type})"))
+
+        input_text = "" if input_type is None else f"-{input_type}"
+        fig_path = os.path.join(self.fig_path, f"input-density-on-{neuron_type}{input_text}.png")
+        print(f"Saving figure {fig_path}")
+        ax.get_figure().savefig(fig_path, dpi=300, bbox_inches='tight')
+        plt.ion()
+        plt.show()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate synapse density distribution")
@@ -174,11 +243,16 @@ if __name__ == "__main__":
     parser.add_argument("neuron_type", help="Post synaptic neuron type")
     parser.add_argument("--pre_type", help="Pre-synaptic neuron type", default=None)
     parser.add_argument("--core_diameter", help="Diameter of core of neurons (default 300e-6)", default=300e-6)
+    parser.add_argument("--input_file", help="Input file (hdf5)", default=None)
+    parser.add_argument("--input_type", help="Input type", default=None)
 
     args = parser.parse_args()
 
-    sd = SynapseDensity(network_file=args.network_path)
+    sd = SynapseDensity(network_file=args.network_path, input_file=args.input_file)
 
     sd.plot_all_density(neuron_type=args.neuron_type, pre_type=args.pre_type, core_diameter=args.core_diameter)
+
+    if args.input_file:
+        sd.plot_all_input_density(neuron_type=args.neuron_type, input_type=args.input_type, core_diameter=args.core_diameter)
 
     # input("Press a key to exit.")
