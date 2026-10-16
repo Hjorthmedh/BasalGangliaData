@@ -117,14 +117,14 @@ class SynapseDensity:
         morph_file = self.snudda_load.get_morphology(neuron_id)
         dend_density = self.calculate_dendrite_density(morph_file)
 
-        synapses_per_bin = np.zeros((len(self.edges) + 1, ))
+        synapses_per_bin = np.zeros((len(self.edges) - 1, ))
 
         for it in self.input_data["input"][str(neuron_id)].keys():
             if input_type is not None and it != input_type:
                 # Only looking at specific input this time
                 continue
 
-            input_soma_dist = self.input_data["input"][str(neuron_id)][input_type].attrs["distance_to_soma"][()]
+            input_soma_dist = self.input_data["input"][str(neuron_id)][it].attrs["distance_to_soma"][()]
             syn_per_bin, bin_edges = np.histogram(input_soma_dist, bins=self.edges)
             synapses_per_bin += syn_per_bin
 
@@ -226,7 +226,7 @@ class SynapseDensity:
             if input_type is not None:
                 input_label += f" ({input_type})"
             plot_label += f" ({morph})"
-            ax = self.plot_input_density(density=density, label=plot_label, ax=ax)
+            ax = self.plot_density(density=density, label=plot_label, ax=ax)
 
         ax.set_title(f"Input density on {neuron_type}" + ("" if input_type is None else f"({input_type})"))
 
