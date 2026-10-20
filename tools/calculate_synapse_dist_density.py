@@ -120,6 +120,7 @@ class SynapseDensity:
         synapses_per_bin = np.zeros((len(self.edges) - 1, ))
 
         for it in self.input_data["input"][str(neuron_id)].keys():
+
             if input_type is not None and it != input_type:
                 # Only looking at specific input this time
                 continue
@@ -224,7 +225,7 @@ class SynapseDensity:
             density = self.calculate_input_density_for_morphology(morphology=morph, input_type=input_type, core_diameter=core_diameter)
             plot_label = f"Input density on {neuron_type}"
             if input_type is not None:
-                input_label += f" ({input_type})"
+                plot_label += f" ({input_type})"
             plot_label += f" ({morph})"
             ax = self.plot_density(density=density, label=plot_label, ax=ax)
 
