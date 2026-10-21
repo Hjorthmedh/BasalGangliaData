@@ -25,7 +25,7 @@ class SynapseDensity:
         if edges is not None:
             self.edges = edges
         else:
-            self.edges = np.arange(0, 300e-6, 10e-6)
+            self.edges = np.arange(0, 301, 10) * 1e-6 
 
         if input_file is not None:
             self.input_data = h5py.File(input_file, "r")
@@ -243,7 +243,7 @@ if __name__ == "__main__":
     parser.add_argument("network_path", help="Path to network file")
     parser.add_argument("neuron_type", help="Post synaptic neuron type")
     parser.add_argument("--pre_type", help="Pre-synaptic neuron type", default=None)
-    parser.add_argument("--core_diameter", help="Diameter of core of neurons (default 300e-6)", default=300e-6)
+    parser.add_argument("--core_diameter", help="Diameter of core of neurons (default 300e-6)", default=300e-6, type=float)
     parser.add_argument("--input_file", help="Input file (hdf5)", default=None)
     parser.add_argument("--input_type", help="Input type", default=None)
 
