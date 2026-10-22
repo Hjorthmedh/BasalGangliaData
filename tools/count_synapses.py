@@ -114,12 +114,27 @@ class SynapseCount:
         assert (soma_synapses[:,8] == 0).all()  # Soma dist for soma synapses should be 0
         
         return soma_synapses, dend_synapses
-                
-    def count_internal_synapses(self, neuron_id, synapse_type="GABA"):
 
+    def filter_synapses_on_pre_type(self, synapses, pre_type):
+
+        if pre_type is None:
+            return synapses
+            
+        pre_id = self.snudda_load.get_neuron_id_of_type(pre_type)
+        mask = np.isin(synapses[:,0], pre_id)
+
+        return synapses[mask, :]
+        
+        
+    def count_internal_synapses(self, neuron_id, synapse_type="GABA", pre_type=None):
+
+        
         synapses, coords = self.snudda_load.find_synapses(post_id=neuron_id)
 
         synapses = self.filter_synapses(synapses, synapse_type)
+
+        synapses = self.filter_synapses_on_pre_type(synapses, pre_type)
+        
         soma_synapses, dend_synapses = self.split_soma_dend_synapses(synapses)
         soma_syn = soma_synapses.shape[0]
         
@@ -134,7 +149,7 @@ class SynapseCount:
         
         return syn_per_bin, soma_syn
 
-    def count_internal_synapses_for_neuron_type(self, neuron_type, synapse_type="GABA"):
+    def count_internal_synapses_for_neuron_type(self, neuron_type, synapse_type="GABA", pre_type=None):
 
         neuron_id_list = self.snudda_load.get_neuron_id_of_type(neuron_type)
 
@@ -145,7 +160,7 @@ class SynapseCount:
         soma_synapses = 0
         
         for neuron_id in neuron_id_list:
-            syn_per_bin, soma_s = self.count_internal_synapses(neuron_id, synapse_type)
+            syn_per_bin, soma_s = self.count_internal_synapses(neuron_id, synapse_type, pre_type=pre_type)
             synapses_per_bin += syn_per_bin
             soma_synapses += soma_s
             neuron_count += 1
@@ -163,21 +178,43 @@ class SynapseCount:
         return centre_id
     
     
-    def plot_synapse_counts(self, neuron_type, synapse_type="GABA"):
+    def plot_synapse_counts(self, neuron_type, synapse_type="GABA", pre_type=None):
 
         edges_um = self.edges * 1e6
-        synapses_per_bin, soma_synapses = self.count_synapses_for_neuron_type(neuron_type, synapse_type)
+        
+        if pre_type is None:
+            # When pre_type is given we want only the synapses from internal neurons of this kind
+            synapses_per_bin, soma_synapses = self.count_synapses_for_neuron_type(neuron_type=neuron_type,
+                                                                                  synapse_type=synapse_type)
         internal_synapses_per_bin, internal_soma_synapses = \
-            self.count_internal_synapses_for_neuron_type(neuron_type, synapse_type)
+            self.count_internal_synapses_for_neuron_type(neuron_type=neuron_type, synapse_type=synapse_type,
+                                                         pre_type=pre_type)
+
         plt.figure()
-        plt.stairs(synapses_per_bin, edges_um, linewidth=2, label="external")
+        
+        if pre_type is None:
+            plt.stairs(synapses_per_bin, edges_um, linewidth=2, label="external")
+            
         plt.stairs(internal_synapses_per_bin, edges_um, linewidth=2, label="internal")
         plt.xlabel("Distance from soma")
         plt.ylabel("Synapse count")
-        plt.title(f"Incoming {synapse_type} on {neuron_type} (average per neuron)\n ({soma_synapses:.1f} external soma synapses), {internal_soma_synapses:.1f} internal soma synapses)")
+
+        if pre_type:
+            pre_str = f" from {pre_type}"
+            soma_syn_str = "{internal_soma_synapses:.1f} soma synapses)"
+        else:
+            pre_str = ""
+            soma_syn_str = f"\n({soma_synapses:.1f} external soma synapses), {internal_soma_synapses:.1f} internal soma synapses)"
+        
+        title = f"Incoming {synapse_type} on {neuron_type}{pre_str} (average per neuron){soma_syn_str}"
+        
+        plt.title(title)
         plt.legend()
         plt.ion()
-        fig_path = os.path.join(self.fig_path,f"incoming-{synapse_type}-on-{neuron_type}.png")
+        if pre_type:
+            fig_path = os.path.join(self.fig_path,f"incoming-{synapse_type}-on-{neuron_type}-from-{pre_type}.png")
+        else:
+            fig_path = os.path.join(self.fig_path,f"incoming-{synapse_type}-on-{neuron_type}.png")
         print(f"Saving to {fig_path}")
         plt.savefig(fig_path, bbox_inches="tight")
         plt.show()
@@ -189,13 +226,14 @@ if __name__ == "__main__":
     parser.add_argument("network_file")
     parser.add_argument("input_file")
     parser.add_argument("post_neuron_type")
+    parser.add_argument("--pre_type", default=None, type=str)
     parser.add_argument("--synapse_type", help="'Glut' or 'GABA' input", default="GABA")
     parser.add_argument("--core_diameter", help="Diameter of core of neurons (default 300e-6)", default=300e-6, type=float)
 
     args = parser.parse_args()
 
     sc = SynapseCount(network_file=args.network_file, input_file=args.input_file, core_diameter=args.core_diameter)
-    sc.plot_synapse_counts(neuron_type=args.post_neuron_type, synapse_type=args.synapse_type)
+    sc.plot_synapse_counts(neuron_type=args.post_neuron_type, synapse_type=args.synapse_type, pre_type=args.pre_type)
     # input("Press a key")
     
     # import pdb
