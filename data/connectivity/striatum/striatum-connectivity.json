@@ -227,7 +227,7 @@
 	    "pruning": {
                 "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
                 "f1": 0.5026,
-                "soft_max": 3.0199,
+                "soft_max": 3.5,
                 "mu2": 1.9995,
                 "a3": 0.2045		
             }	    
@@ -249,7 +249,7 @@
 	    "pruning": {
                 "dist_pruning": "1 / (1 + 0.4*exp(-9 * r))",
                 "f1": 0.5,
-                "soft_max": 3.0552,
+                "soft_max": 3.5,
                 "mu2": 1.9878,
                 "a3": 0.3731		
             }	    
@@ -402,9 +402,9 @@
     "dSPN,TH": {
         "GABA": {
             "pruning": {
-                "soft_max": 2.0119,
-                "mu2": 0.1674,
-                "a3": 0.3495
+                "soft_max": 1.1986,
+                "mu2": 0.305,
+                "a3": 0.3976
             },
             "conductance": [
                 2.4e-10,
@@ -427,9 +427,9 @@
     "iSPN,TH": {
         "GABA": {
             "pruning": {
-                "soft_max": 2.0296,
-                "mu2": 0.4583,
-                "a3": 0.357
+                "soft_max": 1.1087,
+                "mu2": 0.5768,
+                "a3": 0.3669
             },
             "conductance": [
                 2.4e-10,
