@@ -54,11 +54,11 @@ class SynapseAreaDensity:
                 # seg_mid = (md.geometry[s.point_idx[1:], 4] + md.geometry[s.point_idx[:-1], 4])/2
                 # seg_r = (md.geometry[s.point_idx[1:], 3] + md.geometry[s.point_idx[:-1], 3])/2
                 # seg_area = 2*np.pi*seg_r*seg_len
-                all_len.append(seg_len)
+                # all_len.append(seg_len)
                 all_mid.append(seg_mid)
                 all_area.append(seg_area)
 
-            all_lengths = np.concatenate(all_len)
+            # all_lengths = np.concatenate(all_len)
             all_mids = np.concatenate(all_mid)
             all_areas = np.concatenate(all_area)
 
