@@ -98,7 +98,7 @@ class SynapseAreaDensity:
         synapses, _ = self.snudda_load.find_synapses(pre_id=None, post_id=neuron_id)
 
         if synapses is None:
-            return None, 0
+            return None, 0, 0
         
         if pre_type is not None:
             pre_id_list = self.snudda_load.get_neuron_id_of_type(neuron_type=pre_type)
@@ -108,6 +108,7 @@ class SynapseAreaDensity:
 
         soma_synapses, dend_synapses = self.split_soma_dend_synapses(synapses)
         num_soma_synapses = soma_synapses.shape[0]
+        num_dend_synapses = dend_synapses.shape[0]
             
         synapse_soma_dist = dend_synapses[:, 8] * 1e-6
         synapses_per_bin, bin_edges = np.histogram(synapse_soma_dist, bins=self.edges)
@@ -116,7 +117,7 @@ class SynapseAreaDensity:
                             out=np.zeros_like(synapses_per_bin, dtype=float),
                             where=dend_density > 0)
 
-        return density, num_soma_synapses
+        return density, num_soma_synapses, num_dend_synapses
 
 
     def calculate_synapse_density_for_morphology(self, morphology, pre_type=None, core_diameter=300e-6):
@@ -130,20 +131,23 @@ class SynapseAreaDensity:
         
         density = np.zeros(len(self.edges) - 1)
         num_soma_synapses = 0
+        num_dend_synapses = 0
 
         if len(neuron_id_list) == 0:
-            return density, num_soma_synapses
+            return density, num_soma_synapses, num_dend_synapses
         
         for neuron_id in neuron_id_list:
-            d, n_soma_syn = self.calculate_synapse_density(neuron_id, pre_type=pre_type)
+            d, n_soma_syn, n_dend_syn = self.calculate_synapse_density(neuron_id, pre_type=pre_type)
             if d is not None:
                 density += d
             num_soma_synapses += n_soma_syn
+            num_dend_synapses += n_dend_syn
 
         density /= len(neuron_id_list)
         num_soma_synapses /= len(neuron_id_list)
+        num_dend_synapses / len(neuron_id_list)
             
-        return density, num_soma_synapses
+        return density, num_soma_synapses, num_dend_synapses
 
     def split_soma_dend_input_synapses(self, input_soma_dist, section_id):
         soma_mask = section_id == -1
@@ -161,6 +165,7 @@ class SynapseAreaDensity:
 
         synapses_per_bin = np.zeros((len(self.edges) - 1, ))
         num_soma_inputs = 0
+        num_dend_inputs = 0
 
         for it in self.input_data["input"][str(neuron_id)].keys():
 
@@ -177,12 +182,13 @@ class SynapseAreaDensity:
             syn_per_bin, bin_edges = np.histogram(input_soma_dist_dend, bins=self.edges)
             synapses_per_bin += syn_per_bin
             num_soma_inputs += len(input_soma_dist_soma)
+            num_dend_inputs += len(input_soma_dist_dend)
 
         density = np.divide(synapses_per_bin, dend_density,
                             out=np.zeros_like(synapses_per_bin, dtype=float),
                             where=dend_density > 0)
 
-        return density, num_soma_inputs
+        return density, num_soma_inputs, num_dend_inputs
 
     def calculate_input_density_for_morphology(self, morphology, input_type=None, core_diameter=300e-6):
 
@@ -195,21 +201,24 @@ class SynapseAreaDensity:
 
         density = np.zeros(len(self.edges) - 1)
         num_soma_inputs = 0
+        num_dend_inputs = 0
 
         if len(neuron_id_list) == 0:
-            return density, num_soma_inputs
+            return density, num_soma_inputs, num_dend_inputs
         
         for neuron_id in neuron_id_list:
-            d, n_soma_inputs = self.calculate_input_density(neuron_id, input_type=input_type)
+            d, n_soma_inputs, n_dend_inputs = self.calculate_input_density(neuron_id, input_type=input_type)
             if d is not None:
                 density += d
 
             num_soma_inputs += n_soma_inputs
+            num_dend_inputs += n_dend_inputs
 
         density /= len(neuron_id_list)
         num_soma_inputs /= len(neuron_id_list)
+        num_dend_inputs /= len(neuron_id_list)
 
-        return density, num_soma_inputs
+        return density, num_soma_inputs, num_dend_inputs
 
 
     def get_core(self, neuron_id_list, core_diameter=300e-6):
@@ -221,7 +230,7 @@ class SynapseAreaDensity:
 
         return centre_id
         
-    def plot_density(self, density, num_soma_synapses, label="Synapse density", ax=None, color=None, title=None, y_label="Synapse density", fig_path=None):
+    def plot_density(self, density, num_soma_synapses, num_dend_synapses, label="Synapse density", ax=None, color=None, title=None, y_label="Synapse density", fig_path=None):
         if ax is None:
             fig, ax = plt.subplots(figsize=(8, 5))
 
@@ -240,7 +249,7 @@ class SynapseAreaDensity:
         # ax.legend(fontsize=8, loc='upper right')
 
         if title:
-            ax.set_title(title + f"\n(average {num_soma_synapses:.1f} synapses on soma)")
+            ax.set_title(title + f"\n(average {num_soma_synapses:.1f} synapses on soma, {num_dend_synapses:.1f} synapses on dend)")
 
         ax.grid(True, linestyle="--", alpha=0.5)
 
@@ -254,23 +263,28 @@ class SynapseAreaDensity:
         all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
 
         num_soma_synapses_all = 0
+        num_dend_synapses_all = 0
         
         ax = None
         for morph in all_morph:
             print(f"Processing {morph}")
-            density, num_soma_synapses = self.calculate_synapse_density_for_morphology(morphology=morph, pre_type=pre_type, core_diameter=core_diameter)
+            density, num_soma_synapses, num_dend_synapses = self.calculate_synapse_density_for_morphology(morphology=morph, pre_type=pre_type, core_diameter=core_diameter)
             plot_label = f"Synaptic density on {neuron_type}"
             if pre_type is not None:
                 plot_label += f" for {pre_type}"
             plot_label += f" ({morph})"
-            ax = self.plot_density(density=density, num_soma_synapses=num_soma_synapses,
+            ax = self.plot_density(density=density,
+                                   num_soma_synapses=num_soma_synapses,
+                                   num_dend_synapses=num_dend_synapses,
                                    label=plot_label, ax=ax)
             num_soma_synapses_all += num_soma_synapses
+            num_dend_synapses_all += num_dend_synapses
 
         num_soma_synapses = num_soma_synapses_all / len(all_morph)
+        num_dend_synapses = num_dend_synapses_all / len(all_morph)
 
         ax.set_title(f"Synapse density on {neuron_type}" + ("" if pre_type is None else f" from {pre_type}")
-                     + f"\n{num_soma_synapses:.1f} synapses on soma")
+                     + f"\n{num_soma_synapses:.1f} synapses on soma, {num_dend_synapses:.1f} on dendrites")
 
         pre_text = "" if pre_type is None else f"-from-{pre_type}"
         fig_path = os.path.join(self.fig_path, f"synaptic-area-density-on-{neuron_type}{pre_text}.png")
@@ -282,22 +296,28 @@ class SynapseAreaDensity:
     def plot_all_input_density(self, neuron_type, input_type=None, core_diameter=300e-6):
         all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
         num_soma_inputs_all = 0
+        num_dend_inputs_all = 0
         
         ax = None
         for morph in all_morph:
             print(f"Processing {morph}")
-            density, num_soma_synapses = self.calculate_input_density_for_morphology(morphology=morph, input_type=input_type, core_diameter=core_diameter)
+            density, num_soma_synapses, num_dend_synapses= self.calculate_input_density_for_morphology(morphology=morph, input_type=input_type, core_diameter=core_diameter)
             plot_label = f"Input density on {neuron_type}"
             if input_type is not None:
                 plot_label += f" ({input_type})"
             plot_label += f" ({morph})"
-            ax = self.plot_density(density=density, num_soma_synapses=num_soma_synapses, label=plot_label, ax=ax)
+            ax = self.plot_density(density=density,
+                                   num_soma_synapses=num_soma_synapses,
+                                   num_dend_synapses=num_dend_synapses,
+                                   label=plot_label, ax=ax)
             num_soma_inputs_all += num_soma_synapses
+            num_dend_inputs_all += num_dend_synapses
 
         num_soma_inputs = num_soma_inputs_all / len(all_morph)
+        num_dend_inputs = num_dend_inputs_all / len(all_morph)
             
         ax.set_title(f"Input density on {neuron_type}" + ("" if input_type is None else f"({input_type})")
-                     + f"\n{num_soma_synapses:.1f} synapses on soma")
+                     + f"\n{num_soma_synapses:.1f} synapses on soma, {num_dend_inputs:.1f} synapses on dend")
 
         input_text = "" if input_type is None else f"-{input_type}"
         fig_path = os.path.join(self.fig_path, f"input-area-density-on-{neuron_type}{input_text}.png")
