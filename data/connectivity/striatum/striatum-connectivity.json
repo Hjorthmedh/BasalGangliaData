@@ -201,10 +201,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.8681,
-                "soft_max": 3.3766,
-                "mu2": 2.4158,
-                "a3": 0.4579
+                "f1": 0.1691,
+                "soft_max": 1.601,
+                "mu2": 1.1323,
+                "a3": 0.2981
             }
         }
     },
@@ -271,10 +271,10 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-                "f1": 0.4102,
-                "soft_max": 3.6461,
-                "mu2": 2.8858,
-                "a3": 0.7092
+                "f1": 0.0624,
+                "soft_max": 1.6816,
+                "mu2": 1.3676,
+                "a3": 0.7233
             }
         }
     },
@@ -317,7 +317,7 @@
     "LTS,dSPN": {
         "GABA": {
             "conductance": [
-                0.5e-09,
+                0.7e-09,
                 0.1e-9
             ],
             "channel_parameters": {
@@ -335,17 +335,17 @@
             "cluster_spread": null,
             "pruning": {
                 "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.4284,
-                "soft_max": 1.1577,
-                "mu2": 2.248,
-                "a3": 0.5418
+                "f1": 0.3598,
+                "soft_max": 6.3758,
+                "mu2": 3.1749,
+                "a3": 0.2639
             }
         }
     },
     "LTS,iSPN": {
         "GABA": {
             "conductance": [
-                0.5e-09,
+                0.7e-9,
                 0.1e-9
             ],
             "channel_parameters": {
@@ -362,19 +362,19 @@
             "cluster_size": 1,
             "cluster_spread": null,
             "pruning": {
-		"distPruning": "1-exp(-(0.4*d/60e-6)**2)",
-                "f1": 0.5166,
-                "soft_max": 1.6624,
-                "mu2": 2.4384,
-                "a3": 0.4341
+                "distPruning": "1-exp(-(0.4*d/60e-6)**2)",
+                "f1": 0.5583,
+                "soft_max": 3.0471,
+                "mu2": 3.2508,
+                "a3": 0.31
             }
         }
     },
     "LTS,ChIN": {
         "GABA": {
             "conductance": [
-                0.5e-09,
-                0
+                0.5e-9,
+                0.2e-9
             ],
             "channel_parameters": {
                 "mod_file": "tmGabaA",
@@ -541,8 +541,8 @@
                 "a3": 0.9993
             },
 	    "conductance": [
-                0.7e-10,
-                0.2e-10
+                0.25e-9,
+                0.1e-9
 	    ]
 	}
     },
