@@ -218,10 +218,27 @@ class SynapseDensity:
         # Plot binned staircase outline and filled area onto the axis
         # We want synapses per micrometer, not per meter (hence * 1e-6)
         # ax.stairs(density * 1e-6, edges_um, fill=True, alpha=0.3, label=label, color=color)
-        if color is not None:
-            ax.stairs(density * 1e-6, edges_um, linewidth=2, color=color, label=label)
+
+        # import pdb
+        # pdb.set_trace()
+        
+        if len(density.shape) > 1:
+            mean_density = np.mean(density, axis=0) * 1e-6
+            std_density = np.std(density, axis=0) * 1e-6
+
+            lower = mean_density - std_density
+            upper = mean_density + std_density
+            # Optional: densities can't be negative
+            lower = np.clip(lower, 0, None)
+
+            # Grey std band behind the mean line
+            ax.stairs(upper, edges_um, baseline=lower, fill=True,
+                      color="grey", alpha=0.3, linewidth=0, zorder=1)
+
+            ax.stairs(mean_density, edges_um, linewidth=2, color="black",
+                      label=label, zorder=2)
         else:
-            ax.stairs(density * 1e-6, edges_um, linewidth=2, label=label)
+            ax.stairs(density * 1e-6, edges_um, linewidth=2, color=color, label=label)
 
         ax.set_xlabel("Distance to Soma (µm)")
         ax.set_ylabel(f"{y_label} (1/µm)")
@@ -242,6 +259,9 @@ class SynapseDensity:
         all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
 
         num_soma_synapses_all = 0
+
+        all_density = []
+        all_plot_labels = []
         
         ax = None
         for morph in all_morph:
@@ -251,12 +271,18 @@ class SynapseDensity:
             if pre_type is not None:
                 plot_label += f" for {pre_type}"
             plot_label += f" ({morph})"
-            ax = self.plot_density(density=density, num_soma_synapses=num_soma_synapses,
-                                   label=plot_label, ax=ax)
             num_soma_synapses_all += num_soma_synapses
 
-        num_soma_synapses = num_soma_synapses_all / len(all_morph)
+            all_plot_labels.append(plot_label)
+            all_density.append(density)
 
+        num_soma_synapses = num_soma_synapses_all / len(all_morph)
+        all_density = np.vstack(all_density)
+
+        ax = self.plot_density(density=all_density, num_soma_synapses=num_soma_synapses,
+                               ax=ax)
+
+        
         ax.set_title(f"Synapse density on {neuron_type}" + ("" if pre_type is None else f" from {pre_type}")
                      + f"\n{num_soma_synapses:.1f} synapses on soma")
 
@@ -270,6 +296,9 @@ class SynapseDensity:
     def plot_all_input_density(self, neuron_type, input_type=None, core_diameter=300e-6):
         all_morph = self.get_all_morphologies_of_neuron_type(neuron_type=neuron_type)
         num_soma_inputs_all = 0
+
+        all_density = []
+        all_plot_labels = []
         
         ax = None
         for morph in all_morph:
@@ -279,13 +308,18 @@ class SynapseDensity:
             if input_type is not None:
                 plot_label += f" ({input_type})"
             plot_label += f" ({morph})"
-            ax = self.plot_density(density=density, num_soma_synapses=num_soma_synapses, label=plot_label, ax=ax)
             num_soma_inputs_all += num_soma_synapses
-
-        num_soma_inputs = num_soma_inputs_all / len(all_morph)
+            all_plot_labels.append(plot_label)
+            all_density.append(density)
             
+        all_density = np.vstack(all_density)            
+        num_soma_inputs = num_soma_inputs_all / len(all_morph)
+
+        ax = self.plot_density(density=all_density, num_soma_synapses=num_soma_synapses,
+                               ax=ax)
+        
         ax.set_title(f"Input density on {neuron_type}" + ("" if input_type is None else f"({input_type})")
-                     + f"\n{num_soma_synapses:.1f} synapses on soma")
+                     + f"\n{num_soma_inputs:.1f} synapses on soma")
 
         input_text = "" if input_type is None else f"-{input_type}"
         fig_path = os.path.join(self.fig_path, f"input-density-on-{neuron_type}{input_text}.png")
