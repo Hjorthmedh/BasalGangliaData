@@ -68,6 +68,9 @@ class SynapseDensity:
 
             total_length_per_bin, bin_edges = np.histogram(all_mids, bins=self.edges, weights=all_lengths)
 
+            # This will mask out bins where there is no data, ie no dendrites
+            total_length_per_bin[total_length_per_bin == 0] = np.nan
+
             self.dend_density_cache[neuron_morphology] = total_length_per_bin
 
         return self.dend_density_cache[neuron_morphology]
@@ -116,9 +119,11 @@ class SynapseDensity:
         synapse_soma_dist = dend_synapses[:, 8] * 1e-6
         synapses_per_bin, bin_edges = np.histogram(synapse_soma_dist, bins=self.edges)
 
+        # density = np.divide(synapses_per_bin, dend_density,
+        #                     out=np.zeros_like(synapses_per_bin, dtype=float),
+        #                     where=dend_density > 0)
         density = np.divide(synapses_per_bin, dend_density,
-                            out=np.zeros_like(synapses_per_bin, dtype=float),
-                            where=dend_density > 0)
+                            out=np.zeros_like(synapses_per_bin, dtype=float))
 
         return density, num_soma_synapses
 
@@ -136,7 +141,8 @@ class SynapseDensity:
         num_soma_synapses = 0
 
         if len(neuron_id_list) == 0:
-            return density, num_soma_synapses
+            return np.full(len(self.edges) - 1, np.nan), 0
+#            return density, num_soma_synapses
         
         for neuron_id in neuron_id_list:
             d, n_soma_syn = self.calculate_synapse_density(neuron_id, pre_type=pre_type)
@@ -182,9 +188,11 @@ class SynapseDensity:
             synapses_per_bin += syn_per_bin
             num_soma_inputs += len(input_soma_dist_soma)
 
+        # density = np.divide(synapses_per_bin, dend_density,
+        #                     out=np.zeros_like(synapses_per_bin, dtype=float),
+        #                     where=dend_density > 0)
         density = np.divide(synapses_per_bin, dend_density,
-                            out=np.zeros_like(synapses_per_bin, dtype=float),
-                            where=dend_density > 0)
+                            out=np.zeros_like(synapses_per_bin, dtype=float))
 
         return density, num_soma_inputs
 
@@ -201,7 +209,8 @@ class SynapseDensity:
         num_soma_inputs = 0
 
         if len(neuron_id_list) == 0:
-            return density, num_soma_inputs
+            return np.full(len(self.edges) - 1, np.nan), 0
+            # return density, num_soma_inputs
         
         for neuron_id in neuron_id_list:
             d, n_soma_inputs = self.calculate_input_density(neuron_id, input_type=input_type)
@@ -239,8 +248,11 @@ class SynapseDensity:
         # pdb.set_trace()
         
         if len(density.shape) > 1:
-            mean_density = np.mean(density, axis=0) * 1e-6
-            std_density = np.std(density, axis=0) * 1e-6
+
+            # density[density == 0] = np.nan  # Do not count zero bins, there are no dendrites there for that morph
+            
+            mean_density = np.nanmean(density, axis=0) * 1e-6
+            std_density = np.nanstd(density, axis=0) * 1e-6
 
             lower = mean_density - std_density
             upper = mean_density + std_density
@@ -279,7 +291,7 @@ class SynapseDensity:
 
         all_density = []
         all_plot_labels = []
-        
+
         ax = None
         for morph in all_morph:
             print(f"Processing {morph}")
@@ -295,6 +307,7 @@ class SynapseDensity:
 
         num_soma_synapses = num_soma_synapses_all / len(all_morph)
         all_density = np.vstack(all_density)
+        
 
         ax = self.plot_density(density=all_density, num_soma_synapses=num_soma_synapses,
                                ax=ax)
