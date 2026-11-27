@@ -32,6 +32,22 @@ class SynapseDensity:
         else:
             self.input_data = None
 
+        plt.rcParams.update({
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+            "font.size": 9,
+            "axes.labelsize": 10,
+            "axes.titlesize": 10,
+            "xtick.labelsize": 9,
+            "ytick.labelsize": 9,
+            "legend.fontsize": 8,
+            "axes.linewidth": 0.8,
+            "xtick.major.width": 0.8,
+            "ytick.major.width": 0.8,
+            "pdf.fonttype": 42,   # keeps text editable in Illustrator/Inkscape
+            "ps.fonttype": 42,
+        })
+
     def calculate_dendrite_density(self, neuron_morphology):
         # Dendritic length found at each distance from soma
 
@@ -211,7 +227,7 @@ class SynapseDensity:
         
     def plot_density(self, density, num_soma_synapses, label="Synapse density", ax=None, color=None, title=None, y_label="Synapse density", fig_path=None):
         if ax is None:
-            fig, ax = plt.subplots(figsize=(8, 5))
+            fig, ax = plt.subplots(figsize=(3.5, 2.5))
 
         edges_um = self.edges * 1e6
 
@@ -248,10 +264,11 @@ class SynapseDensity:
             ax.set_title(title + f"\n({num_soma_synapses} synapses on soma)")
 
         ax.grid(True, linestyle="--", alpha=0.5)
-
+        ax.spines[["top", "right"]].set_visible(False)
+        
         if fig_path is not None:
             print(f"Writing figure to {fig_path}")
-            ax.get_figure().savefig(fig_path, bbox_inches='tight')
+            ax.get_figure().savefig(fig_path, bbox_inches='tight', dpi=300)
 
         return ax
 
@@ -289,7 +306,7 @@ class SynapseDensity:
         pre_text = "" if pre_type is None else f"-from-{pre_type}"
         fig_path = os.path.join(self.fig_path, f"synaptic-density-on-{neuron_type}{pre_text}.png")
         print(f"Saving figure {fig_path}")
-        ax.get_figure().savefig(fig_path, dpi=300, bbox_inches='tight')
+        ax.get_figure().savefig(fig_path, dpi=600, bbox_inches='tight')
         plt.ion()
         plt.show()
 
@@ -324,7 +341,7 @@ class SynapseDensity:
         input_text = "" if input_type is None else f"-{input_type}"
         fig_path = os.path.join(self.fig_path, f"input-density-on-{neuron_type}{input_text}.png")
         print(f"Saving figure {fig_path}")
-        ax.get_figure().savefig(fig_path, dpi=300, bbox_inches='tight')
+        ax.get_figure().savefig(fig_path, dpi=600, bbox_inches='tight')
         plt.ion()
         plt.show()
 
